@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<day index="0" duration="45" customersMin="3" customersMax="5" bagsAvailable="">
+		<!--- basic tutorial: flip, scan, return to customer -->
+		<feature name="tutorialBasic" />
+		<feature name="noDivider" />
+		<feature name="noNumericInput" />
+		<feature name="noBarcodeScales" />
+		<feature name="noFragileCheck" />
+		<category index="0" />
+		
+		<customer index="0" time="0" goodsMin="4" goodsMax="4" disableTimer="1" conveyorCapacity="1">
+			<message event="welcome" index="0">
+				Привет! Сегодня твой первый день на кассе супермаркета.
+			</message>
+			<message event="welcome" index="1">
+				Пока идет обучение, время не учитывается, так что можно не спешить.
+			</message>
+			<message event="welcome" index="2">
+				Твоя задача - сканировать штрих-коды на товарах и принимать оплату.
+			</message>
+			<!--появляется товар, сообщение остается-->
+			<good index="0" type="-1" side="2" noflip="1">
+				<message event="enter" index="0" instruction="1">
+					Чтобы просканировать товар, возьми его и проведи по сканеру.
+				</message>
+				<message event="scan" index="0" instruction="1">
+					Теперь товар добавлен в список покупок. Давай его мне.
+				</message>
+			</good>
+			<good index="1" type="-1" side="2" noflip="1">
+				<message event="enter" index="0" instruction="1">
+					Просканируй теперь вот это.
+				</message>
+				<message event="scan" index="0" instruction="1">
+					Хорошо, давай сюда.
+				</message>
+			</good>
+			<good index="2" type="-1" side="0">
+				<message event="enter" index="0">
+					Некоторые товары нужно перевернуть штрих-кодом вниз, чтобы просканировать.
+				</message>
+				<message event="enter" index="1">
+					Положи товар штрих-кодом на стол и просканируй.
+				</message>
+				<message event="enter" index="2" instruction="1">
+					Чтобы повернуть товар, дотронься до него.
+					Просканируй этот товар.
+				</message>
+				<message event="scan" index="0" instruction="1">
+					Ничего сложного. Давай сюда.
+				</message>
+			</good>
+			<good index="3" type="-1" side="0">
+				<message event="enter" index="0" instruction="1">
+					Вот, это последнее.
+				</message>
+				<message event="scan" index="0" instruction="1">
+					Отдавай товар мне и принимай оплату.
+				</message>
+				<message event="inbag" index="0" instruction="1">
+					Вот кредитка. Жми на нее, чтобы принять оплату.
+				</message>
+			</good>
+			<message event="payment" index="0">
+				Готово. Выдай мне чек и верни кредитку.
+			</message>
+			<message event="payment" index="1" instruction="1">
+				Чтобы выдать чек, нажми на экран рядом со сканером.
+			</message>
+			<message event="goodbye" index="0">
+				Видишь, ничего сложного.
+			</message>
+			<message event="goodbye" index="1">
+				Сейчас ночь, покупателей мало.
+			</message>
+			<message event="goodbye" index="2">
+				Удачи!
+			</message>
+		</customer>
+		<customer index="1" time="7" goodsMin="1" goodsMax="1">
+			<message event="welcome" index="0" instruction="1">
+				Здравствуйте.
+			</message>
+		</customer>
+		<customer index="2" time="10" goodsMin="2" goodsMax="2" />
+		<customer index="3" time="16" goodsMin="1" goodsMax="1" />
+		<customer index="4" time="20" goodsMin="2" goodsMax="2" />
+		<customer index="" goodsMin="1" goodsMax="3" />
+	</day>
+	
+	<day index="1" duration="40" customersMin="3" customersMax="5" bagsAvailable="0">
+		<!--- tutorial: bags. put to bag, fill a bag, add new bag -->
+		<feature name="noDivider" />
+		<feature name="noNumericInput" />
+		<feature name="noBarcodeScales" />
+		<feature name="noFragileCheck" />
+		<category index="0" />
+		<customer index="0" goodsMin="5" goodsMax="5" disableTimer="1">
+			<message event="welcome" index="0">
+				Привет! Это снова я.
+			</message>
+			<message event="welcome" index="1">
+				Давай в этот раз сложим товары в пакет.
+			</message>
+			<message event="welcome" index="2">
+				Достань пакет и складывай товары туда.
+			</message>
+			<message event="welcome" index="3" instruction="1">
+				Чтобы достать пакет, коснись области слева от сканера.
+			</message>
+			<message event="bag_new" index="0" instruction="1">
+				Складывай товары в пакет. Не забывай сканировать!
+			</message>
+			<message event="bag_full" index="0">
+				Пакет заполнился, нужно взять еще один.
+			</message>
+			<message event="bag_full" index="1" instruction="1">
+				Сдвинь полный пакет влево, а на его место поставь новый.
+			</message>
+			<message event="goodbye" index="0">
+				Удачи! Покупатели ждут.
+			</message>
+		</customer>
+		<customer index="" goodsMin="3" goodsMax="6" />
+	</day>
+	
+	<day index="2" duration="60" customersMin="2" customersMax="4" bagsAvailable="0">
+		<!--- tutorial: conveyor. divider and button -->
+		<feature name="tutorialConveyor" />
+		<feature name="noNumericInput" />
+		<feature name="noBarcodeScales" />
+		<feature name="noFragileCheck" />
+		<category index="0" />
+		<customer index="0" type="1" goodsMin="5" goodsMax="5" />
+		<customer index="1" type="2" goodsMin="5" goodsMax="5" />
+		<customer index="2" type="0" goodsMin="6" goodsMax="6" />
+		<customer index="" goodsMin="5" goodsMax="7" />
+	</day>
+	
+	<day index="3" duration="60" customersMin="3" customersMax="5">
+		<!--- no new features -->
+		<feature name="noNumericInput" />
+		<feature name="noBarcodeScales" />
+		<!--<feature name="noCategoryAll" />
+		<feature name="noCategoryBread" />
+		<feature name="noCategoryCold" />
+		<feature name="noCategoryChemicals" />-->
+		<feature name="noFragileCheck" />
+		<category index="0" />
+		<customer index="0" goodsMin="5" goodsMax="5" />
+		<customer index="1" goodsMin="5" goodsMax="5" />
+		<customer index="2" goodsMin="6" goodsMax="6" />
+		<customer index="" goodsMin="5" goodsMax="7" />
+	</day>
+	
+	<day index="990" duration="30" customersMin="3" customersMax="5" bagsAvailable="0123">
+		<!--- test day -->
+		<feature name="noNumericInput" />
+		<feature name="noBarcodeScales" />
+		<feature name="noFragileCheck" />
+		<customer index="0" time="1" type="-1" goodsMin="1" goodsMax="1" bags="0"/>
+		<customer index="1" time="5" type="-1" goodsMin="2" goodsMax="2" bags="0"/>
+		<customer index="2" time="8" type="-1" goodsMin="3" goodsMax="3" bags="0"/>
+		<customer index="" type="-1" goodsMin="2" goodsMax="2" bags="023"/>
+	</day>
+	
+</data>

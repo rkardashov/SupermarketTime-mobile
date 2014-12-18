@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<category id="0" title="Unsorted" />
+	<category id="1" title="Chemicals" prompt="Please put this to a separate CHEMICALS bag"/>
+	<category id="2" title="Frozen or wet" prompt="Oh this is gonna wet all the stuff! Please put it in separate bag."/>
+	<category id="3" title="Bread" prompt="Freshly baked! Put it separately please."/>
+	
+	<good id="0" texture="milk_bottle" category="1" barcodeSide="0" barcodeX="12" barcodeY="50"
+		grid0="0110,1111,1111,1111,1111,1111,1111,1111,1111"/>
+	<good id="1" texture="milk_carton" category="0" barcodeSide="0" barcodeX="10" barcodeY="50"/>
+	<good id="2" texture="mustard_tube" category="0" barcodeSide="0" barcodeX="8" barcodeY="40"/>
+	<good id="3" texture="beer_bottle" category="1" barcodeSide="0" barcodeX="8" barcodeY="35"/>
+	<good id="4" texture="cola_can" category="1" barcodeSide="0" barcodeX="13" barcodeY="35"/>
+	<good id="5" texture="wine_bottle" category="0" barcodeSide="0" barcodeX="10" barcodeY="55"/>
+</data>

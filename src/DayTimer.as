@@ -1,0 +1,152 @@
+package  
+{
+	import data.CustomerInfo;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+	import starling.display.Sprite;
+	import starling.events.Event;
+	import starling.text.TextField;
+	import starling.text.TextFieldAutoSize;
+	/**
+	 * ...
+	 * @author rkardashov@gmail.com
+	 */
+	public class DayTimer extends Sprite
+	{
+		static public const DEFAULT_TIME_SEC: int = 60;
+		private var _timer: Timer;
+		private var _text: TextField;
+		private var _event_times: Vector.<Number> = new Vector.<Number>();
+		private var _event_handlers: Vector.<Function> = new Vector.<Function>();
+		
+		public function DayTimer() 
+		{
+			super();
+			x = 20;
+			y = 10;
+			//addChild(_text = new TextField(50, 20, "", "arcade_10", 10));// verdana"));// 10));
+			addChild(_text = new TextField(50, 20, "", "systematic_9", 9));// verdana"));// 10));
+			_text.autoScale = false;
+			_text.autoSize = TextFieldAutoSize.HORIZONTAL;// LEFT;
+			_text.hAlign =  "right";
+			_text.text = "";
+			_timer = new Timer(1000, DEFAULT_TIME_SEC);
+			_timer.addEventListener(TimerEvent.TIMER, onTimer);
+			
+			GameEvents.subscribe(GameEvents.PAUSE, onGamePause);
+			GameEvents.subscribe(GameEvents.RESUME, onGameResume);
+			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrived);
+			GameEvents.subscribe(GameEvents.CUSTOMER_COMPLETE, onCustomerComplete);
+		}
+		
+		private function onCustomerArrived(e: Event, c: CustomerInfo): void 
+		{
+			if (c.disableTimer)
+				pause()
+			else
+				resume();
+		}
+		
+		private function onCustomerComplete(e: Event, c: CustomerInfo): void 
+		{
+			resume();
+			if (timeIsOut)
+				GameEvents.dispatch(GameEvents.TIME_OUT);
+			else
+				GameEvents.dispatch(GameEvents.NEXT_CUSTOMER);
+		}
+		
+		private function onGamePause(): void 
+		{
+			if (_timer.running)
+				pause();
+		}
+		private function onGameResume(): void 
+		{
+			if (!_timer.running)
+				resume();
+		}
+		
+		public function start(): void 
+		{
+			_timer.reset();
+			_timer.start();
+		}
+		
+		public function pause(): void 
+		{
+			_timer.stop();
+		}
+		
+		public function resume(): void 
+		{
+			_timer.start();
+		}
+		
+		public function get isRunning(): Boolean
+		{
+			return _timer.running;
+		}
+		
+		public function reset(duration: int): void 
+		{
+			_timer.reset();
+			_timer.repeatCount = duration;
+			_text.text = duration.toString();
+			clearEvents();
+		}
+		
+		public function get time(): Number 
+		{
+			return _timer.currentCount;
+		}
+		
+		public function get timeIsOut(): Boolean
+		{
+			return _timer.currentCount >= _timer.repeatCount;
+		}
+		
+		private function onTimer(e: TimerEvent): void 
+		{
+			_text.text = (_timer.repeatCount - _timer.currentCount).toString();
+			if (_event_times.length && _timer.currentCount >= _event_times[0])
+			{
+				//trace("timed event: " + _event_times[0]);
+				_event_times.shift();
+				_event_handlers.shift()();
+			}
+			if (timeIsOut)
+				GameEvents.dispatch(GameEvents.TIME_OUT);
+		}
+		
+		/**
+		 * Запланировать выполнение метода в указанное время игрового дня
+		 * @param	time	время дня
+		 * @param	handler	метод-обработчик события
+		 */
+		public function addEvent(time: Number, handler: Function): void 
+		{
+			_event_times.push(time);
+			_event_handlers.push(handler);
+		}
+		
+		/**
+		 * Запланировать выполнение метода спустя указанное время после последнего события
+		 * @param	offset	интервал ожидания после последнего события
+		 * @param	handler	метод-обработчик события
+		 */
+		public function addLastEvent(offset: Number, handler: Function): void 
+		{
+			if (_event_times.length)
+				addEvent(_event_times[_event_times.length - 1] + offset, handler)
+			else
+				addEvent(offset, handler);
+		}
+		
+		public function clearEvents():void 
+		{
+			_event_handlers.splice(0, _event_handlers.length);
+			_event_times.splice(0, _event_times.length);
+		}
+	}
+}

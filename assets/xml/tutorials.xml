@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<tutorial id="basic">
+		<instruction index="0" event="day_start"/>
+		<instruction index="1" event="customer_arrived"/>
+		<instruction index="2" event="good_enter"/>
+		<instruction index="3" event="good_scanned"/>
+	</tutorial>
+	<tutorial id="BLAH">
+	</tutorial>
+</data>
