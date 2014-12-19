@@ -1,9 +1,11 @@
 package  
 {
+	import data.Assets;
 	import data.CustomerInfo;
 	import flash.utils.setTimeout;
 	import screens.GameScreen;
 	import screens.Screens;
+	import starling.display.MovieClip;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	
@@ -20,6 +22,7 @@ package
 		private var layerDepart: Sprite;
 		private var _current: CustomerInfo;
 		private var pocket: Bag;
+		private var moodIndicator: MovieClip;
 		
 		public var dropArea: ItemsDropArea;
 		public var receivedCard: Boolean;
@@ -35,6 +38,8 @@ package
 			pocket = new Bag(-1);
 			addChild(layerDepart = new Sprite());
 			addChild(layerCustomers = new Sprite());
+			addChild(moodIndicator = new MovieClip(Assets.getTextures("mood")));
+			moodIndicator.visible = false;
 			addChild(dropArea = new ItemsDropArea(this, null, /*null, */70, 70));
 			
 			GameEvents.subscribe(GameEvents.NEXT_CUSTOMER, next);
@@ -55,6 +60,7 @@ package
 			CustomerView(layerDepart.getChildAt(0)).moveTo( -280);
 			_queue.shift();
 			_current = null;
+			moodIndicator.visible = false;
 		}
 		
 		private function onCustomerStopped(e: Event, c: CustomerInfo): void
@@ -62,6 +68,7 @@ package
 			if (_queue.length && (c == _queue[0]))
 			{
 				_current = c;
+				moodIndicator.visible = true;
 				GameEvents.dispatch(GameEvents.CUSTOMER_ARRIVED, c);
 			}
 		}
@@ -73,6 +80,8 @@ package
 			
 			layerCustomers.removeChildren();
 			layerDepart.removeChildren();
+			
+			moodIndicator.visible = false;
 			
 			_customers = value;
 			_queue.splice(0, _queue.length);
