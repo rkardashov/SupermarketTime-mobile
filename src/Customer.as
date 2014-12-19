@@ -16,40 +16,52 @@ package
 		
 		public function Customer() 
 		{
+			GameEvents.subscribe(GameEvents.DAY_START, onDayStart);
 			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrive);
+			GameEvents.subscribe(GameEvents.CUSTOMER_WELCOME, onCustomerWelcome);
+			GameEvents.subscribe(GameEvents.CUSTOMER_COMPLETE, onCustomerComplete);
+		}
+		
+		private function onDayStart(): void 
+		{
+			//mood = 0;
 		}
 		
 		private function onCustomerArrive(e: Event, c: CustomerInfo): void 
 		{
-			GameEvents.subscribe(GameEvents.TIMER_SECOND, onTimerSecond);
-			mood = 20;
-			GameEvents.dispatch(GameEvents.CUSTOMER_MOOD_LEVEL_CHANGE,
-				MOOD_LEVEL_MAX);
-		}
-		
-		public function reset():void 
-		{
+			mood = 0;
+			changeMoodLevel(20);
 			GameEvents.subscribe(GameEvents.TIMER_SECOND, onTimerSecond);
 		}
 		
-		/*public function init(info: CustomerInfo): void 
+		private function onCustomerComplete(): void 
 		{
-			GameEvents.subscribe(GameEvents.TIMER_SECOND, onTimerSecond);
-			mood = 10;
-			GameEvents.dispatch(GameEvents.CUSTOMER_MOOD_LEVEL_CHANGE,
-				MOOD_LEVEL_MAX);
-		}*/
+			GameEvents.unsubscribe(GameEvents.TIMER_SECOND, onTimerSecond);
+		}
+		
+		private function onCustomerWelcome(e: Event): void 
+		{
+			changeMoodLevel(10);
+		}
 		
 		private function onTimerSecond(e: Event): void 
 		{
 			if (mood > 0)
-				mood --;
-			if (mood == 10)
-				GameEvents.dispatch(GameEvents.CUSTOMER_MOOD_LEVEL_CHANGE,
-					MOOD_LEVEL_MID);
-			if (mood == 0)
-				GameEvents.dispatch(GameEvents.CUSTOMER_MOOD_LEVEL_CHANGE,
-					MOOD_LEVEL_MIN);
+				changeMoodLevel( -1);
+		}
+		
+		private function changeMoodLevel(change: int): void 
+		{
+			//trace("mood change: " + mood + ((change > 0) ? "+" : "") + change);
+			mood += change;
+			if (mood < 0)
+				mood = 0;
+			if (mood >= 20)
+				GameEvents.dispatch(GameEvents.CUSTOMER_MOOD_LEVEL, MOOD_LEVEL_MAX);
+			else if (mood >= 10)
+				GameEvents.dispatch(GameEvents.CUSTOMER_MOOD_LEVEL, MOOD_LEVEL_MID);
+			else if (mood >= 0)
+				GameEvents.dispatch(GameEvents.CUSTOMER_MOOD_LEVEL, MOOD_LEVEL_MIN);
 		}
 	}
 }

@@ -44,7 +44,8 @@ package
 		static public const CUSTOMER_ARRIVED: String = "customer_arrived";
 		static public const CUSTOMER_COMPLETE: String = "customer_complete";
 		static public const NEXT_CUSTOMER: String = "next_customer";
-		static public const CUSTOMER_MOOD_LEVEL_CHANGE: String = "customer_mood_level_change";
+		static public const CUSTOMER_MOOD_LEVEL: String = "customer_mood_level";
+		static public const CUSTOMER_WELCOME: String = "customer_welcome";
 		
 		static public const CONVEYOR_START: String = "conveyor_start";
 		static public const CONVEYOR_STOP: String = "conveyor_stop";

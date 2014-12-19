@@ -50,7 +50,7 @@ package
 			GameEvents.subscribe(GameEvents.DAY_START, onDayStart);
 			GameEvents.subscribe(GameEvents.NEXT_CUSTOMER, next);
 			GameEvents.subscribe(GameEvents.CUSTOMER_STOPPED, onCustomerStopped);
-			GameEvents.subscribe(GameEvents.CUSTOMER_MOOD_LEVEL_CHANGE,
+			GameEvents.subscribe(GameEvents.CUSTOMER_MOOD_LEVEL,
 				onCustomerMoodChange);
 		}
 		
@@ -72,7 +72,7 @@ package
 			_customers = d.customers;// value;
 			_queue.splice(0, _queue.length);
 			_current = null;
-			_customer.reset();
+			//_customer.reset();
 			
 			_timer.clearEvents();
 			/*for (var i:int = 0; i < _customers.length; i++)
@@ -89,6 +89,7 @@ package
 		
 		private function onCustomerMoodChange(e: Event, moodLevel: int): void 
 		{
+			//trace("customer mood level " + moodLevel);
 			moodIndicator.currentFrame = moodLevel;
 		}
 		
@@ -106,7 +107,7 @@ package
 			CustomerView(layerDepart.getChildAt(0)).moveTo( -280);
 			_queue.shift();
 			_current = null;
-			_customer.reset();
+			//_customer.reset();
 			moodIndicator.visible = false;
 		}
 		
