@@ -1,6 +1,7 @@
 package  
 {
 	import data.CustomerInfo;
+	import data.DayData;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	import starling.display.Sprite;
@@ -13,11 +14,12 @@ package
 	 */
 	public class DayTimer extends Sprite
 	{
-		static public const DEFAULT_TIME_SEC: int = 60;
+		private const DEFAULT_DURATION: int = 60;
 		private var _timer: Timer;
 		private var _text: TextField;
 		private var _event_times: Vector.<Number> = new Vector.<Number>();
 		private var _event_handlers: Vector.<Function> = new Vector.<Function>();
+		private var dayDuration: int;
 		
 		public function DayTimer() 
 		{
@@ -30,13 +32,20 @@ package
 			_text.autoSize = TextFieldAutoSize.HORIZONTAL;// LEFT;
 			_text.hAlign =  "right";
 			_text.text = "";
-			_timer = new Timer(1000, DEFAULT_TIME_SEC);
+			_timer = new Timer(1000, 0);// DEFAULT_TIME_SEC);
 			_timer.addEventListener(TimerEvent.TIMER, onTimer);
 			
+			GameEvents.subscribe(GameEvents.DAY_START, onDayStart);
 			GameEvents.subscribe(GameEvents.PAUSE, onGamePause);
 			GameEvents.subscribe(GameEvents.RESUME, onGameResume);
 			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrived);
 			GameEvents.subscribe(GameEvents.CUSTOMER_COMPLETE, onCustomerComplete);
+		}
+		
+		private function onDayStart(e: Event, d: DayData): void
+		{
+			reset(d.duration);
+			start();
 		}
 		
 		private function onCustomerArrived(e: Event, c: CustomerInfo): void 
@@ -53,6 +62,7 @@ package
 			if (timeIsOut)
 				GameEvents.dispatch(GameEvents.TIME_OUT);
 			else
+			// TODO: move _CUSTOMER_ messages out. TIMER messages ONLY!
 				GameEvents.dispatch(GameEvents.NEXT_CUSTOMER);
 		}
 		
@@ -91,7 +101,8 @@ package
 		public function reset(duration: int): void 
 		{
 			_timer.reset();
-			_timer.repeatCount = duration;
+			//_timer.repeatCount = duration;
+			dayDuration = duration;
 			_text.text = duration.toString();
 			clearEvents();
 		}
@@ -103,18 +114,22 @@ package
 		
 		public function get timeIsOut(): Boolean
 		{
-			return _timer.currentCount >= _timer.repeatCount;
+			return _timer.currentCount >= dayDuration;// _timer.repeatCount;
 		}
 		
 		private function onTimer(e: TimerEvent): void 
 		{
-			_text.text = (_timer.repeatCount - _timer.currentCount).toString();
+			//_text.text = (_timer.repeatCount - _timer.currentCount).toString();
+			if (time >= 0)
+				_text.text = (dayDuration - _timer.currentCount).toString();
+			else
+				_text.text = "0";
 			if (_event_times.length && _timer.currentCount >= _event_times[0])
 			{
-				//trace("timed event: " + _event_times[0]);
 				_event_times.shift();
 				_event_handlers.shift()();
 			}
+			GameEvents.dispatch(GameEvents.TIMER_SECOND, dayDuration - _timer.currentCount);
 			if (timeIsOut)
 				GameEvents.dispatch(GameEvents.TIME_OUT);
 		}

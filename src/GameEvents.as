@@ -15,6 +15,7 @@ package
 		static public const PAUSE: String = "game_pause";
 		static public const RESUME: String = "game_resume";
 		static public const TIME_OUT: String = "time_out";
+		static public const TIMER_SECOND:String = "timer_second";
 		
 		//static public const MESSAGE_SHOW: String = "message_show";
 		//static public const MESSAGE_CLOSE: String = "message_close";
@@ -43,9 +44,13 @@ package
 		static public const CUSTOMER_ARRIVED: String = "customer_arrived";
 		static public const CUSTOMER_COMPLETE: String = "customer_complete";
 		static public const NEXT_CUSTOMER: String = "next_customer";
+		static public const CUSTOMER_MOOD_LEVEL_CHANGE: String = "customer_mood_level_change";
 		
 		static public const CONVEYOR_START: String = "conveyor_start";
 		static public const CONVEYOR_STOP: String = "conveyor_stop";
+		
+		static public const INTRO_START: String = "intro_start";
+		static public const INTRO_END: String = "intro_end";
 		
 		static public function subscribe(eventType: String, handler: Function): void 
 		{

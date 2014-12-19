@@ -91,7 +91,7 @@ package screens
 			layerUI.addChild(customerSpeech = new CustomerSpeech());
 			layerUI.addChild(pauseWindow = new PauseWindow());
 			layerUI.addChild(instructionView/* = new InstructionView()*/);
-			layerUI.addChild(dayIntroView = new DayIntroView(startDay));
+			layerUI.addChild(dayIntroView = new DayIntroView(/*startDay*/));
 			
 			layerItems.addChild(conveyor = new Conveyor());
 			layerItems.addChild(customerCard = new CustomerCard( /*onPayment*/));
@@ -115,6 +115,8 @@ package screens
 			
 			Goods.init();
 			ScorePopup.init(layerUI);
+			
+			GameEvents.subscribe(GameEvents.INTRO_END, onIntroEnd);
 		}
 		
 		public function enter(): void
@@ -134,9 +136,9 @@ package screens
 			//Saves.currentDay.customers = 0;
 			
 			// TODO: move to DayTimer.@DAY_START
-			dayTimer.reset(day.duration);
+			//dayTimer.reset(day.duration);
 			// TODO: move to CustomerQueue.@DAY_START
-			customerQueue.customers = day.customers;
+			//customerQueue.customers = day.customers;
 			
 			// TODO: move to BagsRequest.@DAY_START
 			bagsRequestView.visible = false;
@@ -147,12 +149,14 @@ package screens
 			
 			instructionView.init(day);
 			
-			dayIntroView.show(day);
+			//dayIntroView.show(day);
+			GameEvents.dispatch(GameEvents.INTRO_START, day);
 		}
 		
-		private function startDay(): void
+		//private function startDay(): void
+		private function onIntroEnd(e: Event): void
 		{
-			dayTimer.start();
+			//dayTimer.start();
 			//ambient.play();
 			GameEvents.dispatch(GameEvents.DAY_START, day);
 		}

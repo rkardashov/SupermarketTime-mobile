@@ -18,14 +18,14 @@ package
 	public class DayIntroView extends Sprite 
 	{
 		private var textField: TextField;
-		private var onCloseCallback: Function;
+		//private var onCloseCallback: Function;
 		private var fadeOut: Boolean = false;
 		//private var messageQueue: Vector.<String> = new Vector.<String>();
 		
-		public function DayIntroView(onClose: Function) 
+		public function DayIntroView(/*onClose: Function*/) 
 		{
 			super();
-			onCloseCallback = onClose;
+			//onCloseCallback = onClose;
 			var bubble: Image = Assets.getImage("bubble_briefing");
 			addChild(bubble);
 			bubble.x = int((Screens.uWidth * Screens.unit - bubble.width) / 2);
@@ -36,9 +36,11 @@ package
 			// TEMP!
 			addEventListener(TouchEvent.TOUCH, onTouch);
 			visible = false;
+			GameEvents.subscribe(GameEvents.INTRO_START, onIntroStart);
 		}
 		
-		public function show(day: DayData): void 
+		//public function show(day: DayData): void 
+		private function onIntroStart(e: Event, day: DayData): void
 		{
 			textField.text = "DAY " + day.dayNumber;
 			alpha = 0;
@@ -60,7 +62,8 @@ package
 				fadeOut = false;
 				removeEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
 				visible = false;
-				onCloseCallback();
+				//onCloseCallback();
+				GameEvents.dispatch(GameEvents.INTRO_END);
 			}
 		}
 		
@@ -70,7 +73,8 @@ package
 			{
 				removeEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
 				visible = false;
-				onCloseCallback();
+				//onCloseCallback();
+				GameEvents.dispatch(GameEvents.INTRO_END);
 			}
 		}
 	}
