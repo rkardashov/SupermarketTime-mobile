@@ -119,28 +119,18 @@ package screens
 			ScorePopup.init(layerUI);
 			
 			GameEvents.subscribe(GameEvents.INTRO_END, onIntroEnd);
+			GameEvents.subscribe(GameEvents.CUSTOMER_COMPLETE, checkStatus);
+			GameEvents.subscribe(GameEvents.TIME_OUT, checkStatus);
 		}
 		
 		public function enter(): void
 		{
-			GameEvents.subscribe(GameEvents.CUSTOMER_COMPLETE, checkStatus);
-			GameEvents.subscribe(GameEvents.TIME_OUT, checkStatus);
-			
-			//day = new DayData(Saves.currentDay.index);
 			day = new DayData(Saves.currentDayIndex);
 			for (var i:int = 0; i < Goods.categories.length; i++)
 			{
 				bags[i].visible = day.bags[i];
 				bags[i].reset();
 			}
-			//conveyor.movementEnabled = !day.noDivider;
-			
-			//Saves.currentDay.customers = 0;
-			
-			// TODO: move to DayTimer.@DAY_START
-			//dayTimer.reset(day.duration);
-			// TODO: move to CustomerQueue.@DAY_START
-			//customerQueue.customers = day.customers;
 			
 			// TODO: move to BagsRequest.@DAY_START
 			bagsRequestView.visible = false;
@@ -149,13 +139,13 @@ package screens
 			// TODO: move to CustomerReceipt.@DAY_START
 			customerReceipt.visible = false;
 			
+			// TODO: move to InstructionView.@DAY_START
 			instructionView.init(day);
 			
 			//dayIntroView.show(day);
 			GameEvents.dispatch(GameEvents.INTRO_START, day);
 		}
 		
-		//private function startDay(): void
 		private function onIntroEnd(e: Event): void
 		{
 			//dayTimer.start();

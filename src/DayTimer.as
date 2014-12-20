@@ -36,6 +36,7 @@ package
 			_timer.addEventListener(TimerEvent.TIMER, onTimer);
 			
 			GameEvents.subscribe(GameEvents.DAY_START, onDayStart);
+			GameEvents.subscribe(GameEvents.DAY_END, pause);
 			GameEvents.subscribe(GameEvents.PAUSE, onGamePause);
 			GameEvents.subscribe(GameEvents.RESUME, onGameResume);
 			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrived);

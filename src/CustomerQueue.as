@@ -48,6 +48,7 @@ package
 			addChild(dropArea = new ItemsDropArea(this, null, /*null, */70, 70));
 			
 			GameEvents.subscribe(GameEvents.DAY_START, onDayStart);
+			GameEvents.subscribe(GameEvents.DAY_END, reset);
 			GameEvents.subscribe(GameEvents.NEXT_CUSTOMER, next);
 			GameEvents.subscribe(GameEvents.CUSTOMER_STOPPED, onCustomerStopped);
 			GameEvents.subscribe(GameEvents.CUSTOMER_MOOD_LEVEL,
@@ -56,11 +57,16 @@ package
 		
 		private function onDayStart(e: Event, d: DayData): void 
 		{
-		/*	customers = day.customers;
+			reset();
+			_customers = d.customers;
+			
+			_timer.addEvent(0, customerEnter);
+			for (var i:int = 1; i < _customers.length; i++)
+				_timer.addLastEvent(_customers[i].interval, customerEnter);
 		}
 		
-		private function set customers(value: Vector.<CustomerInfo>): void 
-		{*/
+		private function reset(): void 
+		{
 			receivedCard = false;
 			receivedReceipt = false;
 			
@@ -69,22 +75,11 @@ package
 			
 			moodIndicator.visible = false;
 			
-			_customers = d.customers;// value;
-			_queue.splice(0, _queue.length);
-			_current = null;
-			//_customer.reset();
-			
 			_timer.clearEvents();
-			/*for (var i:int = 0; i < _customers.length; i++)
-			{
-				if (_customers[i].time >= 0)
-					_timer.addEvent(_customers[i].time, customerEnter)
-				else
-					_timer.addLastEvent(_customers[i].interval, customerEnter);
-			}*/
-			_timer.addEvent(0, customerEnter);
-			for (var i:int = 1; i < _customers.length; i++)
-				_timer.addLastEvent(_customers[i].interval, customerEnter);
+			
+			_customers = null;
+			_queue.splice(0, _queue.length);
+			_current = null;			
 		}
 		
 		private function onCustomerMoodChange(e: Event, moodLevel: int): void 
@@ -107,7 +102,6 @@ package
 			CustomerView(layerDepart.getChildAt(0)).moveTo( -280);
 			_queue.shift();
 			_current = null;
-			//_customer.reset();
 			moodIndicator.visible = false;
 		}
 		
