@@ -15,6 +15,12 @@ package
 			visible = false;
 			addEventListener(Event.TRIGGERED, onTrigger);
 			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrived);
+			GameEvents.subscribe(GameEvents.GOOD_ENTER, onGoodEnter);
+		}
+		
+		private function onGoodEnter(e: Event): void 
+		{
+			visible = false;
 		}
 		
 		private function onCustomerArrived(e: Event): void 
