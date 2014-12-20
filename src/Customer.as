@@ -13,30 +13,22 @@ package
 		static public const MOOD_LEVEL_MAX: int = 2;
 		
 		private var mood: int = 0;
+		private var info: CustomerInfo;
 		
 		public function Customer() 
 		{
-			GameEvents.subscribe(GameEvents.DAY_START, onDayStart);
 			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrive);
 			GameEvents.subscribe(GameEvents.CUSTOMER_WELCOME, onCustomerWelcome);
 			GameEvents.subscribe(GameEvents.CUSTOMER_COMPLETE, onCustomerComplete);
-		}
-		
-		private function onDayStart(): void 
-		{
-			//mood = 0;
+			GameEvents.subscribe(GameEvents.CONVEYOR_GOODS_REQUEST, onGoodsRequest);
 		}
 		
 		private function onCustomerArrive(e: Event, c: CustomerInfo): void 
 		{
 			mood = 0;
+			info = c;
 			changeMoodLevel(20);
 			GameEvents.subscribe(GameEvents.TIMER_SECOND, onTimerSecond);
-		}
-		
-		private function onCustomerComplete(): void 
-		{
-			GameEvents.unsubscribe(GameEvents.TIMER_SECOND, onTimerSecond);
 		}
 		
 		private function onCustomerWelcome(e: Event): void 
@@ -44,10 +36,24 @@ package
 			changeMoodLevel(10);
 		}
 		
+		private function onGoodsRequest(e: Event): void 
+		{
+			if (!info)
+				return;
+			while (info.goods.length)
+				GameEvents.dispatch(GameEvents.GOOD_ADD_TO_CONVEYOR, info.nextGood());
+		}
+		
 		private function onTimerSecond(e: Event): void 
 		{
 			if (mood > 0)
 				changeMoodLevel( -1);
+		}
+		
+		private function onCustomerComplete(): void 
+		{
+			info = null;
+			GameEvents.unsubscribe(GameEvents.TIMER_SECOND, onTimerSecond);
 		}
 		
 		private function changeMoodLevel(change: int): void 

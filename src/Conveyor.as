@@ -15,12 +15,10 @@ package
 	 * @author ...
 	 */
 	public class Conveyor extends Sprite 
-	//public class Conveyor extends Sprite implements IItemReceiver
 	{
 		public var goodsCount: int = 0;
 		private var capacity: int;
 		private var divider: ConveyorDivider;
-		private var customer: CustomerInfo;
 		private var leftItem: Item;
 		private var layerOff:Sprite;
 		private var layerConveyor:Sprite;
@@ -33,7 +31,7 @@ package
 			addChild(layerOff = new Sprite());
 			addChild(layerConveyor = new Sprite());
 			
-			layerConveyor.addChild(divider = new ConveyorDivider(addGoods));
+			layerConveyor.addChild(divider = new ConveyorDivider());
 			
 			GameEvents.subscribe(GameEvents.DAY_START, onDayStart);
 			GameEvents.subscribe(GameEvents.PAUSE, onPause);
@@ -43,12 +41,7 @@ package
 			GameEvents.subscribe(GameEvents.BAG_GOOD_ADDED, onGoodAddedToBag);
 			GameEvents.subscribe(GameEvents.ITEM_DROP, onItemDrop);
 			GameEvents.subscribe(GameEvents.ITEM_PICK, onItemPick);
-		}
-		
-		private function onGoodAddedToBag(e: Event, b: Bag): void 
-		{
-			if (goodsCount == 0)
-				GameEvents.dispatch(GameEvents.GOODS_COMPLETE);
+			GameEvents.subscribe(GameEvents.GOOD_ADD_TO_CONVEYOR, onGoodAddedToConveyor);
 		}
 		
 		private function onDayStart(): void 
@@ -56,13 +49,6 @@ package
 			divider.x = 0;// 100;
 			paused = false;
 			move();
-		}
-		
-		private function onGoodReceived(e: Event, good: Good): void 
-		{
-			goodsCount --;
-			if (good == leftItem)
-				findLeftMostItem();
 		}
 		
 		private function onPause():void 
@@ -77,8 +63,29 @@ package
 		
 		private function onCustomerArrived(e: Event, c: CustomerInfo): void 
 		{
-			customer = c;
 			capacity = c.conveyorCapacity;
+		}
+		
+		private function onGoodAddedToConveyor(e: Event, g: GoodInfo): void 
+		{
+			layerConveyor.removeChild(divider);
+			add(Goods.get(g));
+			add(divider);
+			leftItem = atConveyor(0);
+			move();
+		}
+		
+		private function onGoodAddedToBag(e: Event, b: Bag): void 
+		{
+			if (goodsCount == 0)
+				GameEvents.dispatch(GameEvents.GOODS_COMPLETE);
+		}
+		
+		private function onGoodReceived(e: Event, good: Good): void 
+		{
+			goodsCount --;
+			if (good == leftItem)
+				findLeftMostItem();
 		}
 		
 		private function add(item: Item): void 
@@ -87,7 +94,6 @@ package
 			layerConveyor.addChild(item);
 			item.visible = true;
 			
-			//width + Screens.unit * 2 * layerConveyor.numChildren
 			var rightBorder: int = Screens.unit * (4 + 2 * layerConveyor.numChildren);
 			
 			if (item.type == Item.TYPE_CONVEYOR_DIVIDER)
@@ -124,7 +130,7 @@ package
 			removeEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
 		}
 		
-		private function addGoods(): void 
+		/*private function addGoods(): void 
 		{
 			if (!customer)
 				return;
@@ -135,12 +141,8 @@ package
 				add(Goods.get(info));
 			add(divider);
 			leftItem = atConveyor(0);
-			/*if (goodsCount > 0)
-				GameEvents.dispatch(GameEvents.CONVEYOR_START)
-			else
-				GameEvents.dispatch(GameEvents.GOODS_COMPLETE);*/
 			move();
-		}
+		}*/
 		
 		private function atConveyor(i: int): Item
 		{

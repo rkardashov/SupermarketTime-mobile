@@ -30,6 +30,7 @@ package
 		static public const GOOD_CHECKOUT: String = "good_checkout";
 		static public const GOOD_RECEIVED:String = "good_received";
 		static public const GOOD_WRONG_BAG: String = "good_wrong_bag";
+		static public const GOOD_ADD_TO_CONVEYOR:String = "good_add_to_conveyor";
 		
 		static public const BAG_NEW: String = "bag_new";
 		static public const BAG_GOOD_ADDED: String = "good_in_bag";
@@ -49,6 +50,7 @@ package
 		
 		static public const CONVEYOR_START: String = "conveyor_start";
 		static public const CONVEYOR_STOP: String = "conveyor_stop";
+		static public const CONVEYOR_GOODS_REQUEST: String = "conveyor_goods_request";
 		
 		static public const INTRO_START: String = "intro_start";
 		static public const INTRO_END: String = "intro_end";

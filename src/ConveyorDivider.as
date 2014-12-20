@@ -16,13 +16,13 @@ package
 	 */
 	public class ConveyorDivider extends Item// Image
 	{
-		private var onDividerMoveOut:Function;
+		//private var onDividerMoveOut:Function;
 		
-		public function ConveyorDivider(onDividerMoveOut: Function) 
+		public function ConveyorDivider(/*onDividerMoveOut: Function*/) 
 		{
 			super(TYPE_CONVEYOR_DIVIDER);
 			
-			this.onDividerMoveOut = onDividerMoveOut;
+			//this.onDividerMoveOut = onDividerMoveOut;
 			
 			addChild(Assets.getImage("conveyor_divider"));
 		}
@@ -33,7 +33,8 @@ package
 			if (x < 0)
 				x = 0;
 			if (x > 200)
-				onDividerMoveOut();
+				//onDividerMoveOut();
+				GameEvents.dispatch(GameEvents.CONVEYOR_GOODS_REQUEST);
 		}
 		
 		override protected function onDrop(): void 
