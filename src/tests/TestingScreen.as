@@ -4,6 +4,8 @@ package tests
 	import starling.display.DisplayObject;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	/**
 	 * ...
 	 * @author rkardashov@gmail.com
@@ -16,6 +18,8 @@ package tests
 		static public var scale: int = 1;
 		static public var centerX: int;
 		static public var centerY: int;
+		
+		private var popup:ScorePopup;
 		
 		public function TestingScreen() 
 		{
@@ -32,6 +36,21 @@ package tests
 			scale = stage.stageHeight / 240;
 			centerX = 200;
 			centerY = 120;
+			scaleX = scaleY = 2;
+			
+			
+			addChild(Assets.getImage("bg_game"));
+			
+			ScorePopup.init(this);
+			//addChild(popup = new ScorePopup());
+			
+			addEventListener(TouchEvent.TOUCH, onTouch);
+		}
+		
+		private function onTouch(e: TouchEvent): void 
+		{
+			if (e.getTouch(this, TouchPhase.ENDED))
+				GameEvents.dispatch(GameEvents.ADD_SCORE, new ScoreChange("bonus points!", 15, 50, centerY));
 		}
 	}
 }

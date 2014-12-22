@@ -5,6 +5,7 @@ package
 	import starling.animation.Transitions;
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
+	import starling.display.MovieClip;
 	import starling.display.Sprite;
 	import starling.events.EnterFrameEvent;
 	import starling.events.Event;
@@ -44,13 +45,15 @@ package
 		
 		private var _text: TextField;
 		private var _shadow: TextField;
-		private var particleSystem: PDParticleSystem;
+		private var _effect:MovieClip;
 		private const DURATION: Number = 2.0;
 		
 		public function ScorePopup()
 		{
-			addChild(particleSystem = Assets.particleSystem());
-			particleSystem.smoothing = TextureSmoothing.NONE;
+			addChild(_effect = new MovieClip(Assets.getTextures("pixels")));
+			_effect.smoothing = TextureSmoothing.NONE;
+			//_effect.visible = false;
+			_effect.scaleX = _effect.scaleY = 3;
 			
 			addChild(_shadow = new TextField
 				(300, 50, "", "Systematic_9", 18, 0x88000000));
@@ -66,7 +69,6 @@ package
 			visible = false;
 			
 			uiLayer.addChild(this);
-			//GameEvents.subscribe(GameEvents.ADD_SCORE, onAddScore);
 		}
 		
 		private function onAddScore(e: Event, score: ScoreChange): void 
@@ -90,10 +92,6 @@ package
 		{
 			visible = true;
 			alpha = 1.0;
-			particleSystem.emitterX = x;
-			particleSystem.emitterY = y;
-			particleSystem.start(DURATION / 2);
-			//addEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
 			Starling.juggler.tween(this, DURATION,
 				{
 					alpha: 0.0,
@@ -107,9 +105,11 @@ package
 					roundToInt: true
 				});
 				
-			Starling.juggler.tween(particleSystem, DURATION,
+			//_effect.visible = true;
+			_effect.currentFrame = 0;
+			Starling.juggler.tween(_effect, DURATION,
 				{
-					emitterY: y-20,
+					currentFrame: _effect.numFrames - 1,
 					transition: Transitions.LINEAR,
 					roundToInt: true
 				});
@@ -119,7 +119,7 @@ package
 		{
 			visible = false;
 			_pool.push(this);
-			particleSystem.stop();
+			//_effect.visible = false;
 		}
 		
 		/*private function onEnterFrame(e: EnterFrameEvent): void 
