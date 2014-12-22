@@ -1,4 +1,4 @@
-package screens 
+package tests
 {
 	import data.Assets;
 	import starling.display.DisplayObject;

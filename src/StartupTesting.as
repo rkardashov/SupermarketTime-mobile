@@ -1,18 +1,18 @@
 package  
 {
 	import flash.display.Sprite;
-	import screens.TestingScreen;
+	import tests.TestingScreen;
 	import starling.core.Starling;
 	
 	/**
 	 * ...
 	 * @author rkardashov@gmail.com
 	 */
-	public class Testing extends Sprite
+	public class StartupTesting extends Sprite
 	{
 		private var _starling: Starling;
 		
-		public function Testing()
+		public function StartupTesting()
 		{
 			_starling = new Starling(TestingScreen, stage);
 			_starling.showStats = true;
