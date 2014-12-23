@@ -49,6 +49,7 @@ package
 			start();
 		}
 		
+		// TODO: move this away from DayTimer. Customer? CustomerQueue?
 		private function onCustomerArrived(e: Event, c: CustomerInfo): void 
 		{
 			if (c.disableTimer)
