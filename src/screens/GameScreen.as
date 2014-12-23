@@ -43,6 +43,7 @@ package screens
 		//private var speechView:SpeechView;
 		private var customerSpeech:CustomerSpeech;
 		private var btnCustomerWelcome:CustomerWelcomeButton;
+		private var btnCustomerGoodbye:CustomerGoodbyeButton;
 		private var pauseWindow:PauseWindow;
 		private var instructionView:InstructionView;
 		private var dayIntroView:DayIntroView;
@@ -91,6 +92,7 @@ package screens
 			//layerUI.addChild(speechView = new SpeechView());
 			layerUI.addChild(customerSpeech = new CustomerSpeech());
 			layerUI.addChild(btnCustomerWelcome = new CustomerWelcomeButton());
+			layerUI.addChild(btnCustomerGoodbye = new CustomerGoodbyeButton());
 			layerUI.addChild(pauseWindow = new PauseWindow());
 			layerUI.addChild(instructionView/* = new InstructionView()*/);
 			layerUI.addChild(dayIntroView = new DayIntroView(/*startDay*/));

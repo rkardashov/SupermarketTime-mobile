@@ -19,6 +19,7 @@ package
 		{
 			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrive);
 			GameEvents.subscribe(GameEvents.CUSTOMER_WELCOME, onCustomerWelcome);
+			GameEvents.subscribe(GameEvents.CUSTOMER_GOODBYE, onCustomerGoodbye);
 			GameEvents.subscribe(GameEvents.CUSTOMER_COMPLETE, onCustomerComplete);
 			GameEvents.subscribe(GameEvents.CONVEYOR_GOODS_REQUEST, onGoodsRequest);
 		}
@@ -32,6 +33,11 @@ package
 		}
 		
 		private function onCustomerWelcome(e: Event): void 
+		{
+			changeMoodLevel(10);
+		}
+		
+		private function onCustomerGoodbye():void 
 		{
 			changeMoodLevel(10);
 		}
