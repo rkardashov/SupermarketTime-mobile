@@ -6,14 +6,18 @@ package data
 	 */
 	public class CustomerInfo 
 	{
+		public var id: String;
 		public var disableTimer: Boolean = false;
 		public var conveyorCapacity: int;
 		public var messages: Object = { };
 		public var bagsRequest: Vector.<Boolean> = new Vector.<Boolean>;
-		public var type: int;
+		//public var type: int;
+		public var texture: String;
 		public var time: Number;
 		public var interval: Number;
 		public var goods: Vector.<GoodInfo> = new Vector.<GoodInfo>;
+		public var events: Object = { };
+		private const ALL_EVENTS: Array = [GameEvents.CUSTOMER_ARRIVED, GameEvents.CUSTOMER_WELCOME, GameEvents.CUSTOMER_GOODBYE];
 		
 		public function CustomerInfo(xml: XML) 
 		{
@@ -27,7 +31,8 @@ package data
 			if (xml.attribute("type").length() > 0)
 				type = xml.@type;
 			if (type == -1)*/
-				type = Math.random() * 4;
+				//type = Math.random() * 4;
+			texture = String(int(Math.random() * 4));
 			
 			disableTimer = false;/* (int(xml.@disableTimer) == 1);*/
 			
@@ -64,6 +69,12 @@ package data
 					handLimit --;
 				}
 			}*/
+			
+			for each (var event: String in ALL_EVENTS) 
+				/*if (Math.random() > 0.5)*/
+					events[event] = 15
+				/*else
+					events[event] = 0*/;
 			
 			/*var xmlMsgs: XMLList;
 			for each (var event: String in [

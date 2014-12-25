@@ -28,18 +28,18 @@ package
 		{
 			mood = 0;
 			info = c;
-			changeMoodLevel(20);
+			changeMoodLevel(info.events[e.type]);
 			GameEvents.subscribe(GameEvents.TIMER_SECOND, onTimerSecond);
 		}
 		
 		private function onCustomerWelcome(e: Event): void 
 		{
-			changeMoodLevel(10);
+			changeMoodLevel(info.events[e.type]);
 		}
 		
-		private function onCustomerGoodbye():void 
+		private function onCustomerGoodbye(e: Event): void 
 		{
-			changeMoodLevel(10);
+			changeMoodLevel(info.events[e.type]);
 		}
 		
 		private function onGoodsRequest(e: Event): void 
