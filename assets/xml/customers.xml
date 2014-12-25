@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<customer id="grandma" mood="10" goodsMax="2"> <!--Молоко, хлеб, масло, сахар, капуста, мыло-->
+		<good id="0" counts="0112" />
+		<good id="1" counts="0012" />
+		<reaction event="customer_welcome" mood="15" />
+		<reaction event="customer_goodbye" mood="25" />
+	</customer> 
+	<customer id="woman" mood="15" goodsMax="4"> <!--Майонез, специи, вино, шоколад, кух.химия, шампунь -->
+		<good id="0" counts="0012" />
+		<good id="1" counts="0112" />
+		<good id="2" counts="001" />
+		<reaction event="bag_wrong_good" mood="-5" />
+		<reaction event="customer_welcome" mood="15" />
+		<reaction event="checkout_stickers" mood="10" />
+		<reaction event="customer_goodbye" mood="15" />
+	</customer>
+	<customer id="man" mood="20" goodsMax="3"> <!--Пиво, чипсы, мясо, горчица, кетчуп, мыло -->
+		<good id="2" counts="001" />
+		<good id="3" counts="122" />
+		<reaction event="customer_welcome" mood="20" />
+	</customer>
+	<customer id="student" mood="20" goodsMax="2"> <!--Газировка, чипсы, шоколад, доширак, шампунь -->
+		<good id="0" counts="001" />
+		<good id="4" counts="1" />
+		<reaction event="bag_wrong_good" mood="-5" />
+		<reaction event="checkout_stickers" mood="15" />
+	</customer>
+	<customer id="schoolboy" mood="15" goodsMax="1"> <!--Газировка, шоколад -->
+		<good id="4" counts="1" />
+		<reaction event="checkout_stickers" mood="25" />
+	</customer>
+</data>

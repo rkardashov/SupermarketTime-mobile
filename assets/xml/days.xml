@@ -3,67 +3,67 @@
 	<!--
 	[0 milk carton, 1 cola can, 2 wine bottle, 3 mustard tube, 4 milk bottle, 5 beer bottle]
 	-->
-	<day index="0" duration="45" score="30,60,90" bags="0" goods="0-2" ><!--tutorial="basic">-->
+	<day index="0" duration="45" score="30,60,90" bags="0" goods="0-2" customers="grandma,woman"><!--tutorial="basic">-->
 		<disabledFeature name="flipping" />
 		<disabledFeature name="numericInput" />
 		<disabledFeature name="barcodePrinter" />
 	</day>
 	
-	<day index="1" duration="60" score="45,70,120" bags="0" goods="0-2" ><!--tutorial="flipping">-->
+	<day index="1" duration="60" score="45,70,120" bags="0" goods="0-2" customers="grandma,woman"><!--tutorial="flipping">-->
 		<disabledFeature name="numericInput" />
 		<disabledFeature name="barcodePrinter" />
 	</day>
 	
-	<day index="2" duration="90" score="60,110,170" bags="0" goods="0-3" newGood="3" >
+	<day index="2" duration="90" score="60,110,170" bags="0" goods="0-3" newGood="3" customers="grandma,woman,man">
 		<disabledFeature name="numericInput" />
 		<disabledFeature name="barcodePrinter" />
 	</day>
 
-	<day index="3" duration="90" score="55,90,150" bags="0" goods="0-3">
+	<day index="3" duration="90" score="55,90,150" bags="0" goods="0-3" customers="grandma,woman,man">
 		<disabledFeature name="numericInput" />
 		<disabledFeature name="barcodePrinter" />
 	</day>
 
-	<day index="4" duration="90" score="90,170,260" bags="0" goods="0-4" newGood="4">
+	<day index="4" duration="90" score="90,170,260" bags="0" goods="0-4" newGood="4" customers="grandma,woman,man,schoolboy">
 		<disabledFeature name="numericInput" />
 		<disabledFeature name="barcodePrinter" />
 	</day>
 
-	<day index="5" duration="90" score="50,120,200" bags="0" goods="0-4">
+	<day index="5" duration="90" score="50,120,200" bags="0" goods="0-4" customers="grandma,woman,man,schoolboy">
 		<disabledFeature name="numericInput" />
 		<disabledFeature name="barcodePrinter" />
 	</day>
 
-	<day index="6" duration="90" score="70,140,220" bags="0,1" goods="0-4">
+	<day index="6" duration="90" score="70,140,220" bags="0,1" goods="0-4" customers="grandma,woman,man,schoolboy,student">
 		<disabledFeature name="numericInput" />
 		<disabledFeature name="barcodePrinter" />
 	</day>
 
-	<day index="7" duration="90" score="60,130,210" bags="0,1" goods="0-5" newGood="5">
+	<day index="7" duration="90" score="60,130,210" bags="0,1" goods="0-5" newGood="5" customers="grandma,woman,man,schoolboy,student">
 		<disabledFeature name="numericInput" />
 		<disabledFeature name="barcodePrinter" />
 	</day>
 
-	<day index="8" duration="90" score="100,200,300" bags="0,1" goods="0-5">
+	<day index="8" duration="90" score="100,200,300" bags="0,1" goods="0-5" customers="grandma,woman,man,schoolboy,student">
 		<disabledFeature name="numericInput" />
 		<disabledFeature name="barcodePrinter" />
 	</day>
 
-	<day index="9" duration="90" score="65,135,215" bags="0,1" goods="0-5">
+	<day index="9" duration="90" score="65,135,215" bags="0,1" goods="0-5" customers="grandma,woman,man,schoolboy,student">
 		<disabledFeature name="numericInput" />
 		<disabledFeature name="barcodePrinter" />
 	</day>
 
-	<day index="10" duration="90" score="55,110,175" bags="0,1" goods="0-5">
+	<day index="10" duration="90" score="55,110,175" bags="0,1" goods="0-5" customers="grandma,woman,man,schoolboy,student">
 		<disabledFeature name="numericInput" />
 		<disabledFeature name="barcodePrinter" />
 	</day>
 
-	<day index="11" duration="90" score="75,150,225" bags="0,1,2" goods="0-6" newGood="6"> <!--tutorial:printer-->
+	<day index="11" duration="90" score="75,150,225" bags="0,1,2" goods="0-6" newGood="6" customers="grandma,woman,man,schoolboy,student"> <!--tutorial:printer-->
 		<disabledFeature name="numericInput" />
 	</day>
 
-	<day index="12" duration="90" score="65,135,210" bags="0,1,2" goods="0-6">
+	<day index="12" duration="90" score="65,135,210" bags="0,1,2" goods="0-6" customers="grandma,woman,man,schoolboy,student">
 		<disabledFeature name="numericInput" />
 	</day>
 
