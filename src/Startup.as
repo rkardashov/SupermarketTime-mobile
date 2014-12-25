@@ -14,6 +14,7 @@ package
 
 		public function Startup()
 		{
+			Starling.handleLostContext = true;
 			_starling = new Starling(Screens, stage);
 			_starling.showStats = true;
 			_starling.antiAliasing = 0;
