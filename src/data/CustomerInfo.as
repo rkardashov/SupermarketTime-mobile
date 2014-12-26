@@ -47,11 +47,14 @@ package data
 				}
 			}
 			
-			for each (var event: String in ALL_EVENTS) 
-				/*if (Math.random() > 0.5)*/
-					events[event] = 15
-				/*else
-					events[event] = 0*/;
+			// TODO: iterate <customer>.<reaction>, store [event: moodChange] pairs
+			//for each (var event: String in ALL_EVENTS) 
+				//events[event] = 0;
+			for each (var reactionXML: XML in customerXML.reaction)
+			//{
+				//trace(reactionXML.toXMLString());
+				events[reactionXML.@event] = int(reactionXML.@mood);
+			//}
 			
 			time = -1;
 			/*if (xml.attribute("time").length() > 0)
@@ -74,11 +77,11 @@ package data
 				conveyorCapacity = int.MAX_VALUE;
 		}
 		
-		public function nextGood(): GoodInfo 
+		/*public function nextGood(): GoodInfo 
 		{
 			return goods.shift();
 		}
-		
+		*/
 		/*public function get goodsCount(): int
 		{
 			return _goods.length;

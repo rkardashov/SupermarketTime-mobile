@@ -18,28 +18,18 @@ package
 		public function Customer() 
 		{
 			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrive);
-			GameEvents.subscribe(GameEvents.CUSTOMER_WELCOME, onCustomerWelcome);
-			GameEvents.subscribe(GameEvents.CUSTOMER_GOODBYE, onCustomerGoodbye);
 			GameEvents.subscribe(GameEvents.CUSTOMER_COMPLETE, onCustomerComplete);
 			GameEvents.subscribe(GameEvents.CONVEYOR_GOODS_REQUEST, onGoodsRequest);
+			
+			GameEvents.subscribe(GameEvents.CUSTOMER_WELCOME, eventReaction);
+			GameEvents.subscribe(GameEvents.CUSTOMER_GOODBYE, eventReaction);
 		}
 		
 		private function onCustomerArrive(e: Event, c: CustomerInfo): void 
 		{
 			mood = 0;
 			info = c;
-			changeMoodLevel(info.events[e.type]);
 			GameEvents.subscribe(GameEvents.TIMER_SECOND, onTimerSecond);
-		}
-		
-		private function onCustomerWelcome(e: Event): void 
-		{
-			changeMoodLevel(info.events[e.type]);
-		}
-		
-		private function onCustomerGoodbye(e: Event): void 
-		{
-			changeMoodLevel(info.events[e.type]);
 		}
 		
 		private function onGoodsRequest(e: Event): void 
@@ -47,7 +37,7 @@ package
 			if (!info)
 				return;
 			while (info.goods.length)
-				GameEvents.dispatch(GameEvents.GOOD_ADD_TO_CONVEYOR, info.nextGood());
+				GameEvents.dispatch(GameEvents.GOOD_ADD_TO_CONVEYOR, info.goods.pop());
 		}
 		
 		private function onTimerSecond(e: Event): void 
@@ -60,6 +50,13 @@ package
 		{
 			info = null;
 			GameEvents.unsubscribe(GameEvents.TIMER_SECOND, onTimerSecond);
+		}
+		
+		private function eventReaction(e: Event): void 
+		{
+			if (info.events[e.type])
+				trace(info.id +  " reaction to " + e.type + ": " + info.events[e.type]);
+			changeMoodLevel(info.events[e.type]);
 		}
 		
 		private function changeMoodLevel(change: int): void 
