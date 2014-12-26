@@ -22,36 +22,29 @@ package data
 		
 		public var barcode: BarcodeInfo;
 		
-		public function GoodInfo(xml: XML) 
+		public function GoodInfo(dayXML: XML, goodID: String) 
 		{
-			/*type = xml.@type;
-			if (type < 0)
-				type = Math.random() * prefixes.length;
-			*/
-			/*id = xml.@id;*/
-			
-			var maxGoodID: int = String(xml.@goods).split("-")[1];
-			id = String(int(Math.random() * maxGoodID));
-			
+			id = goodID;
+			trace("creating good @ID " + id);
 			var goodXML: XML = Assets.goodsXML.good.(@id == id)[0];
 			
 			texturePrefix = "goods_" + goodXML.@texture + "_";
 			_category = goodXML.@category;
 			/*if (xml.attribute("category").length() > 0)
 				category = xml.@category;*/
-			var catIDs: Array = String(xml.@bags).split(",");
+			var catIDs: Array = String(dayXML.@bags).split(",");
 			var maxCatID: int = catIDs.pop();
 			if (_category > maxCatID)
 				_category = Math.random() * maxCatID;
 			
-			if (!(xml.@noBarcode == "1"))
+			if (!(dayXML.@noBarcode == "1"))
 				barcode = new BarcodeInfo(goodXML);
 			
-			if (xml.attribute("side").length() == 0)
+			if (dayXML.attribute("side").length() == 0)
 				side = Math.random() * sideCount
 			else
-				side = xml.@side;
-			flippable = !(xml.@noflip == "1");
+				side = dayXML.@side;
+			flippable = !(dayXML.@noflip == "1");
 			
 			var msgQueue: Vector.<Speech>;
 			var i: int;
@@ -61,7 +54,7 @@ package data
 				GameEvents.BAG_GOOD_ADDED]) 
 			{
 				msgQueue = new Vector.<Speech>;
-				var xmlMsgs: XMLList = xml.message.(@event == event);
+				var xmlMsgs: XMLList = dayXML.message.(@event == event);
 				for (i = 0; i < xmlMsgs.length(); i++) 
 					if (xmlMsgs.(@index == i).length())
 						msgQueue.push(new Speech(xmlMsgs.(@index == i)[0]));

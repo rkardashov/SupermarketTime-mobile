@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:b0798967884152bfa027dac536e5b272:5d11431f8bcae69eeee2e0e74dde78cf:cde709370900f12288f3449eded86f07$ -->
+<!-- $TexturePacker:SmartUpdate:b98c5249c94c421c8c440519bfb26c0e:8bd7579d5fd7918b7dbae55643e613f6:cde709370900f12288f3449eded86f07$ -->
 <TextureAtlas imagePath="atlas.png">
     <SubTexture name="arcade_10" x="1023" y="66" width="128" height="64"/>
     <SubTexture name="bag" x="1067" y="2" width="65" height="28"/>
@@ -52,10 +52,10 @@
     <SubTexture name="category_2" x="51" y="2" width="13" height="13"/>
     <SubTexture name="category_3" x="66" y="2" width="13" height="13"/>
     <SubTexture name="conveyor_divider" x="904" y="132" width="13" height="128"/>
-    <SubTexture name="customer_0" x="99" y="132" width="95" height="72"/>
-    <SubTexture name="customer_1" x="196" y="132" width="76" height="72"/>
-    <SubTexture name="customer_2" x="2" y="132" width="95" height="72"/>
-    <SubTexture name="customer_3" x="274" y="132" width="76" height="72"/>
+    <SubTexture name="customer_grandma" x="99" y="132" width="76" height="72"/>
+    <SubTexture name="customer_man" x="177" y="132" width="95" height="72"/>
+    <SubTexture name="customer_student" x="2" y="132" width="95" height="72"/>
+    <SubTexture name="customer_woman" x="274" y="132" width="76" height="72"/>
     <SubTexture name="droparea_code_input" x="904" y="2" width="30" height="27"/>
     <SubTexture name="droparea_scales" x="936" y="2" width="30" height="27"/>
     <SubTexture name="empty_with_hint" x="806" y="1230" width="400" height="240"/>

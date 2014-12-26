@@ -39,7 +39,7 @@ package
 			super();
 			info = customerInfo;
 			//var image: Image = Assets.getImage("customer_" + info.type);
-			var image: Image = Assets.getImage("customer_" + info.texture);
+			var image: Image = Assets.getImage("customer_" + info.id);
 			addChild(image);
 			image.x = 16;
 			image.y = 0;

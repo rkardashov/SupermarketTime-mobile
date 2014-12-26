@@ -33,6 +33,16 @@ package data
 			return _days_XML;
 		}
 		
+		[Embed(source = "../../assets/xml/customers.xml", mimeType="application/octet-stream")]
+		static private const _customers_XML_Class: Class;
+		static private var _customers_XML: XML;
+		static public function get customersXML(): XML
+		{
+			if (!_customers_XML)
+				_customers_XML = new XML(new _customers_XML_Class);
+			return _customers_XML;
+		}
+		
 		[Embed(source = "../../assets/xml/goods.xml", mimeType="application/octet-stream")]
 		static private const _goods_XML_Class: Class;
 		static private var _goods_XML: XML;

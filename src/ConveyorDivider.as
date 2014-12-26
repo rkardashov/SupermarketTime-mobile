@@ -39,7 +39,7 @@ package
 		
 		override protected function onDrop(): void 
 		{
-			trace("divider x = " + int(x));
+			//trace("divider x = " + int(x));
 		}
 	}
 }
