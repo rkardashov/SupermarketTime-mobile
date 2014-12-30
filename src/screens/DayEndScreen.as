@@ -11,6 +11,7 @@ package screens
 	import starling.events.TouchPhase;
 	import starling.text.TextField;
 	import starling.textures.Texture;
+	import starling.utils.HAlign;
 	
 	/**
 	 * ...
@@ -22,6 +23,7 @@ package screens
 		private var _dayNumberText: TextField;
 		private var _successText: TextField;
 		private var _starsText: TextField;
+		private var _starsShadowText: TextField;
 		
 		private var _btnNext: TextButton;
 		private var _btnToMenu: TextButton;
@@ -38,20 +40,31 @@ package screens
 			
 			var u: int = Screens.unit;
 			
-			addChild(_dayNumberText = new TextField(u*2, u*2, "0", "arcade_10", 24));
-			_dayNumberText.x = int(u * 7);
-			_dayNumberText.y = 0;// int(u * 1);
-			addChild(_scoreText = new TextField(100, 50, "0", "systematic_9", 9));
-			_scoreText.x = int(u * 9);
-			_scoreText.y = int(u * 1.5);
+			addChild(_dayNumberText = new TextField(165, 30, "day 0 end",
+				"arcade_10", 20));
+			_dayNumberText.hAlign = HAlign.CENTER;
+			_dayNumberText.x = 120;// 190;
+			_dayNumberText.y = 10;
 			
-			addChild(_successText = new TextField(u*4, 50, "", "Courier New", 14));
-			_successText.x = int(u * 5);
-			_successText.y = int(u * 4);
+			addChild(_scoreText = new TextField(155, 50, "0", "systematic_9", 9));
+			_scoreText.hAlign = HAlign.RIGHT;
+			_scoreText.x = 120;// int(u * 9);
+			_scoreText.y = 50;// int(u * 1.5);
 			
-			addChild(_starsText = new TextField(u*4, 50, "", "Systematic_9", 18));
-			_starsText.x = int(u * 8);
-			_starsText.y = int(u * 6);
+			addChild(_starsShadowText = new TextField(165, 70, "", "Systematic_9", 27,
+				0xFF777777));
+			_starsShadowText.hAlign = HAlign.CENTER;
+			_starsShadowText.x = 121;// int(u * 8);
+			_starsShadowText.y = 81;// int(u * 6);
+			addChild(_starsText = new TextField(165, 70, "", "Systematic_9", 27));
+			_starsText.hAlign = HAlign.CENTER;
+			_starsText.x = 120;// int(u * 8);
+			_starsText.y = 80;// int(u * 6);
+			
+			addChild(_successText = new TextField(165, 50, "", "Arcade_10", 10));
+			_successText.hAlign = HAlign.CENTER;
+			_successText.x = 120;// int(u * 5);
+			_successText.y = 140;// int(u * 4);
 			
 			addChild(_btnToMenu = new TextButton("menu"));
 			_btnToMenu.x = int(u * 1);
@@ -89,20 +102,26 @@ package screens
 		}
 		
 		public function enter(): void
-		//private function onDayEnd(e: Event, d: DayData): void 
 		{
-			//_dayNumberText.text = Saves.currentDay.index.toString();
-			//_scoreText.text = Saves.currentDay.score.toString();
+			//day = new DayData(1);
+			//day.save.score = 175;
+			//day.save.stars = 3;
+			
+			//_dayNumberText.text = "day " + day.dayNumber.toString() + " end";
 			_dayNumberText.text = day.dayNumber.toString();
 			_scoreText.text = day.save.score.toString();
+				//"score . . . . . . . . . 120 ";
+				//"score . . . . . . . . . " + day.save.score.toString() + " ";
 			
 			var stars: String = "";
-			//for (var i:int = 0; i < Saves.currentDay.stars; i++) 
-			for (var i:int = 0; i < day.save.stars; i++) 
-				stars += " *";
+			if (day.save.stars > 0)
+				stars = "*";
+			for (var i:int = 1; i < day.save.stars; i++) 
+				stars += " *"
+					
 			_starsText.text = stars;
+			_starsShadowText.text = stars;
 			
-			//if (Saves.currentDay.stars > 0)
 			if (day.save.stars > 0)
 			{
 				_successText.text = "Day completed!";

@@ -33,20 +33,13 @@ package screens
 		protected function addedToStageHandler(event: Event): void
 		{
 			scaleX = scaleY = 2;// 4;
-			//addChild(Assets.getImage(Assets.bg_mainmenu));
 			addChild(Assets.getImage("bg_main_menu"));
 			
-			//addChild(btnPlay = new PixelButton(Assets.btn_play));
-			addChild(btnPlay = new PixelButton("btn_play"));
-			btnPlay.x = Screens.unit * 7;
-			btnPlay.y = Screens.unit * 3;
+			addChild(btnPlay = new PixelButton("btn_play_up", "btn_play_down"));
+			btnPlay.scaleX = btnPlay.scaleY = 2;
+			btnPlay.x = Screens.unit * 8;
+			btnPlay.y = Screens.unit * 4;
 			btnPlay.addEventListener(Event.TRIGGERED, btnPlayTriggered);
-			
-			//addChild(btnOptions = new PixelButton(Assets.btn_options));
-			addChild(btnOptions = new PixelButton("btn_options"));
-			btnOptions.x = Screens.unit * 6;
-			btnOptions.y = Screens.unit * 5;
-			btnOptions.addEventListener(Event.TRIGGERED, btnOptionsTriggered);
 			
 			alpha = 0;
 			Starling.juggler.tween(this, 2.0,
@@ -67,17 +60,7 @@ package screens
 		
 		private function btnPlayTriggered(e:Event):void 
 		{
-			/*const label: Label = new Label();
-			label.text = "Hi, I'm Feathers!\nВсего хорошего.";
-			Callout.show( label, btnPlay );*/
-			//Screens.navigator.showScreen(LoadGameScreen.id);
 			Screens.gotoScreen(LoadGameScreen);
-			//trace("btn PLAY triggered");
-		}
-		
-		private function btnOptionsTriggered(e:Event):void 
-		{
-			
 		}
 	}
 }

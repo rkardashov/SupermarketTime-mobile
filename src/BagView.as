@@ -53,8 +53,9 @@ package
 				icon.y = 6;
 			}
 			
-			var frames: Vector.<Texture> = Assets.getTextures("bag_" + category);
-			frames.unshift(Assets.getTexture("bag"));
+			addChild(Assets.getImage("bag_underlay")).x = BAG_X;
+			
+			var frames: Vector.<Texture> = Assets.getTextures("bag_new_");
 			addChild(bagFrames = new MovieClip(frames));
 			bagFrames.currentFrame = 0;
 			bagFrames.x = BAG_X;
