@@ -61,24 +61,46 @@ package screens
 			
 			//Assets.manager = new AssetManager();
 			
+			GameEvents.subscribe(GameEvents.SCREEN_ENTER, onScreenEnter);
+			//GameEvents.subscribe(GameEvents.SCREEN_EXIT, onScreenExit);
+			
 			_screens[MainMenu] = new MainMenu();
 			_screens[LoadGameScreen] = new LoadGameScreen();
 			_screens[GameScreen] = new GameScreen();
 			_screens[DayEndScreen] = new DayEndScreen();
 			
-			gotoScreen(MainMenu);
+			//addChild(_screens[MainMenu]);
+			//addChild(_screens[LoadGameScreen]);
+			//addChild(_screens[GameScreen]);
+			//addChild(_screens[DayEndScreen]);
+			//gotoScreen(MainMenu);
 			//gotoScreen(DayEndScreen);
+			GameEvents.dispatch(GameEvents.SCREEN_ENTER, MainMenu);
 		}
+		
+		private function onScreenEnter(e: Event, screenClass: Class): void 
+		{
+			if (_screens[screenClass])
+				_instance.addChild(_screens[screenClass]);
+		}
+		
+		/*private function onScreenExit(e: Event, screenClass: Class): void 
+		{
+			if (_screens[screenClass])
+				_instance.removeChild(_screens[screenClass]);
+		}*/
 		
 		static public function gotoScreen(screenClass: Class): void 
 		{
-			if (_currentScreen)
+			GameEvents.dispatch(GameEvents.SCREEN_CHANGE, screenClass);
+			
+			/*if (_currentScreen)
 				_instance.removeChild(_currentScreen);
 			if (_screens[screenClass])
 				_instance.addChild(_screens[screenClass]);
 			_currentScreen = _screens[screenClass];
 			if (_currentScreen.hasOwnProperty("enter"))
-				_currentScreen["enter"]();
+				_currentScreen["enter"]();*/
 		}
 		
 		static public function getScreen(screenClass: Class): DisplayObject

@@ -12,6 +12,9 @@ package
 		static public const DAY_START: String = "day_start";
 		static public const DAY_END: String = "day_end";
 		
+		static public const SCREEN_CHANGE: String = "screen_change";
+		static public const SCREEN_ENTER: String = "screen_enter";
+		
 		static public const PAUSE: String = "game_pause";
 		static public const RESUME: String = "game_resume";
 		static public const TIME_OUT: String = "time_out";

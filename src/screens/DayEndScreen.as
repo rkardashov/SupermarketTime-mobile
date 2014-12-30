@@ -17,7 +17,7 @@ package screens
 	 * ...
 	 * @author rkardashov@gmail.com
 	 */
-	public class DayEndScreen extends Sprite 
+	public class DayEndScreen extends BasicScreen
 	{
 		private var _scoreText: TextField;
 		private var _dayNumberText: TextField;
@@ -34,7 +34,8 @@ package screens
 		public function DayEndScreen() 
 		{
 			super();
-			scaleX = scaleY = 2;
+			
+			//scaleX = scaleY = 2;
 			
 			addChild(Assets.getImage("bg_day_end"));
 			
@@ -101,12 +102,9 @@ package screens
 			day = d;
 		}
 		
-		public function enter(): void
+		//public function enter(): void
+		override protected function onEnter():void 
 		{
-			//day = new DayData(1);
-			//day.save.score = 175;
-			//day.save.stars = 3;
-			
 			//_dayNumberText.text = "day " + day.dayNumber.toString() + " end";
 			_dayNumberText.text = day.dayNumber.toString();
 			_scoreText.text = day.save.score.toString();

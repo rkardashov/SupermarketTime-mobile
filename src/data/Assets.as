@@ -79,12 +79,27 @@ package data
 		[Embed(source="../../assets/particles/particle1.png")]
 		static private const particle1Texture: Class;
 		
-		public static const SOUND_SCAN: String = "SCAN";
-		public static const SOUND_BAG: String = "BAG";
+		public static const SOUND_SCAN: String = "scan";
+		public static const SOUND_BAG: String = "bag";
+		public static const SOUND_BAG_LONG: String = "bag_long";
 		
 		[Embed(source = "../../assets/sounds/actions/scan.mp3")]
 		private static const _SOUND_SCAN: Class;
-		//private var beep: Sound;
+		
+		[Embed(source = "../../assets/sounds/actions/bag/bag_long.mp3")]
+		private static const _SOUND_BAG_LONG: Class;
+		
+		[Embed(source = "../../assets/sounds/actions/bag/bag_0.mp3")]
+		private static const _SOUND_BAG_0: Class;
+		[Embed(source = "../../assets/sounds/actions/bag/bag_1.mp3")]
+		private static const _SOUND_BAG_1: Class;
+		[Embed(source = "../../assets/sounds/actions/bag/bag_2.mp3")]
+		private static const _SOUND_BAG_2: Class;
+		[Embed(source = "../../assets/sounds/actions/bag/bag_3.mp3")]
+		private static const _SOUND_BAG_3: Class;
+		//[Embed(source = "../../assets/sounds/actions/bag/bag_4.mp3")]
+		//private static const _SOUND_BAG_4: Class;
+		
 		private static const _sounds: Object = { };
 		
 		public function Assets() 
@@ -151,12 +166,28 @@ package data
 			}
 			
 			_sounds[SOUND_SCAN] = new _SOUND_SCAN();
+			_sounds[SOUND_BAG_LONG] = new _SOUND_BAG_LONG();
+			
+			_sounds[SOUND_BAG] = [];
+			for (var i:int = 0; i < 4; i++) 
+				//_sounds[SOUND_BAG + i] = new Assets["_SOUND_BAG_" + i]();
+				_sounds[SOUND_BAG].push(new Assets["_SOUND_BAG_" + i]());
 		}
 		
 		static public function playSound(soundID: String): void 
 		{
 			if (_sounds[soundID])
-				Sound(_sounds[soundID]).play();
+			{
+				//if (_sounds[soundID].isPrototypeOf(Array))
+				if (_sounds[soundID] as Array)
+				{
+					var i: int = (_sounds[soundID] as Array).length;
+					i = Math.random() * i;
+					Sound((_sounds[soundID] as Array)[i]).play();
+				}
+				else
+					Sound(_sounds[soundID]).play();
+			}
 		}
 	}
 }

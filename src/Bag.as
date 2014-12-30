@@ -1,5 +1,6 @@
 package
 {
+	import data.Assets;
 	import screens.GameScreen;
 	import screens.Screens;
 	
@@ -22,6 +23,8 @@ package
 		
 		public function receive(item: Item): void
 		{
+			if (Math.random() > 0.7)
+				Assets.playSound(Assets.SOUND_BAG);
 			if (item.type !== Item.TYPE_GOOD)
 				return;
 			if (goods.length >= size)

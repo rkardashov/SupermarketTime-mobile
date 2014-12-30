@@ -120,6 +120,7 @@ package
 					/*bags.unshift(new Bag(this, category));
 					dropArea.target = bags[0];*/
 					addBag();
+					Assets.playSound(Assets.SOUND_BAG/*_LONG*/);
 				}
 				else
 				{
@@ -127,6 +128,7 @@ package
 					{
 						state = STATE_NO_BAG;
 						dropArea.target = null;
+						Assets.playSound(Assets.SOUND_BAG);
 					}
 				}
 				bagFrames.x = BAG_X;

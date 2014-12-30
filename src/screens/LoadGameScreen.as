@@ -14,7 +14,7 @@ package screens
 	 * ...
 	 * @author rkardashov@gmail.com
 	 */
-	public class LoadGameScreen extends Sprite
+	public class LoadGameScreen extends BasicScreen
 	{
 		//static public var id: String = "loadGameScreen";
 		
@@ -22,13 +22,20 @@ package screens
 		
 		public function LoadGameScreen()
 		{
-			addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+			/*addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
 		
 		protected function addedToStageHandler(event: Event): void
-		{
-			scaleX = scaleY = 2;
+		{*/
+			super();
+			
+			//scaleX = scaleY = 2;
 			addChild(Assets.getImage("bg_load_game"));
+			/*Saves.loadDays(onDaysLoaded);*/
+		}
+		
+		override protected function onEnter(): void
+		{
 			Saves.loadDays(onDaysLoaded);
 		}
 		

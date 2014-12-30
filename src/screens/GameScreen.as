@@ -21,7 +21,7 @@ package screens
 	 * ...
 	 * @author kurguru
 	 */
-	public class GameScreen extends Sprite
+	public class GameScreen extends BasicScreen
 	{
 		private var layerBottom:Sprite; // dropAreas, conveyor button, etc.
 		private var layerItems:Sprite; // middle layer - most used
@@ -57,7 +57,7 @@ package screens
 		
 		public function GameScreen():void
 		{
-			if (stage)
+			/*if (stage)
 				init();
 			else
 				addEventListener(Event.ADDED_TO_STAGE, init);
@@ -65,8 +65,10 @@ package screens
 		
 		private function init(e:Event = null):void
 		{
-			removeEventListener(Event.ADDED_TO_STAGE, init);
-			scaleX = scaleY = 2;
+			removeEventListener(Event.ADDED_TO_STAGE, init);*/
+			super();
+			
+			//scaleX = scaleY = 2;
 			ambient = new _SOUND_AMBIENT();
 			
 			var u:int = Screens.unit;
@@ -125,7 +127,8 @@ package screens
 			GameEvents.subscribe(GameEvents.TIME_OUT, checkStatus);
 		}
 		
-		public function enter(): void
+		//public function enter(): void
+		override protected function onEnter():void 
 		{
 			day = new DayData(Saves.currentDayIndex);
 			for (var i:int = 0; i < Goods.categories.length; i++)
@@ -145,6 +148,11 @@ package screens
 			instructionView.init(day);
 			
 			//dayIntroView.show(day);
+			/*GameEvents.dispatch(GameEvents.INTRO_START, day);*/
+		}
+		
+		override protected function onReady():void 
+		{
 			GameEvents.dispatch(GameEvents.INTRO_START, day);
 		}
 		

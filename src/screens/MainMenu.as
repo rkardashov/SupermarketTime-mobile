@@ -20,19 +20,21 @@ package screens
 	 * ...
 	 * @author rkardashov@gmail.com
 	 */
-	public class MainMenu extends Sprite
+	public class MainMenu extends BasicScreen
 	{
 		protected var btnPlay: PixelButton;
 		protected var btnOptions: PixelButton;
 		
 		public function MainMenu()
 		{
-			addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+			/*addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
 		
 		protected function addedToStageHandler(event: Event): void
-		{
-			scaleX = scaleY = 2;// 4;
+		{*/
+			super();
+			
+			//scaleX = scaleY = 2;// 4;
 			addChild(Assets.getImage("bg_main_menu"));
 			
 			addChild(btnPlay = new PixelButton("btn_play_up", "btn_play_down"));
@@ -40,15 +42,6 @@ package screens
 			btnPlay.x = Screens.unit * 8;
 			btnPlay.y = Screens.unit * 4;
 			btnPlay.addEventListener(Event.TRIGGERED, btnPlayTriggered);
-			
-			alpha = 0;
-			Starling.juggler.tween(this, 2.0,
-				{
-					alpha: 1.0,
-					transition: Transitions.EASE_IN_OUT
-					//roundToInt: true,
-					//onComplete: onArrived
-				});
 		}
 		
 		private function onBtnPlayTouch(e: TouchEvent): void 
