@@ -46,7 +46,7 @@ package
 		
 		private function onDayStart(): void 
 		{
-			divider.x = 0;// 100;
+			divider.x = 0;
 			paused = false;
 			move();
 		}

@@ -34,7 +34,9 @@ package
 			_text.text = "";
 			_timer = new Timer(1000, 0);// DEFAULT_TIME_SEC);
 			_timer.addEventListener(TimerEvent.TIMER, onTimer);
+			visible = false;
 			
+			GameEvents.subscribe(GameEvents.INTRO_START, onIntroStart);
 			GameEvents.subscribe(GameEvents.DAY_START, onDayStart);
 			GameEvents.subscribe(GameEvents.DAY_END, pause);
 			GameEvents.subscribe(GameEvents.PAUSE, onGamePause);
@@ -43,10 +45,16 @@ package
 			GameEvents.subscribe(GameEvents.CUSTOMER_COMPLETE, onCustomerComplete);
 		}
 		
+		private function onIntroStart():void 
+		{
+			visible = false;
+		}
+		
 		private function onDayStart(e: Event, d: DayData): void
 		{
 			reset(d.duration);
 			start();
+			visible = true;
 		}
 		
 		// TODO: move this away from DayTimer. Customer? CustomerQueue?
@@ -122,15 +130,17 @@ package
 		private function onTimer(e: TimerEvent): void 
 		{
 			//_text.text = (_timer.repeatCount - _timer.currentCount).toString();
-			if (time >= 0)
-				_text.text = (dayDuration - _timer.currentCount).toString();
+			if (timeIsOut)
+				_text.text = "0"
 			else
-				_text.text = "0";
+				_text.text = (dayDuration - _timer.currentCount).toString();
+				
 			if (_event_times.length && _timer.currentCount >= _event_times[0])
 			{
 				_event_times.shift();
 				_event_handlers.shift()();
 			}
+			
 			GameEvents.dispatch(GameEvents.TIMER_SECOND, dayDuration - _timer.currentCount);
 			if (timeIsOut)
 				GameEvents.dispatch(GameEvents.TIME_OUT);

@@ -15,8 +15,8 @@ package
 		public function PauseButton() 
 		{
 			super("btnPauseUp", "btnPauseDown");
-			x = Screens.unit * (Screens.uWidth - 2);
-			y = Screens.unit * 1;
+			x = 340;//Screens.unit * (Screens.uWidth - 2);
+			y = 10;// Screens.unit * 1;
 			
 			addEventListener(Event.TRIGGERED, onTrigger);
 			

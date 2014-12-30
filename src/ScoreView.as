@@ -18,6 +18,7 @@ package
 	public class ScoreView extends Sprite 
 	{
 		private var textLabel: TextField;
+		private var textShadow:TextField;
 		private var score: int = 0;
 		
 		private var bagCategory: int;
@@ -32,17 +33,26 @@ package
 		{
 			super();
 			this.dayTimer = dayTimer;
-			x = (Screens.uWidth - 2) * Screens.unit;
-			y = 3 * Screens.unit;
-			addChild(textLabel = new TextField(40, 25, "", "Arcade_10", 20));
+			x = 180;
+			y = 14;
+			addChild(textShadow = new TextField(80, 25, "", "Arcade_10", 20, 0x88888888));
+			textShadow.x = textShadow.y = 1;
+			textShadow.autoScale = false;
+			textShadow.autoSize = TextFieldAutoSize.HORIZONTAL;
+			addChild(textLabel = new TextField(80, 25, "", "Arcade_10", 20, 0xBB33FF00));
 			//textLabel.x = 5;
 			textLabel.autoScale = false;
 			textLabel.autoSize = TextFieldAutoSize.HORIZONTAL;
 			
 			//visible = false;
-			textLabel.text = "0";// / 0";
+			textLabel.text = "SCORE 0";// / 0";
+			
+			touchable = false;
+			visible = false;
 			
 			GameEvents.subscribe(GameEvents.DAY_START, onDayStart);
+			GameEvents.subscribe(GameEvents.DAY_END, onDayEnd);
+			GameEvents.subscribe(GameEvents.INTRO_END, onIntroEnd);
 			
 			GameEvents.subscribe(GameEvents.GOOD_SCANNED, onGoodScanned);
 			
@@ -57,7 +67,18 @@ package
 		{
 			day = d;
 			score = 0;
-			textLabel.text = String(score);// + "/" + day.scoreMin;
+			textLabel.text = "SCORE: " + String(score);
+			textShadow.text = "SCORE: " + String(score);
+		}
+		
+		private function onIntroEnd():void 
+		{
+			visible = true;
+		}
+		
+		private function onDayEnd():void 
+		{
+			visible = false;
 		}
 		
 		/* Flip bonus */
@@ -95,6 +116,7 @@ package
 		
 		private function onCustomerArrived(e: Event, c: CustomerInfo): void 
 		{
+			// TODO: move fast service bonus to Customer?
 			timeFast = dayTimer.time + c.goods.length * 3.0 + 5.0;
 		}
 		
@@ -109,7 +131,8 @@ package
 			posX: int, posY: int): void 
 		{
 			score += scoreChange;
-			textLabel.text = String(score);
+			textLabel.text = "SCORE " + String(score);
+			textShadow.text = "SCORE " + String(score);
 			/*if (view)
 				view.localToGlobal(pLocal, p)
 			else
