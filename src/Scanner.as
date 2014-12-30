@@ -19,8 +19,7 @@ package
 		public function Scanner(/*sum: Sum*/) 
 		{
 			super(Texture.fromColor(
-				//Screens.unit * 2.5, Screens.unit * 2, 0x33FF0000)
-				60, 60, 0x3300FF00)
+				60, 60, 0x0000FF00)
 			);
 			x = 105;// 107
 			y = 126;// 88

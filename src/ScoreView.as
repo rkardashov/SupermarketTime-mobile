@@ -10,6 +10,8 @@ package
 	import starling.events.Event;
 	import starling.text.TextField;
 	import starling.text.TextFieldAutoSize;
+	import starling.utils.HAlign;
+	import starling.utils.VAlign;
 	
 	/**
 	 * ...
@@ -33,19 +35,17 @@ package
 		{
 			super();
 			this.dayTimer = dayTimer;
-			x = 180;
-			y = 14;
-			addChild(textShadow = new TextField(80, 25, "", "Arcade_10", 20, 0x88888888));
+			x = 190;
+			y = 30;
+			addChild(textShadow = new TextField(120, 30, "", "Arcade_10", 20,
+				0x88888888));
 			textShadow.x = textShadow.y = 1;
-			textShadow.autoScale = false;
-			textShadow.autoSize = TextFieldAutoSize.HORIZONTAL;
-			addChild(textLabel = new TextField(80, 25, "", "Arcade_10", 20, 0xBB33FF00));
-			//textLabel.x = 5;
-			textLabel.autoScale = false;
-			textLabel.autoSize = TextFieldAutoSize.HORIZONTAL;
-			
-			//visible = false;
-			textLabel.text = "SCORE 0";// / 0";
+			addChild(textLabel = new TextField(120, 30, "", "Arcade_10", 20,
+				0xBB33FF00));
+			textLabel.autoScale = textShadow.autoScale = false;
+			textLabel.vAlign = textShadow.vAlign = VAlign.BOTTOM;
+			textLabel.hAlign = textShadow.hAlign = HAlign.LEFT;
+			textLabel.text = textShadow.text = "SCORE: 0";
 			
 			touchable = false;
 			visible = false;
@@ -67,8 +67,7 @@ package
 		{
 			day = d;
 			score = 0;
-			textLabel.text = "SCORE: " + String(score);
-			textShadow.text = "SCORE: " + String(score);
+			textLabel.text = textShadow.text = "SCORE: " + String(score);
 		}
 		
 		private function onIntroEnd():void 
@@ -80,6 +79,8 @@ package
 		{
 			visible = false;
 		}
+		
+		// TODO: move bonuses to Customer?
 		
 		/* Flip bonus */
 		
@@ -116,7 +117,6 @@ package
 		
 		private function onCustomerArrived(e: Event, c: CustomerInfo): void 
 		{
-			// TODO: move fast service bonus to Customer?
 			timeFast = dayTimer.time + c.goods.length * 3.0 + 5.0;
 		}
 		
@@ -131,15 +131,7 @@ package
 			posX: int, posY: int): void 
 		{
 			score += scoreChange;
-			textLabel.text = "SCORE " + String(score);
-			textShadow.text = "SCORE " + String(score);
-			/*if (view)
-				view.localToGlobal(pLocal, p)
-			else
-			{
-				p.x = Screens.centerX;
-				p.y = Screens.centerY;
-			}*/
+			textLabel.text = textShadow.text = "SCORE " + String(score);
 			if (scoreChange > 0)
 				GameEvents.dispatch(GameEvents.ADD_SCORE, 
 					new ScoreChange(message, scoreChange, posX, posY));

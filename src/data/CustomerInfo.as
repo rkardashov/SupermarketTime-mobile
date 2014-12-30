@@ -17,6 +17,7 @@ package data
 		public var interval: Number;
 		public var goods: Vector.<GoodInfo> = new Vector.<GoodInfo>;
 		public var events: Object = { };
+		public var moodInitial: int = 0;
 		private const ALL_EVENTS: Array = [GameEvents.CUSTOMER_WELCOME, GameEvents.CUSTOMER_GOODBYE];
 		
 		public function CustomerInfo(dayXML: XML) 
@@ -55,6 +56,8 @@ package data
 				//trace(reactionXML.toXMLString());
 				events[reactionXML.@event] = int(reactionXML.@mood);
 			//}
+			
+			moodInitial = customerXML.@mood;
 			
 			time = -1;
 			/*if (xml.attribute("time").length() > 0)

@@ -8,6 +8,8 @@ package
 	import starling.events.Event;
 	import starling.text.TextField;
 	import starling.text.TextFieldAutoSize;
+	import starling.utils.HAlign;
+	import starling.utils.VAlign;
 	/**
 	 * ...
 	 * @author rkardashov@gmail.com
@@ -17,6 +19,7 @@ package
 		private const DEFAULT_DURATION: int = 60;
 		private var _timer: Timer;
 		private var _text: TextField;
+		private var _text_shadow: TextField;
 		private var _event_times: Vector.<Number> = new Vector.<Number>();
 		private var _event_handlers: Vector.<Function> = new Vector.<Function>();
 		private var dayDuration: int;
@@ -24,14 +27,18 @@ package
 		public function DayTimer() 
 		{
 			super();
-			x = 20;
-			y = 10;
-			//addChild(_text = new TextField(50, 20, "", "arcade_10", 10));// verdana"));// 10));
-			addChild(_text = new TextField(50, 20, "", "systematic_9", 9));// verdana"));// 10));
-			_text.autoScale = false;
-			_text.autoSize = TextFieldAutoSize.HORIZONTAL;// LEFT;
-			_text.hAlign =  "right";
-			_text.text = "";
+			x = 190;
+			y = 2;
+			addChild(_text_shadow = new TextField(120, 30, "", "Arcade_10", 20,
+				0x88888888));
+			_text_shadow.x = _text_shadow.y = 1;
+			addChild(_text = new TextField(120, 30, "", "Arcade_10", 20, 0xFFFF8839));
+			_text.autoScale = _text_shadow.autoScale = false;
+			_text.vAlign = _text_shadow.vAlign = VAlign.BOTTOM;
+			_text.hAlign = _text_shadow.hAlign = HAlign.LEFT;
+			_text.text = _text_shadow.text = "";
+			
+			
 			_timer = new Timer(1000, 0);// DEFAULT_TIME_SEC);
 			_timer.addEventListener(TimerEvent.TIMER, onTimer);
 			visible = false;
@@ -113,8 +120,14 @@ package
 			_timer.reset();
 			//_timer.repeatCount = duration;
 			dayDuration = duration;
-			_text.text = duration.toString();
+			setTimeText(duration);
 			clearEvents();
+		}
+		
+		private function setTimeText(value: int): void 
+		{
+			_text.text = "TIME: " + value.toString();
+			_text_shadow.text = "TIME: " + value.toString();
 		}
 		
 		public function get time(): Number 
@@ -129,11 +142,10 @@ package
 		
 		private function onTimer(e: TimerEvent): void 
 		{
-			//_text.text = (_timer.repeatCount - _timer.currentCount).toString();
 			if (timeIsOut)
-				_text.text = "0"
+				setTimeText(0)
 			else
-				_text.text = (dayDuration - _timer.currentCount).toString();
+				setTimeText(dayDuration - _timer.currentCount);
 				
 			if (_event_times.length && _timer.currentCount >= _event_times[0])
 			{

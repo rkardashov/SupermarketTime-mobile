@@ -27,7 +27,7 @@ package
 		
 		private function onCustomerArrive(e: Event, c: CustomerInfo): void 
 		{
-			mood = 0;
+			mood = c.moodInitial;
 			info = c;
 			GameEvents.subscribe(GameEvents.TIMER_SECOND, onTimerSecond);
 		}
@@ -61,14 +61,14 @@ package
 		
 		private function changeMoodLevel(change: int): void 
 		{
-			//trace("mood change: " + mood + ((change > 0) ? "+" : "") + change);
+			trace("mood change: " + mood + ((change > 0) ? "+" : "") + change);
 			mood += change;
 			if (mood < 0)
 				mood = 0;
 			if (mood >= 20)
-				GameEvents.dispatch(GameEvents.CUSTOMER_MOOD_LEVEL, MOOD_LEVEL_MAX);
+				GameEvents.dispatch(GameEvents.CUSTOMER_MOOD_LEVEL, MOOD_LEVEL_MAX)
 			else if (mood >= 10)
-				GameEvents.dispatch(GameEvents.CUSTOMER_MOOD_LEVEL, MOOD_LEVEL_MID);
+				GameEvents.dispatch(GameEvents.CUSTOMER_MOOD_LEVEL, MOOD_LEVEL_MID)
 			else if (mood >= 0)
 				GameEvents.dispatch(GameEvents.CUSTOMER_MOOD_LEVEL, MOOD_LEVEL_MIN);
 		}

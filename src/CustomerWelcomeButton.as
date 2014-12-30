@@ -10,8 +10,8 @@ package
 		public function CustomerWelcomeButton() 
 		{
 			super("bubble_welcome");
-			x = 100;
-			y = 150;
+			x = 90;
+			y = 170;
 			visible = false;
 			addEventListener(Event.TRIGGERED, onTrigger);
 			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrived);
