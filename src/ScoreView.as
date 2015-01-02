@@ -37,10 +37,10 @@ package
 			this.dayTimer = dayTimer;
 			x = 190;
 			y = 30;
-			addChild(textShadow = new TextField(120, 30, "", "Arcade_10", 20,
+			addChild(textShadow = new TextField(130, 30, "", "Arcade_10", 20,
 				0x88888888));
 			textShadow.x = textShadow.y = 1;
-			addChild(textLabel = new TextField(120, 30, "", "Arcade_10", 20,
+			addChild(textLabel = new TextField(130, 30, "", "Arcade_10", 20,
 				0xBB33FF00));
 			textLabel.autoScale = textShadow.autoScale = false;
 			textLabel.vAlign = textShadow.vAlign = VAlign.BOTTOM;

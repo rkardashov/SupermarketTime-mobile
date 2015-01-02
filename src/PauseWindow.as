@@ -33,7 +33,7 @@ package
 			addChild(new Image(Texture.fromColor(
 				Screens.uWidth * Screens.unit, Screens.uHeight * Screens.unit, 
 				0x0)));
-			var bubble: Image = Assets.getImage("bubble_briefing");
+			var bubble: Image = Assets.getImage("bubble_intro");
 			addChild(bubble);
 			bubble.x = int((Screens.uWidth * Screens.unit - bubble.width) / 2);
 			bubble.y = int((Screens.uHeight * Screens.unit - bubble.height) / 2);
