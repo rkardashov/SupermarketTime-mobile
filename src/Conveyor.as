@@ -46,7 +46,9 @@ package
 		
 		private function onDayStart(): void 
 		{
-			divider.x = 0;
+			//divider.x = 200;
+			add(divider);
+			leftItem = divider;
 			paused = false;
 			move();
 		}
@@ -94,7 +96,7 @@ package
 			layerConveyor.addChild(item);
 			item.visible = true;
 			
-			var rightBorder: int = Screens.unit * (4 + 2 * layerConveyor.numChildren);
+			var rightBorder: int = 120 + 70 * layerConveyor.numChildren;
 			
 			if (item.type == Item.TYPE_CONVEYOR_DIVIDER)
 			{
@@ -107,6 +109,8 @@ package
 				item.x = rightBorder;
 				item.y = int(Screens.unit * (1 + Math.random() * 4));
 			}
+			/*trace("added item: type " + item.type
+				+ " at x " + item.x + ", y " + item.y);*/
 			
 			if (item.type == Item.TYPE_GOOD)
 			{

@@ -15,12 +15,15 @@ package
 		public function BarcodeSticker() 
 		{
 			super(TYPE_BARCODE_STICKER);
-			addChild(imgBarcode = Assets.getImage("barcode_1"));
+			addChild(imgBarcode = Assets.getImage("barcode_1")); // 15x10
+			addChild(imgBarcode = Assets.getImage("barcode_1")); // 15x10
 			imgBarcode.scaleX = imgBarcode.scaleY = 3;
+			imgBarcode.rotation = Math.PI * 0.5;
 			//imgBarcode.readjustSize();
-			clipRect = new Rectangle(0, 0, imgBarcode.width, imgBarcode.height);
-			pivotX = int(width / 2);
-			pivotY = int(height / 2);
+			clipRect = imgBarcode.getBounds(this);
+			//clipRect = new Rectangle(0, 0, imgBarcode.width, imgBarcode.height);
+			//pivotX = int(width / 2);
+			//pivotY = int(height / 2);
 			visible = false;
 		}
 		
@@ -29,10 +32,11 @@ package
 			// TODO: canDrag = false;
 			if (visible)
 				return;
-			x = 300;
-			y = 180;
+			x = 340;
+			y = 155;
 			visible = true;
-			imgBarcode.x = -imgBarcode.width;
+			//imgBarcode.x = -imgBarcode.width;
+			imgBarcode.x = -clipRect.width;
 			addEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
 		}
 		

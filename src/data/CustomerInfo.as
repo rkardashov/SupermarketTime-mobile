@@ -6,7 +6,8 @@ package data
 	 */
 	public class CustomerInfo 
 	{
-		public var id: String;
+		private var id: String;
+		public var texture:String;
 		public var disableTimer: Boolean = false;
 		public var conveyorCapacity: int;
 		public var messages: Object = { };
@@ -24,12 +25,15 @@ package data
 		{
 			// get possible customerID
 			id = StrUtil.randomPart(dayXML.@customers, ",");
-			trace("selected customer ID: " + id);
-			//customerIDs[int(Math.random() * (customerIDs.length - 1))];
 			
 			// get customer data from customers.xml
 			// TODO: check if customer for ID exists
 			var customerXML: XML = Assets.customersXML.customer.(@id == id)[0];
+			
+			if (customerXML.attribute("texture").length() == 1)
+				texture = customerXML.@texture
+			else
+				texture = id;
 			
 			/*.goodsMax="2"> 
 				<good id="0" counts="0112" />

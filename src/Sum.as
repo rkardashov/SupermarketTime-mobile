@@ -1,5 +1,6 @@
 package  
 {
+	import data.Assets;
 	import screens.Screens;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -32,6 +33,7 @@ package
 		private function onGoodScanned(e: Event, good: Good): void
 		{
 			add(Math.random());// good.info.cost);
+			Assets.playSound(Assets.SOUND_SCAN);
 			GameEvents.dispatch(GameEvents.GOOD_CHECKOUT, good);			
 		}
 		

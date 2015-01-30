@@ -13,13 +13,19 @@ package screens
 	{
 		static protected const FADEOUT_DURATION: Number = 0.7;
 		static protected const FADEIN_DURATION: Number = 1.2;
+		static protected const STATE_INACTIVE: int = 0;
+		static protected const STATE_ENTERING: int = 1;
+		static protected const STATE_ACTIVE: int = 2;
+		static protected const STATE_EXITING: int = 3;
+		
+		protected var state: int = STATE_INACTIVE;
 		
 		private var nextScreenClass: Class;
 		
 		public function BasicScreen() 
 		{
 			super();
-			scaleX = scaleY = 2;
+			scaleX = scaleY = 3;
 			GameEvents.subscribe(GameEvents.SCREEN_CHANGE, onScreenChange);
 			GameEvents.subscribe(GameEvents.SCREEN_ENTER, onScreenEnter);
 		}
@@ -28,13 +34,16 @@ package screens
 		{
 			if (this as screenClass)
 			{
+				state = STATE_ENTERING;
 				alpha = 0;
 				onEnter();
 				Starling.juggler.tween(this, FADEIN_DURATION,
 				{
 					alpha: 1.0,
 					transition: Transitions.EASE_IN_OUT,
-					onComplete: onReady
+					onComplete: function(): void {
+						state = STATE_ACTIVE;
+						onReady(); }
 				});
 			}
 		}
@@ -43,6 +52,7 @@ package screens
 		{
 			nextScreenClass = screenClass;
 			alpha = 1;
+			state = STATE_EXITING;
 			Starling.juggler.tween(this, FADEOUT_DURATION,
 			{
 				alpha: 0.0,
@@ -54,6 +64,7 @@ package screens
 		private function onFadeOut(): void
 		{
 			onExit();
+			state = STATE_INACTIVE;
 			removeFromParent();
 			GameEvents.dispatch(GameEvents.SCREEN_ENTER, nextScreenClass);
 		}

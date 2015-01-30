@@ -1,128 +1,35 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
-	<day index="1" duration="90" score="60,120,240" bags="0" goodsMaxID="3" tutorial="basic"
-		customers="grandma,schoolboy"
-		customersNew="0,1" featuresDisabled="0,1,2,3,4,5,6,7">
-		<disabledFeature name="flipping" />
-		<disabledFeature name="helloGoodbye" />
-		<disabledFeature name="numericInput" />
-		<disabledFeature name="stickers" />
-		<disabledFeature name="barcodePrinter" />
+	<day index="0" duration="60" score="30,75,120" bags="0" goodsMaxID="3" tutorial="basic"
+		customers="grandma">
+		<disabled feature="flipping" />
+		<disabled feature="hi-bye" />
+		<disabled feature="inspect" />
+		<disabled feature="stickers" />
+		<disabled feature="scales" />
 	</day>
-	<day index="2" duration="120" score="60,120,240" bags="0" goodsMaxID="4" newGood="4" tutorial="flipping"
+	<day index="1" duration="60" score="25,55,100" bags="0" goodsMaxID="4" side="3" tutorial="flipping"
 		customers="grandma,schoolboy" >
-		<disabledFeature name="helloGoodbye" />
-		<disabledFeature name="numericInput" />
-		<disabledFeature name="stickers" />
-		<disabledFeature name="barcodePrinter" />
+		<disabled feature="hi-bye" />
+		<disabled feature="inspect" />
+		<disabled feature="stickers" />
+		<disabled feature="scales" />
 	</day>
-	<day index="3" duration="120" score="60,110,170" bags="0" goodsMaxID="5" newGood="5" 
-		customers="grandma,schoolboy">
-		<disabledFeature name="helloGoodbye" />
-		<disabledFeature name="numericInput" />
-		<disabledFeature name="stickers" />
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="4" duration="90" score="55,90,150" bags="0" goodsMaxID="6" newGood="6" 
+	<day index="2" duration="90" score="90,170,260" bags="0" goodsMaxID="5" tutorial="hi-bye"
 		customers="grandma,schoolboy,woman">
-		<disabledFeature name="helloGoodbye" />
-		<disabledFeature name="numericInput" />
-		<disabledFeature name="stickers" />
-		<disabledFeature name="barcodePrinter" />
+		<disabled feature="inspect" />
+		<disabled feature="stickers" />
+		<disabled feature="scales" />
 	</day>
-	<day index="5" duration="90" score="90,170,260" bags="0" goodsMaxID="6" tutorial="helloGoodbye"
-		customers="grandma,schoolboy,woman">
-		<disabledFeature name="numericInput" />
-		<disabledFeature name="stickers" />
-		<disabledFeature name="barcodePrinter" />
+	<day index="3" duration="90" score="60,130,210" bags="0,1" goodsMaxID="5" tutorial="bags"
+		customers="grandma,schoolboy,woman,student,man">
+		<disabled feature="inspect" />
+		<disabled feature="stickers" />
+		<disabled feature="scales" />
 	</day>
-	<day index="6" duration="90" score="50,120,200" bags="0" goodsMaxID="7" newGood="7"
-		customers="grandma,schoolboy,woman">
-		<disabledFeature name="numericInput" />
-		<disabledFeature name="stickers" />
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="7" duration="90" score="70,140,220" bags="0" goodsMaxID="7"
-		customers="grandma,schoolboy,woman">
-		<disabledFeature name="numericInput" />
-		<disabledFeature name="stickers" />
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="8" duration="90" score="60,130,210" bags="0,1" goodsMaxID="8" newGood="8" tutorial="bagCategories"
-		customers="grandma,schoolboy,woman,student">
-		<disabledFeature name="numericInput" />
-		<disabledFeature name="stickers" />
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="9" duration="90" score="100,200,300" bags="0,1" goodsMaxID="8"
-		customers="grandma,schoolboy,woman,student">
-		<disabledFeature name="numericInput" />
-		<disabledFeature name="stickers" />
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="10" duration="90" score="65,135,215" bags="0,1" goodsMaxID="9" newGood="9"
-		customers="grandma,schoolboy,woman,student">
-		<disabledFeature name="numericInput" />
-		<disabledFeature name="stickers" />
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="11" duration="90" score="55,110,175" bags="0,1" goodsMaxID="9"
-		customers="grandma,schoolboy,woman,student">
-		<disabledFeature name="numericInput" />
-		<disabledFeature name="stickers" />
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="12" duration="90" score="75,150,225" bags="0,1" goodsMaxID="10" newGood="10">
-		<disabledFeature name="numericInput" />
-		<disabledFeature name="stickers" />
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="13" duration="90" score="65,135,210" bags="0,1" goodsMaxID="10" tutorial="numericInput">
-		<disabledFeature name="stickers" />
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="14" duration="90" score="50,110,170" bags="0,1" goodsMaxID="11" newGood="11">
-		<disabledFeature name="stickers" />
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="15" duration="90" score="80,160,250" bags="0,1" goodsMaxID="11">
-		<disabledFeature name="stickers" />
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="16" duration="90" score="100,210,330" bags="0,1,2" goodsMaxID="12" newGood="12">
-		<disabledFeature name="stickers" />
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="17" duration="90" score="100,210,330" bags="0,1,2" goodsMaxID="12" tutorial="stickers">
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="18" duration="90" score="100,210,330" bags="0,1,2" goodsMaxID="12">
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="19" duration="90" score="100,210,330" bags="0,1,2" goodsMaxID="13" newGood="13">
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="20" duration="90" score="100,210,330" bags="0,1,2" goodsMaxID="13">
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="21" duration="90" score="100,210,330" bags="0,1,2" goodsMaxID="13">
-		<disabledFeature name="barcodePrinter" />
-	</day>
-	<day index="22" duration="90" score="100,210,330" bags="0,1,2" goodsMaxID="14" newGood="14" tutorial="barcodePrinter"/>
-	<day index="23" duration="90" score="100,210,330" bags="0,1,2" goodsMaxID="14" />
-	<day index="24" duration="90" score="100,210,330" bags="0,1,2" goodsMaxID="14" />
-	<day index="25" duration="90" score="100,210,330" bags="0,1,2" goodsMaxID="15" newGood="15" />
-	<day index="26" duration="90" score="100,210,330" bags="0,1,2" goodsMaxID="15" />
-	<day index="27" duration="90" score="100,210,330" bags="0,1,2" goodsMaxID="15" />
-	<day index="28" duration="90" score="100,210,330" bags="0,1,2" goodsMaxID="16" newGood="16" />
-	<day index="29" duration="90" score="100,210,330" bags="0,1,2" goodsMaxID="16" />
-	<day index="30" duration="90" score="100,210,330" bags="0,1,2" goodsMaxID="16" />
-	<day index="31" duration="90" score="100,210,330" bags="0,1,2,3" goodsMaxID="17" newGood="17" />
-	<day index="32" duration="90" score="100,210,330" bags="0,1,2,3" goodsMaxID="18" newGood="18" />
-	<day index="33" duration="90" score="100,210,330" bags="0,1,2,3" goodsMaxID="18" />
-	<day index="34" duration="90" score="100,210,330" bags="0,1,2,3" goodsMaxID="18" />
-	<day index="35" duration="90" score="100,210,330" bags="0,1,2,3" goodsMaxID="19" newGood="19" />
-	<day index="36" duration="90" score="100,210,330" bags="0,1,2,3" goodsMaxID="19" />
-	<day index="37" duration="90" score="100,210,330" bags="0,1,2,3" goodsMaxID="19" />
+	<day index="4" duration="60" score="50,100,200" bags="0,1" goodsMaxID="6" tutorial="scales"
+		customers="vegan"/>
+	<day index="5" duration="90" score="100,210,330" bags="0,1" goodsMaxID="6"
+		customers="grandma,schoolboy,woman,student,man"/>
 
 </data>

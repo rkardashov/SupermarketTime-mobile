@@ -35,7 +35,8 @@ package screens
 		public var sum:Sum;
 		private var customerCard:CustomerCard;
 		private var customerReceipt:CustomerReceipt;
-		public var goodsInspectionView:GoodsInspectionView;
+		public var scalesView:ScalesView;
+		public var inspectView:GoodInspectView;
 		private var bagsRequestView:BagsRequestView;
 		//private var scorePopup:ScorePopup;
 		private var btnPause:PauseButton;
@@ -57,18 +58,8 @@ package screens
 		
 		public function GameScreen():void
 		{
-			/*if (stage)
-				init();
-			else
-				addEventListener(Event.ADDED_TO_STAGE, init);
-		}
-		
-		private function init(e:Event = null):void
-		{
-			removeEventListener(Event.ADDED_TO_STAGE, init);*/
 			super();
 			
-			//scaleX = scaleY = 2;
 			ambient = new _SOUND_AMBIENT();
 			
 			var u:int = Screens.unit;
@@ -86,11 +77,12 @@ package screens
 			instructionView = new InstructionView();
 			
 			layerUI.addChild(dayTimer = new DayTimer());
+			layerUI.addChild(scoreView = new ScoreView(dayTimer));
 			layerUI.addChild(bagsRequestView = new BagsRequestView());
-			layerUI.addChild(goodsInspectionView = new GoodsInspectionView());
+			layerUI.addChild(scalesView = new ScalesView());
+			layerUI.addChild(inspectView = new GoodInspectView());
 			//layerUI.addChild(scorePopup = new ScorePopup());
 			layerUI.addChild(btnPause = new PauseButton());
-			layerUI.addChild(scoreView = new ScoreView(dayTimer));
 			//layerUI.addChild(speechView = new SpeechView());
 			layerUI.addChild(customerSpeech = new CustomerSpeech());
 			layerUI.addChild(btnCustomerWelcome = new CustomerWelcomeButton());
@@ -114,7 +106,8 @@ package screens
 			}
 			customerQueue = new CustomerQueue(dayTimer); // , onCustomerArrived);
 			layerBottom.addChild(customerQueue);
-			var areaInspectGood:ItemsDropArea = new ItemsDropArea(goodsInspectionView, /*null, */"droparea_scales");
+			//var areaInspectGood:ItemsDropArea = new ItemsDropArea(goodsInspectionView, "droparea_scales");
+			var areaInspectGood:GoodInspectDropArea = new GoodInspectDropArea();
 			areaInspectGood.x = 119;
 			areaInspectGood.y = 206;
 			layerBottom.addChild(areaInspectGood);
@@ -166,21 +159,12 @@ package screens
 		// Triggered on time_out, customer_complete
 		private function checkStatus(e: Event): void 
 		{
-			//if (e.type == GameEvents.CUSTOMER_COMPLETE)
-				//Saves.currentDay.customers++;
-			
-			if (dayTimer.timeIsOut && !customerQueue.customer)
-				endDay();
-		}
-		
-		private function endDay(): void
-		{
-			if (!stage)
-				return;
-			// TODO: @ day end: ambient .pause() or .fadeOut() 
-			
-			GameEvents.dispatch(GameEvents.DAY_END);
-			Screens.gotoScreen(DayEndScreen);
+			if (dayTimer.timeIsOut && !customerQueue.customer
+				&& state == STATE_ACTIVE)
+			{
+				GameEvents.dispatch(GameEvents.DAY_END);
+				Screens.gotoScreen(DayEndScreen);
+			}
 		}
 	}
 }

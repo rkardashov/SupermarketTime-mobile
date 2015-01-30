@@ -30,17 +30,17 @@ package
 		
 		private function onTryScan(e: Event, good: Good): void
 		{
+			if (!good.scanned && !good.info.barcode
+				&& getBounds(stage).intersects(good.getBounds(stage)))
+				GameEvents.dispatch(GameEvents.SCANNER_GOOD_NO_BARCODE);
 			if (good.scanned ||
 				!good.info.barcode || //!good.info.barcode.isImprinted || 
 				!good.info.barcode.isScannable)
 				return;
-			//if (getBounds(Screens.getScreen(GameScreen)).containsRect(good.barCodeRect))
-			if (getBounds(stage).containsRect(good.barCodeRect))
+			if (good.barcodeSideDown &&
+				getBounds(stage).containsRect(good.barCodeRect))
 			{
 				good.scanned = true;
-				// TODO: move BEEP! sound to Sum (cash register)
-				//Assets.beep.play();
-				Assets.playSound(Assets.SOUND_SCAN);
 				GameEvents.dispatch(GameEvents.GOOD_SCANNED, good);
 			}
 		}

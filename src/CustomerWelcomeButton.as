@@ -1,5 +1,6 @@
 package
 {
+	import data.DayData;
 	import starling.events.Event;
 	/**
 	 * ...
@@ -14,8 +15,22 @@ package
 			y = 170;
 			visible = false;
 			addEventListener(Event.TRIGGERED, onTrigger);
-			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrived);
-			GameEvents.subscribe(GameEvents.GOOD_ENTER, onGoodEnter);
+			GameEvents.subscribe(GameEvents.DAY_START, onDayStart);
+		}
+		
+		private function onDayStart(e: Event, d: DayData):void 
+		{
+			visible = false;
+			if (d.disabledFeatures["hi-bye"])
+			{
+				GameEvents.unsubscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrived);
+				GameEvents.unsubscribe(GameEvents.GOOD_ENTER, onGoodEnter);
+			}
+			else
+			{
+				GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrived);
+				GameEvents.subscribe(GameEvents.GOOD_ENTER, onGoodEnter);
+			}
 		}
 		
 		private function onGoodEnter(e: Event): void 
@@ -26,8 +41,6 @@ package
 		private function onCustomerArrived(e: Event): void 
 		{
 			visible = true;
-			// TODO: add CONVEYOR_GOODS_REQUEST event, send upon divider move out
-			//GameEvents.subscribe(GameEvents.CONVEYOR_GOODS_REQUEST);
 		}
 		
 		private function onTrigger(e: Event): void 

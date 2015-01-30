@@ -35,8 +35,6 @@ package screens
 		{
 			super();
 			
-			//scaleX = scaleY = 2;
-			
 			addChild(Assets.getImage("bg_day_end"));
 			
 			var u: int = Screens.unit;
@@ -72,11 +70,11 @@ package screens
 			_btnToMenu.y = int(u * 8);
 			_btnToMenu.addEventListener(Event.TRIGGERED, onBtnMenuTrigger);
 			
-			addChild(_btnNext = new TextButton("next day"));
+			/*addChild(_btnNext = new TextButton("next day"));
 			_btnNext.x = int(u * 6);
 			_btnNext.y = int(u * 8);
 			_btnNext.addEventListener(Event.TRIGGERED, onBtnNextTrigger);
-			
+			*/
 			addChild(_btnToDaySelection = new TextButton("day selection"));
 			_btnToDaySelection.x = int(u * 11);
 			_btnToDaySelection.y = int(u * 8);
@@ -89,12 +87,14 @@ package screens
 		
 		private function onBtnDaySelectTrigger(e:Event):void 
 		{
-			Screens.gotoScreen(LoadGameScreen);
+			if (state == STATE_ACTIVE)
+				Screens.gotoScreen(LoadGameScreen);
 		}
 		
 		private function onBtnMenuTrigger(e:Event):void 
 		{
-			Screens.gotoScreen(MainMenu);
+			if (state == STATE_ACTIVE)
+				Screens.gotoScreen(MainMenu);
 		}
 		
 		private function onDayStart(e: Event, d: DayData):void 
@@ -123,7 +123,7 @@ package screens
 			if (day.save.stars > 0)
 			{
 				_successText.text = "Day completed!";
-				_btnNext.enabled = Saves.nextDay(day.save);
+				/*_btnNext.enabled = Saves.nextDay(day.save);*/
 				Saves.saveDays();
 			}
 			else
@@ -132,7 +132,8 @@ package screens
 		
 		private function onBtnNextTrigger(e: Event): void 
 		{
-			Screens.gotoScreen(GameScreen);
+			if (state == STATE_ACTIVE)
+				Screens.gotoScreen(GameScreen);
 		}
 	}
 }

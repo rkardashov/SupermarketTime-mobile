@@ -4,8 +4,23 @@
 		<instruction index="0" event="day_start"/>
 		<instruction index="1" event="customer_arrived"/>
 		<instruction index="2" event="good_enter"/>
-		<instruction index="3" event="good_scanned"/>
+		<instruction index="3" event="good_scanned" capture="0" />
+		<instruction index="4" event="goods_complete" capture="0" />
+		<instruction index="5" event="card_payment" />
 	</tutorial>
-	<tutorial id="BLAH">
+	<tutorial id="flipping">
+		<instruction index="0" event="scanner_try_scan"/>
+	</tutorial>
+	<tutorial id="hi-bye">
+		<instruction index="0" event="customer_arrived" capture="0" />
+		<instruction index="1" event="card_payment" capture="0" />
+	</tutorial>
+	<tutorial id="bags">
+		<instruction index="0" event="good_wrong_bag"/>
+	</tutorial>
+	<tutorial id="scales">
+		<instruction index="0" event="scanner_good_no_barcode"/>
+		<instruction index="1" event="scales_view_show" capture="0" />
+		<instruction index="2" event="scales_barcode_print" />
 	</tutorial>
 </data>

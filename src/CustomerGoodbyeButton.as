@@ -1,5 +1,6 @@
 package
 {
+	import data.DayData;
 	import starling.events.Event;
 	/**
 	 * ...
@@ -16,6 +17,22 @@ package
 			addEventListener(Event.TRIGGERED, onTrigger);
 			GameEvents.subscribe(GameEvents.CARD_PAYMENT, onCardPayment);
 			GameEvents.subscribe(GameEvents.CUSTOMER_COMPLETE, onCustomerComplete);
+			GameEvents.subscribe(GameEvents.DAY_START, onDayStart);
+		}
+		
+		private function onDayStart(e: Event, d: DayData):void 
+		{
+			visible = false;
+			if (d.disabledFeatures["hi-bye"])
+			{
+				GameEvents.unsubscribe(GameEvents.CARD_PAYMENT, onCardPayment);
+				GameEvents.unsubscribe(GameEvents.CUSTOMER_COMPLETE, onCustomerComplete);
+			}
+			else
+			{
+				GameEvents.subscribe(GameEvents.CARD_PAYMENT, onCardPayment);
+				GameEvents.subscribe(GameEvents.CUSTOMER_COMPLETE, onCustomerComplete);
+			}
 		}
 		
 		private function onCustomerComplete(e: Event): void 

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <application xmlns="http://ns.adobe.com/air/application/14.0">
   <id>air.supermarkettimemobile</id>
-  <versionNumber>0.1</versionNumber>
+  <versionNumber>0.12</versionNumber>
   <supportedProfiles>mobileDevice</supportedProfiles>
   <filename>supermarkettimemobile</filename>
   <name>supermarket time mobile</name>
@@ -17,16 +17,11 @@
 <string>UIStatusBarStyleBlackOpaque</string>
 <key>UIRequiresPersistentWiFi</key>
 <string>NO</string>
-<key>UIPrerenderedIcon</key>
-<true />
 <key>UIApplicationExitsOnSuspend</key>
 <true />
 <key>UIDeviceFamily</key>
 <array>
-	<!-- iPhone support -->
 	<string>1</string>
-	<!-- iPad support -->
-	<!--<string>2</string>-->
 </array>]]></InfoAdditions>
     <requestedDisplayResolution>high</requestedDisplayResolution>
   </iPhone>
@@ -36,16 +31,18 @@
     <visible>true</visible>
     <!--<autoOrients>false</autoOrients>-->
     <!--<aspectRatio>landscape</aspectRatio>-->
-    <renderMode>gpu</renderMode>
+    <renderMode>direct</renderMode>
     <!--<depthAndStencil>true</depthAndStencil>-->
     <!-- required for 3D -->
     <systemChrome>standard</systemChrome>
     <aspectRatio>landscape</aspectRatio>
-    <fullScreen>false</fullScreen>
+    <fullScreen>true</fullScreen>
     <resizable>false</resizable>
     <minimizable>false</minimizable>
     <maximizable>false</maximizable>
     <autoOrients>true</autoOrients>
+    <width>1280</width>
+    <height>720</height>
   </initialWindow>
   <icon>
     <image48x48>icons/icon_48.png</image48x48>

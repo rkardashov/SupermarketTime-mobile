@@ -22,6 +22,7 @@ package data
 		public var tutorial: Tutorial = null;
 		//public var score: int = 0;
 		public var save: DaySave = new DaySave();
+		public var disabledFeatures: Object = {};
 		//public var goodIDs: Vector.<int> = new Vector.<int>();
 		
 		public function DayData(dayNumber: uint) 
@@ -74,8 +75,9 @@ package data
 			for (var i:int = 0; i < maxGoodID; i++) 
 				goodIDs.push(i);*/
 			
-			for each (var feature: XML in dayXML.disabledFeature) 
-				this[feature.@name] = false;
+			for each (var disabled: XML in dayXML.disabled)//.Feature) 
+				//this[feature.@name] = false;
+				disabledFeatures[disabled.@feature] = true;
 			
 			if (dayXML.attribute("tutorial").length() > 0)
 				tutorial = new Tutorial(dayXML.@tutorial);

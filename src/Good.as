@@ -168,7 +168,7 @@ package
 		
 		override protected function onDrag(): void 
 		{
-			if (type == TYPE_GOOD && barcodeSideDown)
+			if (type == TYPE_GOOD/* && barcodeSideDown*/)
 				GameEvents.dispatch(GameEvents.SCANNER_TRY_SCAN, this);
 		}
 	}

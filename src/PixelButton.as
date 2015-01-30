@@ -64,32 +64,33 @@ package
 		
 		private function onTouch(e: TouchEvent): void 
 		{
-			//if (state !== STATE_DOWN)
 			if (!pressed)
 			{
 				touch = e.getTouch(this, TouchPhase.BEGAN);
 				if (touch)
 				{
-					//state = STATE_DOWN;
 					pressed = true;
 					imgUp.visible = false;
 					imgDown.visible = true;
 					return;
 				}
 			}
-			//if (state == STATE_DOWN)
 			if (pressed)
 			{
 				touch = e.getTouch(this, TouchPhase.ENDED);
 				if (touch)
 				{
-					//state = STATE_OVER;
 					pressed = false;
 					imgUp.visible = true;
 					imgDown.visible = false;
+					onPress();
 					dispatchEvent(new Event(Event.TRIGGERED));
 				}
 			}
+		}
+		
+		protected function onPress(): void 
+		{
 		}
 	}
 }

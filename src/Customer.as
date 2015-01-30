@@ -54,14 +54,15 @@ package
 		
 		private function eventReaction(e: Event): void 
 		{
-			if (info.events[e.type])
+			/*if (info.events[e.type])
 				trace(info.id +  " reaction to " + e.type + ": " + info.events[e.type]);
+			*/
 			changeMoodLevel(info.events[e.type]);
 		}
 		
 		private function changeMoodLevel(change: int): void 
 		{
-			trace("mood change: " + mood + ((change > 0) ? "+" : "") + change);
+			//trace("mood change: " + mood + ((change > 0) ? "+" : "") + change);
 			mood += change;
 			if (mood < 0)
 				mood = 0;

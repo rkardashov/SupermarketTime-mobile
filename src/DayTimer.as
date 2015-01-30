@@ -29,10 +29,10 @@ package
 			super();
 			x = 190;
 			y = 2;
-			addChild(_text_shadow = new TextField(120, 30, "", "Arcade_10", 20,
+			addChild(_text_shadow = new TextField(125, 30, "", "Arcade_10", 20,
 				0x88888888));
 			_text_shadow.x = _text_shadow.y = 1;
-			addChild(_text = new TextField(120, 30, "", "Arcade_10", 20, 0xFFFF8839));
+			addChild(_text = new TextField(125, 30, "", "Arcade_10", 20, 0xFFFF8839));
 			_text.autoScale = _text_shadow.autoScale = false;
 			_text.vAlign = _text_shadow.vAlign = VAlign.BOTTOM;
 			_text.hAlign = _text_shadow.hAlign = HAlign.LEFT;
@@ -67,10 +67,11 @@ package
 		// TODO: move this away from DayTimer. Customer? CustomerQueue?
 		private function onCustomerArrived(e: Event, c: CustomerInfo): void 
 		{
-			if (c.disableTimer)
+			// WTF ???
+			/*if (c.disableTimer)
 				pause()
 			else
-				resume();
+				resume();*/
 		}
 		
 		private function onCustomerComplete(e: Event, c: CustomerInfo): void 

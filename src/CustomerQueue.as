@@ -25,7 +25,7 @@ package
 		private var _current: CustomerInfo;
 		private var _customer: Customer;
 		private var pocket: Bag;
-		private var moodIndicator: MovieClip;
+		//private var moodIndicator: CustomerMoodIndicator;// MovieClip;
 		
 		public var dropArea: ItemsDropArea;
 		public var receivedCard: Boolean;
@@ -42,9 +42,11 @@ package
 			_customer = new Customer();
 			addChild(layerDepart = new Sprite());
 			addChild(layerCustomers = new Sprite());
-			addChild(moodIndicator = new MovieClip(Assets.getTextures("mood")));
+			/*addChild(moodIndicator = new MovieClip(Assets.getTextures("mood")));
 			moodIndicator.smoothing = TextureSmoothing.NONE;
-			moodIndicator.visible = false;
+			moodIndicator.visible = false;*/
+			addChild(new CustomerMoodIndicator());
+			
 			addChild(dropArea = new ItemsDropArea(this, null, /*null, */70, 70));
 			
 			GameEvents.subscribe(GameEvents.DAY_START, onDayStart);
@@ -73,7 +75,7 @@ package
 			layerCustomers.removeChildren();
 			layerDepart.removeChildren();
 			
-			moodIndicator.visible = false;
+			//moodIndicator.visible = false;
 			
 			_timer.clearEvents();
 			
@@ -85,7 +87,7 @@ package
 		private function onCustomerMoodChange(e: Event, moodLevel: int): void 
 		{
 			//trace("customer mood level " + moodLevel);
-			moodIndicator.currentFrame = moodLevel;
+			//moodIndicator.currentFrame = moodLevel;
 		}
 		
 		private function next(): void 
@@ -102,7 +104,7 @@ package
 			CustomerView(layerDepart.getChildAt(0)).moveTo( -280);
 			_queue.shift();
 			_current = null;
-			moodIndicator.visible = false;
+			//moodIndicator.visible = false;
 		}
 		
 		private function onCustomerStopped(e: Event, c: CustomerInfo): void
@@ -111,7 +113,7 @@ package
 			{
 				_current = c;
 				//_customer.init(_current);
-				moodIndicator.visible = true;
+				//moodIndicator.visible = true;
 				GameEvents.dispatch(GameEvents.CUSTOMER_ARRIVED, c);
 			}
 		}

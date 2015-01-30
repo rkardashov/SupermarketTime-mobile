@@ -25,7 +25,7 @@ package data
 		public function GoodInfo(dayXML: XML, goodID: String) 
 		{
 			id = goodID;
-			trace("creating good @ID " + id);
+			//trace("creating good @ID " + id);
 			var goodXML: XML = Assets.goodsXML.good.(@id == id)[0];
 			
 			texturePrefix = "goods_" + goodXML.@texture + "_";
@@ -37,14 +37,17 @@ package data
 			if (_category > maxCatID)
 				_category = Math.random() * maxCatID;
 			
-			if (!(dayXML.@noBarcode == "1"))
+			if (!(goodXML.@noBarcode == "1"))
 				barcode = new BarcodeInfo(goodXML);
 			
-			if (dayXML.attribute("side").length() == 0)
-				side = Math.random() * sideCount
-			else
+			side = Math.random() * sideCount;
+			if (dayXML.attribute("side").length() == 1)
 				side = dayXML.@side;
-			flippable = !(dayXML.@noflip == "1");
+			//flippable = !(dayXML.@noflip == "1");
+			//var disabledFeatures: String = dayXML.@disabledFeatures;
+			flippable = !(dayXML.disabled.(@feature == "flipping").length() == 1);
+			if (!flippable)
+				side = 2;
 			
 			var msgQueue: Vector.<Speech>;
 			var i: int;

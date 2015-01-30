@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
+	<customer id="test" texture="man" mood="20" goodsMax="10"> 
+		<good id="0" counts="12" />
+		<good id="1" counts="12" />
+		<good id="2" counts="12" />
+		<good id="3" counts="12" />
+		<good id="4" counts="12" />
+		<good id="5" counts="12" />
+		<good id="6" counts="12" />
+		<good id="7" counts="12" />
+		<good id="8" counts="12" />
+		<reaction event="customer_welcome" mood="15" />
+		<reaction event="customer_goodbye" mood="25" />
+	</customer>
+	
+	<customer id="vegan" texture="man" mood="50" goodsMax="2"> 
+		<good id="6" counts="12" />
+		<reaction event="customer_welcome" mood="25" />
+		<reaction event="customer_goodbye" mood="25" />
+	</customer>
+	
 	<customer id="grandma" mood="10" goodsMax="2"> <!--Молоко, хлеб, масло, сахар, капуста, мыло-->
 		<good id="0" counts="0112" />
 		<good id="1" counts="0012" />

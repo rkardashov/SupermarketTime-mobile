@@ -43,7 +43,7 @@ package
 			this.category = category;
 			bag = new Bag(category);
 			
-			y = int(category * Screens.unit * 1.5 + 100);
+			y = int(category * 45 + 95);
 			
 			var icon: Image = Assets.getImage("category_" + category);
 			if (icon)

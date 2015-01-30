@@ -32,14 +32,17 @@ package
 			y = 0;
 			if (x < 0)
 				x = 0;
-			if (x > 200)
+			/*if (x > 150)
 				//onDividerMoveOut();
-				GameEvents.dispatch(GameEvents.CONVEYOR_GOODS_REQUEST);
+				GameEvents.dispatch(GameEvents.CONVEYOR_GOODS_REQUEST);*/
 		}
 		
 		override protected function onDrop(): void 
 		{
 			//trace("divider x = " + int(x));
+			if (x > 150)
+				//onDividerMoveOut();
+				GameEvents.dispatch(GameEvents.CONVEYOR_GOODS_REQUEST);
 		}
 	}
 }

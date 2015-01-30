@@ -16,22 +16,12 @@ package screens
 	 */
 	public class LoadGameScreen extends BasicScreen
 	{
-		//static public var id: String = "loadGameScreen";
-		
 		protected var btnContinue: PixelButton;
 		
 		public function LoadGameScreen()
 		{
-			/*addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
-		}
-		
-		protected function addedToStageHandler(event: Event): void
-		{*/
 			super();
-			
-			//scaleX = scaleY = 2;
 			addChild(Assets.getImage("bg_load_game"));
-			/*Saves.loadDays(onDaysLoaded);*/
 		}
 		
 		override protected function onEnter(): void
@@ -47,7 +37,16 @@ package screens
 				addChild(btn = new LoadDayButton(day));
 				btn.x = 50;
 				btn.y = 20 + day.index * 20;
+				btn.addEventListener(Event.TRIGGERED, onBtnTrigger);
 			}
+		}
+		
+		private function onBtnTrigger(e:Event):void 
+		{
+			if (state !== STATE_ACTIVE)
+				return;
+			if (Saves.selectDay((e.currentTarget as LoadDayButton).day.index))
+				Screens.gotoScreen(GameScreen);
 		}
 	}
 }

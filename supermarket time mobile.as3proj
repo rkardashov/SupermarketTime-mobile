@@ -6,12 +6,12 @@
     <movie input="" />
     <movie path="bin\supermarkettimemobile.swf" />
     <movie fps="50" />
-    <movie width="768" />
-    <movie height="480" />
+    <movie width="1280" />
+    <movie height="720" />
     <movie version="14" />
     <movie minorVersion="0" />
     <movie platform="AIR Mobile" />
-    <movie background="#000000" />
+    <movie background="#404040" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>

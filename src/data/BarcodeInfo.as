@@ -13,7 +13,8 @@ package data
 		//public var code2: String = "";
 		/* Indicates if the scanner is able to read the barcode */
 		public var isScannable: Boolean = true;
-		/* Indicates if the barcode is imprinted on the package */
+		/* Indicates if the barcode exists on the package */
+		// TODO: remove .isImprinted property
 		public var isImprinted: Boolean = false;
 		public var atSide: int = 0;
 		public var x: int = 0;
@@ -27,13 +28,10 @@ package data
 			
 			if (!xml)
 				return;
-			//isImprinted = (xml.@barcodeImprinted == "1");
 			isImprinted = !(xml.@noBarcode == "1");
 			atSide = xml.@barcodeSide;
 			x = xml.@barcodeX;
 			y = xml.@barcodeY;
-			//code1 = code.slice(0, LENGTH / 2);
-			//code2 = code.slice(LENGTH / 2);
 		}
 	}
 }

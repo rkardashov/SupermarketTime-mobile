@@ -20,9 +20,7 @@ package
 		static public const TIME_OUT: String = "time_out";
 		static public const TIMER_SECOND:String = "timer_second";
 		
-		//static public const MESSAGE_SHOW: String = "message_show";
-		//static public const MESSAGE_CLOSE: String = "message_close";
-		static public const INSPECTVIEW_CLOSE:String = "inspectview_close";
+		//static public const INSPECTVIEW_CLOSE:String = "inspectview_close";
 		static public const BARCODE_APPLY: String = "barcode_apply";
 		
 		static public const ITEM_PICK: String = "item_pick";
@@ -30,6 +28,7 @@ package
 		static public const GOOD_ENTER: String = "good_enter";
 		static public const GOOD_SCANNED: String = "good_scanned";
 		static public const SCANNER_TRY_SCAN: String = "scanner_try_scan";
+		static public const SCANNER_GOOD_NO_BARCODE:String = "scanner_good_no_barcode";
 		static public const GOOD_CHECKOUT: String = "good_checkout";
 		static public const GOOD_RECEIVED:String = "good_received";
 		static public const GOOD_WRONG_BAG: String = "good_wrong_bag";
@@ -58,6 +57,10 @@ package
 		
 		static public const INTRO_START: String = "intro_start";
 		static public const INTRO_END: String = "intro_end";
+		static public const SCALES_VIEW_SHOW: String = "scales_view_show";
+		static public const SCALES_BARCODE_PRINT:String = "scales_barcode_print";
+		static public const INSPECT_VIEW_SHOW: String = "inspect_view_show";
+		static public const NUMPAD_ENTER_DIGIT:String = "numpad_enter_digit";
 		
 		static public function subscribe(eventType: String, handler: Function): void 
 		{
