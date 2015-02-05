@@ -1,7 +1,7 @@
 # Build and Release Folders
 bin/
 obj/
-dist/
+dist/*
 
 # Other files and folders
 .settings/
