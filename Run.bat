@@ -14,10 +14,14 @@ set INTERPRETER=-interpreter
 :desktop
 :: http://help.adobe.com/en_US/air/build/WSfffb011ac560372f-6fa6d7e0128cca93d31-8000.html
 
-set SCREEN_SIZE=NexusOne
+::set SCREEN_SIZE=NexusOne
+::set SCREEN_SIZE=iPhoneRetina
+set SCREEN_SIZE=720x1280:720x1280
+::  iPhone|iPhoneRetina|iPhone5Retina|iPod|iPodRetina|iPod5Retina
+:: |iPad|iPadRetina|Droid|NexusOne|SamsungGalaxyS|SamsungGalaxyTab|QVGA|WQVGA
+:: |FWQVGA|HVGA|WVGA|FWVGA|1080|720|480
 ::goto desktop-run
 
-::set SCREEN_SIZE=iPhoneRetina
 
 :desktop-run
 echo.
