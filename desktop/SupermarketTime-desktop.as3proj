@@ -18,6 +18,7 @@
   <classpaths>
     <class path="..\src" />
     <class path="..\lib" />
+    <class path="icons" />
   </classpaths>
   <!-- Build options -->
   <build>

@@ -14,7 +14,8 @@ set OUTPUT=%AIR_PATH%\%AIR_NAME%%AIR_TARGET%.air
 echo.
 echo Packaging %AIR_NAME%%AIR_TARGET%.air using certificate %CERT_FILE%...
 ::call adt -package %OPTIONS% %SIGNING_OPTIONS% %OUTPUT% %APP_XML% %FILE_OR_DIR%
-call adt -package %OPTIONS% %SIGNING_OPTIONS% -target bundle air %APP_XML% %FILE_OR_DIR%
+::call adt -package %OPTIONS% %SIGNING_OPTIONS% -target bundle air %APP_XML% %FILE_OR_DIR%
+call adt -package %OPTIONS% %SIGNING_OPTIONS% -target bundle air %APP_XML% %FILE_OR_DIR% -C "D:/code/SupermarketTime-mobile/icons/Android/" .
 if errorlevel 1 goto failed
 goto end
 
