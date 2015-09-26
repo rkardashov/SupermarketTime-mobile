@@ -73,9 +73,10 @@ package
 			if (!visible || !stage || !item.stage)
 				return false;
 			var screen: GameScreen = Screens.getScreen(GameScreen) as GameScreen;
-			var itemBounds: Rectangle = item.getBounds(screen);
-			var p: Point = itemBounds.topLeft.clone();
-			p.offset(itemBounds.width / 2, itemBounds.height / 2);
+			//var itemBounds: Rectangle = item.getBounds(screen);
+			var itemRect: Rectangle = item.screenRect;
+			var p: Point = itemRect.topLeft.clone();
+			p.offset(itemRect.width / 2, itemRect.height / 2);
 			return getBounds(screen).containsPoint(p);
 			/*var areaBounds: Rectangle = getBounds(screen);
 			var success: Boolean = areaBounds.containsPoint(p);

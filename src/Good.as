@@ -8,6 +8,7 @@ package
 	import flash.geom.Rectangle;
 	import screens.GameScreen;
 	import screens.Screens;
+	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.MovieClip;
 	import starling.display.Sprite;
@@ -33,27 +34,24 @@ package
 		
 		private var _info: GoodInfo;
 		
-		//private var _scanner: Scanner;
+		private var _content: Sprite;
 		
 		protected var _sides: MovieClip;
-		private var _barcodeRect: Rectangle;
+		private var _bubble: Image;
 		public var barCodeSticker: BarCode;
-		//private var dropArea:ItemsDropArea;
-		//private var savedPos:Point;
+		private var _barcodeRect: Rectangle;
 		
-		//public var atConveyor: Boolean = false;
 		public var inBag: Boolean = false;
 		public var scanned: Boolean = false;
 		public var flipCount: int;
 		
-		//public var onEvent: Function;
-		
 		public function Good()
 		{
 			super();
-			//_scanner = screen.scanner;
-			addChild(barCodeSticker = new BarCode());
-			//addChild(dropArea = new ItemsDropArea(this, null));
+			_content = addChild(new Sprite()) as Sprite;
+			_content.addChild(barCodeSticker = new BarCode());
+			addChild(_bubble = Assets.getImage("bubble_item_scan_me"));
+			_bubble.alignPivot("center", "bottom");
 			visible = false;
 		}
 		
@@ -72,6 +70,11 @@ package
 				return barCodeSticker.getBounds(stage, _barcodeRect)
 			else
 				return null;
+		}
+		
+		override public function get screenRect():Rectangle 
+		{
+			return _content.getBounds(Screens.getScreen(GameScreen));
 		}
 		
 		public function get info(): GoodInfo
@@ -101,13 +104,16 @@ package
 			{
 				_sides = new MovieClip(frames);
 				_sides.smoothing = TextureSmoothing.NONE;
-				addChildAt(_sides, 0);
+				_content.addChildAt(_sides, 0);
 			}
 			
 			_sides.currentFrame = info.side;
 			_sides.readjustSize();
-			pivotX = int(_sides.width / 2);
-			pivotY = int(_sides.height / 2);
+			_content.pivotX = int(_sides.width / 2);
+			_content.pivotY = int(_sides.height / 2);
+			
+			_bubble.visible = info.bubbleVisible;
+			_bubble.y = -_content.pivotY;
 			
 			flipCount = 0;
 			
@@ -121,7 +127,7 @@ package
 				barCodeSticker.y = _info.barcode.y;
 			}
 			
-			rotation = int(Math.random() * 4) * Math.PI * 0.5;
+			_content.rotation = int(Math.random() * 4) * Math.PI * 0.5;
 		}
 		
 		private function onBarcodeApplied(e: Event, g: GoodInfo): void 
@@ -161,8 +167,8 @@ package
 			flipCount ++;
 			_sides.currentFrame = (_sides.currentFrame + 1) % _sides.numFrames;
 			_sides.readjustSize();
-			pivotX = int(_sides.width / 2);
-			pivotY = int(_sides.height / 2);
+			_content.pivotX = int(_sides.width / 2);
+			_content.pivotY = int(_sides.height / 2);
 			barCodeSticker.visible = info.barcode && !info.barcode.isImprinted && barcodeSideUp;
 		}
 		

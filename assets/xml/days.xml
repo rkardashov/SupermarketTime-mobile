@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
 	<day index="0" duration="60" score="30,75,120" bags="0" goodsMaxID="3" tutorial="basic"
+		goodsScanMeBubble="1"
 		customers="grandma">
 		<disabled feature="flipping" />
 		<disabled feature="hi-bye" />

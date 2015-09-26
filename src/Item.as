@@ -50,10 +50,10 @@ package
 			GameEvents.subscribe(GameEvents.RESUME, onResume);*/
 		}
 		
-		/*public function get screenBounds(): Rectangle
+		public function get screenRect(): Rectangle
 		{
 			return getBounds(Screens.getScreen(GameScreen));
-		}*/
+		}
 		
 		private function onConveyorStart(e: Event): void 
 		{

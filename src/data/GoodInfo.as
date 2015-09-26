@@ -17,6 +17,7 @@ package data
 		public var side: int;
 		public var sideCount: int = 4;
 		public var flippable: Boolean = true;
+		public var bubbleVisible: Boolean = false;
 		private var _category: int;
 		public var texturePrefix: String;
 		
@@ -48,6 +49,8 @@ package data
 			flippable = !(dayXML.disabled.(@feature == "flipping").length() == 1);
 			if (!flippable)
 				side = 2;
+				
+			bubbleVisible = (dayXML.attribute("goodsScanMeBubble").length() == 1);
 			
 			var msgQueue: Vector.<Speech>;
 			var i: int;
