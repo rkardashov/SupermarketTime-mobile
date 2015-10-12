@@ -26,7 +26,7 @@ package
 				return tutorial.instructions[index];
 			return null;
 		}*/
-		private var instruction: Instruction = null;
+		private var instruction: data.SpeechPhrase = null;
 		private var tutorial: Tutorial;
 		private var capturedEvent:Event;
 		
@@ -40,7 +40,7 @@ package
 			GameEvents.subscribe(GameEvents.GOOD_SCANNED, onGameEvent);
 			GameEvents.subscribe(GameEvents.GOODS_COMPLETE, onGameEvent);
 			GameEvents.subscribe(GameEvents.CARD_PAYMENT, onGameEvent);
-			GameEvents.subscribe(GameEvents.SCANNER_TRY_SCAN, onGameEvent);
+			GameEvents.subscribe(GameEvents.GOOD_DRAG, onGameEvent);
 			GameEvents.subscribe(GameEvents.GOOD_WRONG_BAG, onGameEvent);
 			GameEvents.subscribe(GameEvents.SCANNER_GOOD_NO_BARCODE, onGameEvent);
 			GameEvents.subscribe(GameEvents.SCALES_VIEW_SHOW, onGameEvent);

@@ -50,8 +50,10 @@ package
 			super();
 			_content = addChild(new Sprite()) as Sprite;
 			_content.addChild(barCodeSticker = new BarCode());
+			
 			addChild(_bubble = Assets.getImage("bubble_item_scan_me"));
 			_bubble.alignPivot("center", "bottom");
+			
 			visible = false;
 		}
 		
@@ -114,6 +116,8 @@ package
 			
 			_bubble.visible = info.bubbleVisible;
 			_bubble.y = -_content.pivotY;
+			if (info.bubbleVisible)
+				GameEvents.subscribe(GameEvents.GOOD_SCANNED, onGoodScanned);
 			
 			flipCount = 0;
 			
@@ -128,6 +132,15 @@ package
 			}
 			
 			_content.rotation = int(Math.random() * 4) * Math.PI * 0.5;
+		}
+		
+		private function onGoodScanned(e: Event, g: Good): void 
+		{
+			if (g != this)
+				return;
+			
+			_bubble.visible = false;
+			GameEvents.unsubscribe(GameEvents.GOOD_SCANNED, onGoodScanned);
 		}
 		
 		private function onBarcodeApplied(e: Event, g: GoodInfo): void 
@@ -175,7 +188,7 @@ package
 		override protected function onDrag(): void 
 		{
 			if (type == TYPE_GOOD/* && barcodeSideDown*/)
-				GameEvents.dispatch(GameEvents.SCANNER_TRY_SCAN, this);
+				GameEvents.dispatch(GameEvents.GOOD_DRAG, this);
 		}
 	}
 }

@@ -2,7 +2,9 @@ package
 {
 	import data.Assets;
 	import data.CustomerInfo;
+	import data.DayData;
 	import data.Speech;
+	import data.SpeechPhrase;
 	import screens.Screens;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -19,92 +21,57 @@ package
 	 */
 	public class SpeechView extends Sprite 
 	{
-		private var textField: TextField;
-		//private var commandCallback: Function;
-		private var bg: Image;
-		private var bubble: Sprite;
-		private var speechList: Vector.<Speech>;
+		private var bubbleText: TextField;
 		private var speech: Speech;
-		private var onEndCallback: Function;
-		private var dayEnd:Boolean;
 		
-		public function SpeechView(/*commandCallback: Function*/) 
+		public function SpeechView() 
 		{
 			super();
-			//this.commandCallback = commandCallback;
-			addChild(bg = new Image(Texture.fromColor(
-				Screens.uWidth * Screens.unit,
-				Screens.uHeight * Screens.unit,
-				//0x33000000)));
-				0x00000000)));
-			addChild(bubble = new Sprite());
-			bubble.addChild(Assets.getImage("bubble_customer"));
-			bubble.x = int((Screens.uWidth * Screens.unit - bubble.width) * 0.75);
-			bubble.y = 0;// int(Screens.unit * 0.5);
-			bubble.addChild(textField = new TextField(200, 50, ""));// Systematic"));
-			textField.fontSize = 9;
-			textField.x = /*bubble.x + */16;
-			textField.y = /*bubble.y + */6;
-			textField.hAlign = "left";
-			textField.autoSize = TextFieldAutoSize.VERTICAL;
-			visible = false;
-			bubble.addEventListener(TouchEvent.TOUCH, onTouch);
 			
-			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerEvent);
-			GameEvents.subscribe(GameEvents.CUSTOMER_COMPLETE, onCustomerEvent);
-			GameEvents.subscribe(GameEvents.GOOD_ENTER, onGoodEvent);
-			GameEvents.subscribe(GameEvents.GOOD_SCANNED, onGoodEvent);
-			GameEvents.subscribe(GameEvents.GOOD_CHECKOUT, onGoodEvent);
-			//GameEvents.subscribe(GameEvents.BAG_GOOD_ADDED, onGoodEvent);
+			addChild(Assets.getImage("bubble_customer_speech"));
+			addChild(bubbleText = new TextField(150, 60, "", "Systematic_9", 9));
+			bubbleText.x = 10;
+			bubbleText.autoScale = false;
+			bubbleText.hAlign = "left";
+			bubbleText.vAlign = "center";	
+			
+			visible = false;
+			
+			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrived);
 		}
 		
-		private function onGoodEvent(e: Event, g: Good): void 
+		private function onCustomerArrived(e: Event, c: CustomerInfo): void 
 		{
-			show(g.info.messages[e.type]);
+			// subscribe to all speech events
+			speech = c.speech;
+			for each (var p: SpeechPhrase in speech.phrases)
+				GameEvents.subscribe(p.eventShow, onShowEvent);
+			var welcomePhrase: SpeechPhrase = speech.getPhrase("default");
+			if (welcomePhrase)
+				speak(welcomePhrase);
 		}
 		
-		private function onCustomerEvent(e: Event, c: CustomerInfo):void 
+		private function onShowEvent(e: Event): void 
 		{
-			show(c.messages[e.type]);
+			var phrase: SpeechPhrase = speech.getPhrase(e.type);
+			if (phrase)
+				speak(phrase);
 		}
 		
-		private function onTouch(e: TouchEvent): void 
+		private function speak(phrase: SpeechPhrase): void 
 		{
-			if (e.getTouch(bubble, TouchPhase.ENDED))
-			{
-				if (!speech.instruction)
-					nextMessage();
-			}
+			if (phrase.disposable)
+				GameEvents.unsubscribe(phrase.eventShow, onShowEvent);
+			visible = true;
+			bubbleText.text = phrase.text;
+			if (phrase.eventHide !== "")
+				GameEvents.subscribe(phrase.eventHide, onHideEvent);
 		}
 		
-		private function show(messages: Vector.<Speech>/*, endCallback: Function*/): void 
+		private function onHideEvent(e: Event): void
 		{
-			speechList = messages.slice();
-			//onEndCallback = endCallback;
-			nextMessage();
-		}
-		
-		private function nextMessage(): void 
-		{
-			speech = speechList.shift();
-			visible = (speech !== null);
-			if (speech)
-			{
-				//GameEvents.dispatch(GameEvents.MESSAGE_SHOW);
-				bg.visible = !speech.instruction;
-				textField.text = speech.text;
-				if (speech.instruction)
-					endCallback();
-			}
-			else
-				endCallback();
-		}
-		
-		private function endCallback(): void 
-		{
-			//if (onEndCallback !== null)
-				//onEndCallback();
-			//GameEvents.dispatch(GameEvents.MESSAGE_CLOSE);
+			visible = false;
+			GameEvents.unsubscribe(e.type, onHideEvent);
 		}
 	}
 }

@@ -22,8 +22,11 @@ package data
 		public var tutorial: Tutorial = null;
 		//public var score: int = 0;
 		public var save: DaySave = new DaySave();
-		public var disabledFeatures: Object = {};
-		//public var goodIDs: Vector.<int> = new Vector.<int>();
+		public var disabledFeatures: Object = { };
+		
+		public var bubbleScannerVisible: Boolean = false;
+		public var bubbleBagVisible: Boolean = false;
+	//public var goodIDs: Vector.<int> = new Vector.<int>();
 		
 		public function DayData(dayNumber: uint) 
 		{
@@ -67,7 +70,13 @@ package data
 			while (customers.length < scoreMax * 2)
 				customers.push(new CustomerInfo(custXML));
 			*/
-			while (customers.length < scores[3] / 20)
+			
+			var customersMax: int;
+			if (dayXML.attribute("customersMax").length() == 1)
+				customersMax = dayXML.@customersMax
+			else
+				customersMax = Math.ceil(scores[3] / 20);
+			while (customers.length < customersMax)
 				customers.push(new CustomerInfo(dayXML));
 			
 			// ' goods="0-4" '
@@ -81,6 +90,9 @@ package data
 			
 			if (dayXML.attribute("tutorial").length() > 0)
 				tutorial = new Tutorial(dayXML.@tutorial);
+			
+			bubbleScannerVisible = (dayXML.attribute("scannerDropItemHereBubble").length() == 1);
+			bubbleBagVisible = (dayXML.attribute("bagDropItemHereBubble").length() == 1);
 			
 			GameEvents.subscribe(GameEvents.ADD_SCORE, onScoreAdd);
 			GameEvents.subscribe(GameEvents.DAY_END, onDayEnd);

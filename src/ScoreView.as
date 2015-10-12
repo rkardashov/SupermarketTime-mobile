@@ -34,6 +34,9 @@ package
 		public function ScoreView(dayTimer: DayTimer)
 		{
 			super();
+			
+			alpha = 0.3;
+			
 			this.dayTimer = dayTimer;
 			x = 190;
 			y = 30;

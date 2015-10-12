@@ -1,6 +1,7 @@
 package  
 {
 	import data.Assets;
+	import data.SpeechPhrase;
 	/**
 	 * ...
 	 * @author rkardashov@gmail.com
@@ -8,7 +9,7 @@ package
 	public class Tutorial 
 	{
 		public var id: String;
-		public var instructions: Vector.<Instruction> = new Vector.<Instruction>();
+		public var instructions: Vector.<data.SpeechPhrase> = new Vector.<data.SpeechPhrase>();
 		
 		public function Tutorial(id: String) 
 		{
@@ -21,7 +22,7 @@ package
 			{
 				instrXML = tutXML.instruction.(@index == i);
 				if (instrXML.length() == 1)
-					instructions.push(new Instruction(instrXML[0]));
+					instructions.push(new data.SpeechPhrase(instrXML[0]));
 			}
 		}
 	}

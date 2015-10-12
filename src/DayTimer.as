@@ -27,6 +27,9 @@ package
 		public function DayTimer() 
 		{
 			super();
+			
+			alpha = 0.3;
+			
 			x = 190;
 			y = 2;
 			addChild(_text_shadow = new TextField(125, 30, "", "Arcade_10", 20,

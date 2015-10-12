@@ -14,13 +14,27 @@
 		<reaction event="customer_goodbye" mood="25" />
 	</customer>
 	
+	<customer id="tutorial_1" texture="woman" mood="100" goodsMin="3" goodsMax="3" conveyorCapacity="1"
+			speechBubble="Hi! First, move the conveyor divider to the right, off screen."> <!--Молоко, хлеб, масло, сахар, капуста, мыло-->
+		<speech eventShow="default" phrase="Hey! First, move the conveyor divider to the right, off the screen." />
+		<speech eventShow="conveyor_goods_request" phrase="Now scan the goods." />
+		<speech eventShow="good_scanned" phrase="Now put that to the bag." />
+		<speech eventShow="good_received" phrase="Scan another one." />
+		<speech eventShow="goods_complete" phrase="Drag the bank card over the card slot to make the payment." />
+		<speech eventShow="card_payment" phrase="Finally, give me the card and receipt." />
+		<good id="0" counts="0112" />
+		<good id="1" counts="0012" />
+		<reaction event="customer_welcome" mood="15" />
+		<reaction event="customer_goodbye" mood="25" />
+	</customer> 
+	
 	<customer id="vegan" texture="man" mood="50" goodsMax="2"> 
 		<good id="6" counts="12" />
 		<reaction event="customer_welcome" mood="25" />
 		<reaction event="customer_goodbye" mood="25" />
 	</customer>
 	
-	<customer id="grandma" mood="10" goodsMax="2"> <!--Молоко, хлеб, масло, сахар, капуста, мыло-->
+	<customer id="grandma" mood="10" goodsMin="3" goodsMax="3" conveyorCapacity="2"> <!--Молоко, хлеб, масло, сахар, капуста, мыло-->
 		<good id="0" counts="0112" />
 		<good id="1" counts="0012" />
 		<reaction event="customer_welcome" mood="15" />
@@ -46,7 +60,7 @@
 		<reaction event="bag_wrong_good" mood="-5" />
 		<reaction event="checkout_stickers" mood="15" />
 	</customer>
-	<customer id="schoolboy" mood="15" goodsMax="1"> <!--Газировка, шоколад -->
+	<customer id="schoolboy" mood="15" goodsMin="2" goodsMax="2" conveyorCapacity="1"> <!--Газировка, шоколад -->
 		<good id="4" counts="1" />
 		<reaction event="checkout_stickers" mood="25" />
 	</customer>
