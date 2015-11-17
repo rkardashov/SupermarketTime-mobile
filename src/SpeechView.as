@@ -33,7 +33,7 @@ package
 			bubbleText.x = 10;
 			bubbleText.autoScale = false;
 			bubbleText.hAlign = "left";
-			bubbleText.vAlign = "center";	
+			bubbleText.vAlign = "center";
 			
 			visible = false;
 			

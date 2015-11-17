@@ -1,6 +1,7 @@
 package  
 {
 	import data.Assets;
+	import data.DayData;
 	import flash.geom.Point;
 	import starling.display.Image;
 	import starling.events.Event;
@@ -14,17 +15,27 @@ package
 	 * ...
 	 * @author ...
 	 */
-	public class ConveyorDivider extends Item// Image
+	public class ConveyorDivider extends Item
 	{
-		//private var onDividerMoveOut:Function;
-		
-		public function ConveyorDivider(/*onDividerMoveOut: Function*/) 
+		public function ConveyorDivider() 
 		{
 			super(TYPE_CONVEYOR_DIVIDER);
 			
-			//this.onDividerMoveOut = onDividerMoveOut;
+			var imgDivider: Image = Assets.getImage("conveyor_divider");
+			addChild(imgDivider);
 			
-			addChild(Assets.getImage("conveyor_divider"));
+			// tutorial "bubble"
+			var bubble: SpeechBubble = new SpeechBubble(
+				this, // parent object
+				"dividerMoveMeBubble", // day xml attribute name
+				70, 50, // text area size
+				"move me to the right", // speech text
+				GameEvents.CUSTOMER_ARRIVED, // show on this event
+				GameEvents.CONVEYOR_GOODS_REQUEST // hide on this event
+				);
+			bubble.alignPivot("left", "center");
+			bubble.x = imgDivider.width;
+			bubble.y = imgDivider.height >> 1;
 		}
 		
 		override protected function onDrag(): void 

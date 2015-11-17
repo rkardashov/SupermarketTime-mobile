@@ -59,7 +59,6 @@ package data
 			}
 			while (goods.length > goodsCount)
 				goods.pop();
-			trace(id + " goods count: " + goods.length);
 			
 			// TODO: iterate <customer>.<reaction>, store [event: moodChange] pairs
 			//for each (var event: String in ALL_EVENTS) 

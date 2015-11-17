@@ -37,9 +37,9 @@ package
 		private var _content: Sprite;
 		
 		protected var _sides: MovieClip;
-		private var _bubble: Image;
 		public var barCodeSticker: BarCode;
 		private var _barcodeRect: Rectangle;
+		private var _bubble: SpeechBubble;// Image;
 		
 		public var inBag: Boolean = false;
 		public var scanned: Boolean = false;
@@ -51,7 +51,8 @@ package
 			_content = addChild(new Sprite()) as Sprite;
 			_content.addChild(barCodeSticker = new BarCode());
 			
-			addChild(_bubble = Assets.getImage("bubble_item_scan_me"));
+			_bubble = new SpeechBubble(this, "goodsScanMeBubble",
+				70, 20, "scan me!", "", GameEvents.GOOD_SCANNED, null, checkHideBubble);
 			_bubble.alignPivot("center", "bottom");
 			
 			visible = false;
@@ -114,10 +115,8 @@ package
 			_content.pivotX = int(_sides.width / 2);
 			_content.pivotY = int(_sides.height / 2);
 			
-			_bubble.visible = info.bubbleVisible;
 			_bubble.y = -_content.pivotY;
-			if (info.bubbleVisible)
-				GameEvents.subscribe(GameEvents.GOOD_SCANNED, onGoodScanned);
+			//GameEvents.subscribe(GameEvents.GOOD_SCANNED, onGoodScanned);
 			
 			flipCount = 0;
 			
@@ -134,13 +133,10 @@ package
 			_content.rotation = int(Math.random() * 4) * Math.PI * 0.5;
 		}
 		
-		private function onGoodScanned(e: Event, g: Good): void 
+		private function checkHideBubble(e: Event, g: Good): Boolean
 		{
-			if (g != this)
-				return;
-			
-			_bubble.visible = false;
-			GameEvents.unsubscribe(GameEvents.GOOD_SCANNED, onGoodScanned);
+			// event: GOOD_SCANNED
+			return (g == this);
 		}
 		
 		private function onBarcodeApplied(e: Event, g: GoodInfo): void 

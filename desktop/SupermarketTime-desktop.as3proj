@@ -57,6 +57,7 @@
   <libraryPaths>
     <element path="lib\starling.swc" />
     <element path="..\lib\starling.swc" />
+    <element path="..\lib\feathers.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

@@ -1,6 +1,7 @@
 package  
 {
 	import data.Assets;
+	import data.DayData;
 	import screens.Screens;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -12,22 +13,33 @@ package
 	 * ...
 	 * @author rkardashov@gmail.com
 	 */
-	public class Sum extends ItemsDropArea implements IItemReceiver // Sprite//TextField 
+	public class Sum extends TextField/*ItemsDropArea*/ implements IItemReceiver 
 	{
-		private var _text: TextField;
-		
+		/*private var bubble: Image;
+		private var hasBubble:Boolean = false;
+		*/
 		public var total: Number = 0;
 		
 		public function Sum() 
 		{
-			super(this, "", 40, 30);
-			x = 140; //int(Screens.unit * 5.8);
-			y = 70; //Screens.unit * 3;
-			//addChild(new Image(Texture.fromColor(40, 30, 0x44FF0000)));
-			addChild(_text = new TextField(40, 30, "0.00", "arcade_10", 10, 0xAA00AA22));
+			//super(this, "", 40, 30);
+			super(40, 30, "0.00", "arcade_10", 10, 0xAA00AA22);
+			x = 140;
+			y = 70;
+			//addChild(_text = new TextField(40, 30, "0.00", "arcade_10", 10, 0xAA00AA22));
+			
+			addChild(new ItemsDropArea(this, "", 40, 30)).alpha = 0;
 			
 			GameEvents.subscribe(GameEvents.GOOD_SCANNED, onGoodScanned);
 			GameEvents.subscribe(GameEvents.CUSTOMER_COMPLETE, reset);
+			
+			// tutorial "bubble"
+			var bubble: SpeechBubble = new SpeechBubble(this, 
+				"sumDropCardHereBubble", 70, 20, "drop here",
+				GameEvents.GOODS_COMPLETE, GameEvents.CARD_PAYMENT);
+			bubble.alignPivot("center", "top");
+			bubble.x = 17;
+			bubble.y = 30;
 		}
 		
 		private function onGoodScanned(e: Event, good: Good): void
@@ -40,7 +52,7 @@ package
 		public function add(cost: Number): void 
 		{
 			total += cost;
-			_text.text = total.toFixed(2);
+			text = total.toFixed(2);
 		}
 		
 		public function reset(): void 

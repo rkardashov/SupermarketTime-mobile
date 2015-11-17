@@ -21,7 +21,7 @@
 		<speech eventShow="good_scanned" phrase="Now put that to the bag." />
 		<speech eventShow="good_received" phrase="Scan another one." />
 		<speech eventShow="goods_complete" phrase="Drag the bank card over the card slot to make the payment." />
-		<speech eventShow="card_payment" phrase="Finally, give me the card and receipt." />
+		<speech eventShow="card_payment" phrase="Finally, give me the card and receipt." eventHide="customer_complete" />
 		<good id="0" counts="0112" />
 		<good id="1" counts="0012" />
 		<reaction event="customer_welcome" mood="15" />

@@ -35,15 +35,13 @@ package
 		{
 			super();
 			
-			alpha = 0.3;
-			
 			this.dayTimer = dayTimer;
-			x = 190;
-			y = 30;
-			addChild(textShadow = new TextField(130, 30, "", "Arcade_10", 20,
+			x = 20;
+			y = 10;
+			addChild(textShadow = new TextField(70, 20, "", "Arcade_10", 10,
 				0x88888888));
 			textShadow.x = textShadow.y = 1;
-			addChild(textLabel = new TextField(130, 30, "", "Arcade_10", 20,
+			addChild(textLabel = new TextField(70, 20, "", "Arcade_10", 10,
 				0xBB33FF00));
 			textLabel.autoScale = textShadow.autoScale = false;
 			textLabel.vAlign = textShadow.vAlign = VAlign.BOTTOM;

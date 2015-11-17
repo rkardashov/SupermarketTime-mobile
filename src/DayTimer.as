@@ -28,14 +28,12 @@ package
 		{
 			super();
 			
-			alpha = 0.3;
-			
-			x = 190;
-			y = 2;
-			addChild(_text_shadow = new TextField(125, 30, "", "Arcade_10", 20,
+			x = 20;
+			y = 30;
+			addChild(_text_shadow = new TextField(70, 20, "", "Arcade_10", 10,
 				0x88888888));
 			_text_shadow.x = _text_shadow.y = 1;
-			addChild(_text = new TextField(125, 30, "", "Arcade_10", 20, 0xFFFF8839));
+			addChild(_text = new TextField(70, 20, "", "Arcade_10", 10, 0xFFFF8839));
 			_text.autoScale = _text_shadow.autoScale = false;
 			_text.vAlign = _text_shadow.vAlign = VAlign.BOTTOM;
 			_text.hAlign = _text_shadow.hAlign = HAlign.LEFT;

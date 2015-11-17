@@ -26,6 +26,10 @@ package data
 		
 		public var bubbleScannerVisible: Boolean = false;
 		public var bubbleBagVisible: Boolean = false;
+		public var bubbleSumDropCardVisible: Boolean = false;
+		public var tutorialBagAutoShow: Boolean = false;
+		public var bubbleCardDragMeVisible: Boolean = false;
+		public var bubbleDividerMoveOffScreen: Boolean = false;
 	//public var goodIDs: Vector.<int> = new Vector.<int>();
 		
 		public function DayData(dayNumber: uint) 
@@ -93,9 +97,21 @@ package data
 			
 			bubbleScannerVisible = (dayXML.attribute("scannerDropItemHereBubble").length() == 1);
 			bubbleBagVisible = (dayXML.attribute("bagDropItemHereBubble").length() == 1);
+			bubbleSumDropCardVisible = (dayXML.attribute("sumDropCardHereBubble").length() == 1);
+			bubbleCardDragMeVisible = (dayXML.attribute("cardDragMeBubble").length() == 1);
+			bubbleDividerMoveOffScreen = (dayXML.attribute("dividerMoveMeBubble").length() == 1);
 			
+			
+			tutorialBagAutoShow = (dayXML.attribute("tutorialBagAutoShow").length() == 1);
+
 			GameEvents.subscribe(GameEvents.ADD_SCORE, onScoreAdd);
 			GameEvents.subscribe(GameEvents.DAY_END, onDayEnd);
+		}
+		
+		public function hasAttribute(attributeName: String): Boolean
+		{
+			var dayXML: XML = Assets.daysXML.day.(@index == dayNumber)[0];
+			return (dayXML.attribute(attributeName).length() > 0);
 		}
 		
 		private function onDayEnd(e: Event, d: DayData): void 

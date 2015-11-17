@@ -16,50 +16,29 @@ package
 	 */
 	public class Scanner extends Sprite// Image 
 	{
-		private var bubble:Image;
-		private var hasBubble: Boolean = false;
-		//private var _sum: Sum;
-		
-		public function Scanner(/*sum: Sum*/) 
+		public function Scanner() 
 		{
-			/*super(Texture.fromColor(
-				60, 60, 0x0000FF00)
-			);*/
-			
 			addChild(new Image(Texture.fromColor(
 				60, 60, 0x0000FF00)));
 				
-			addChild(bubble = Assets.getImage("bubble_scanner_drag_item_here"));
+			// tutorial "bubble"
+			var bubble: SpeechBubble = new SpeechBubble(
+				this, // parent object
+				"scannerDropItemHereBubble", // day xml attribute name
+				70, 20, // text area size
+				"drag here", // speech text
+				GameEvents.GOOD_ENTER, // show on this event
+				GameEvents.GOOD_SCANNED // hide on this event
+				);
 			bubble.alignPivot("center", "top");
 			bubble.x = 30;
-			bubble.y = 55;
-			bubble.visible = false;
+			bubble.y = 50;
 			
 			x = 105;// 107
 			y = 126;// 88
 			
 			//_sum = sum;
 			GameEvents.subscribe(GameEvents.GOOD_DRAG, onGoodDrag);
-			
-			// tutorial "bubble" events
-			GameEvents.subscribe(GameEvents.DAY_START, onDayStart);
-			GameEvents.subscribe(GameEvents.GOOD_ENTER, onGoodEnter);
-			GameEvents.subscribe(GameEvents.GOOD_SCANNED, onGoodScanned);
-		}
-		
-		private function onDayStart(e: Event, d: DayData): void 
-		{
-			hasBubble = d.bubbleScannerVisible;
-		}
-		
-		private function onGoodEnter(e: Event, g: Good): void 
-		{
-			bubble.visible = hasBubble;
-		}
-		
-		private function onGoodScanned(e: Event, g: Good): void 
-		{
-			bubble.visible = false;
 		}
 		
 		private function onGoodDrag(e: Event, good: Good): void
