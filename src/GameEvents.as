@@ -39,6 +39,7 @@ package
 		static public const BAG_GOOD_ADDED: String = "bag_good_added";
 		static public const BAG_FULL: String = "bag_full";
 		static public const BAG_WRONG_GOOD: String = "bag_wrong_good";
+		static public const BAG_REMOVE: String = "bag_remove";
 		
 		static public const GOODS_COMPLETE: String = "goods_complete";
 		static public const CARD_PAYMENT: String = "card_payment";

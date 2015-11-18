@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
 	<!--<day index="0" duration="60" score="30,75,120" bags="0" goodsMaxID="3" tutorial="basic"-->
-	<day index="0" duration="15" score="4,7,10" bags="0" goodsMaxID="3" tutorial="basic"
+	<day index="0" duration="15" score="4,7,10" bags="0" goodsMaxID="3"
 		goodsScanMeBubble="1"
 		scannerDropItemHereBubble="1"
 		bagDropItemHereBubble="1"
@@ -10,21 +10,19 @@
 		dividerMoveMeBubble="1"
 		tutorialBagAutoShow="1"
 		customersMax="1"
-		customers="tutorial_1">
-		
-		<objectHints owner="sum">
-			<speech eventShow="goods_complete" phrase="drop here" eventHide="card_payment" />
-		</objectHints>
-		
-		<!--customers="grandma"-->
+		customers="tutorial_1_basic">
 		<disabled feature="flipping" />
 		<disabled feature="hi-bye" />
 		<disabled feature="inspect" />
 		<disabled feature="stickers" />
 		<disabled feature="scales" />
 	</day>
-	<day index="1" duration="60" score="25,55,100" bags="0" goodsMaxID="4" side="3" tutorial="flipping"
-		customers="grandma,schoolboy" >
+	<day index="1" duration="60" score="25,55,100" bags="0" goodsMaxID="4" side="3"
+		bagClickMeBubble="1"
+		dividerMoveMeBubble="1"
+		tutorialBagDisabledBeforeCustomerArrive="1"
+		customers="tutorial_2_bag" >
+		<disabled feature="flipping" />
 		<disabled feature="hi-bye" />
 		<disabled feature="inspect" />
 		<disabled feature="stickers" />

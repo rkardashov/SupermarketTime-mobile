@@ -1,6 +1,7 @@
 package  
 {
 	import data.Assets;
+	import data.CustomerInfo;
 	import data.DayData;
 	import data.GoodInfo;
 	import flash.geom.Point;
@@ -39,8 +40,6 @@ package
 		private var bag: Bag;
 		
 		private var redLayer: Image;
-		//private var bubble: Image;
-		//private var hasBubble: Boolean = false;
 		
 		public function BagView(category: int) 
 		{
@@ -70,14 +69,6 @@ package
 			redLayer.touchable = false;
 			redLayer.x = bagFrames.x;
 			
-			/*addChild(bubble = Assets.getImage("bubble_drop_here"));
-			bubble.alignPivot("center", "top");
-			bubble.x = 37;
-			bubble.y = 55;
-			bubble.visible = false;
-			*/
-			//GameEvents.subscribe(GameEvents.GOOD_SCANNED, onGoodScanned);
-			//GameEvents.subscribe(GameEvents.DAY_END, onDayEnd);
 			var bubble: SpeechBubble = new SpeechBubble(this, 
 				"bagDropItemHereBubble", 70, 20, "drop here",
 				GameEvents.GOOD_SCANNED, GameEvents.BAG_GOOD_ADDED);
@@ -85,20 +76,52 @@ package
 			bubble.x = 37;
 			bubble.y = 55;
 			
+			bubble = new SpeechBubble(this, 
+				"bagClickMeBubble", 70, 20, "click me",
+				GameEvents.CUSTOMER_ARRIVED, GameEvents.BAG_NEW);
+			bubble.alignPivot("center", "top");
+			bubble.x = 37;
+			bubble.y = 55;
+			
+			bubble = new SpeechBubble(this, 
+				"bagClickMeBubble", 70, 20, "click me",
+				GameEvents.BAG_REMOVE, GameEvents.BAG_NEW);
+			bubble.alignPivot("center", "top");
+			bubble.x = 37;
+			bubble.y = 55;
+			
+			bubble = new SpeechBubble(this, 
+				"bagClickMeBubble", 70, 20, "slide left",
+				GameEvents.BAG_FULL, GameEvents.BAG_REMOVE);
+			bubble.alignPivot("center", "top");
+			bubble.x = 37;
+			bubble.y = 55;
+			
+			/*bubble = new SpeechBubble(this, "bagClickMeBubble", 80, 20);
+			bubble.addPhrase("click me",
+				GameEvents.CUSTOMER_ARRIVED, GameEvents.BAG_NEW);
+			bubble.addPhrase("slide left",
+				GameEvents.BAG_FULL, GameEvents.BAG_REMOVE);*/
 			
 			addChild(dropArea = new ItemsDropArea(null, null, /*null, */width, height));
 			state = STATE_NO_BAG;
 			
-			addEventListener(TouchEvent.TOUCH, onTouch);
+			//addEventListener(TouchEvent.TOUCH, onTouch);
+			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrived);
+			
 			GameEvents.subscribe(GameEvents.DAY_START, onDayStart);
 			GameEvents.subscribe(GameEvents.CUSTOMER_COMPLETE, reset);
 			GameEvents.subscribe(GameEvents.BAG_GOOD_ADDED, onGoodAdded);
 			GameEvents.subscribe(GameEvents.BAG_WRONG_GOOD, onWrongGood);
 		}
 		
+		private function onCustomerArrived(e: Event, c: CustomerInfo): void 
+		{
+			addEventListener(TouchEvent.TOUCH, onTouch);
+		}
+		
 		private function onDayStart(e: Event, d: DayData): void 
 		{
-			//hasBubble = d.bubbleBagVisible;
 			if (d.tutorialBagAutoShow)
 			{
 				state = STATE_EMPTY;
@@ -107,19 +130,8 @@ package
 			}
 		}
 		
-		/*private function onGoodScanned(e: Event, g: Good): void 
-		{
-			bubble.visible = hasBubble;
-		}
-		
-		private function onDayEnd(e: Event): void 
-		{
-			bubble.visible = false;
-		}*/
-		
 		private function onGoodAdded(e: Event, b: Bag):void 
 		{
-			//bubble.visible = false;
 			if (b.category == category)
 				update();
 		}
@@ -172,6 +184,7 @@ package
 						state = STATE_NO_BAG;
 						dropArea.target = null;
 						Assets.playSound(Assets.SOUND_BAG);
+						GameEvents.dispatch(GameEvents.BAG_REMOVE, bag);
 					}
 				}
 				bagFrames.x = BAG_X;
@@ -204,6 +217,7 @@ package
 			//state = STATE_EMPTY;
 			state = STATE_NO_BAG;
 			update();
+			removeEventListener(TouchEvent.TOUCH, onTouch);
 		}
 	}
 }
