@@ -24,8 +24,10 @@ package data
 			eventHide="good_scanned"
 			phrase="Hey." />
 		*/
-		public function SpeechPhrase(xml: XML)
+		public function SpeechPhrase(xml: XML = null)
 		{
+			if (!xml)
+				return;
 			eventShow = xml.@eventShow;
 			eventHide = xml.@eventHide;
 			disposable = (xml.attribute("disposable").length() > 0) &&

@@ -23,7 +23,6 @@ package
 		public var paid: Boolean;
 		
 		private var bubble: SpeechBubble;
-		//private var hasBubble: Boolean = false;
 		
 		public function CustomerCard() 
 		{
@@ -38,42 +37,12 @@ package
 			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrived);
 			GameEvents.subscribe(GameEvents.GOODS_COMPLETE, onGoodsComplete);
 			
-			/*addChild(bubble = Assets.getImage("bubble_card_drag_me"));
-			bubble.alignPivot("right", "center");
-			*/
-			bubble = new SpeechBubble(
-				this, // parent object
-				"cardDragMeBubble", // day data attribute name
-				70, 20, // text area size
-				"drag me", // speech text
-				GameEvents.GOODS_COMPLETE, // show on this event
-				GameEvents.CARD_PAYMENT // hide on this event
-				);
+			bubble = new SpeechBubble(this, "cardDragMeBubble", 70, 20);
+			bubble.addPhrase("drag me",
+				GameEvents.GOODS_COMPLETE, GameEvents.CARD_PAYMENT);
 			bubble.alignPivot("right", "center");
 			bubble.y = int(height / 2);
-			//bubble.visible = false;
-			
-			// tutorial "bubble" events
-			//GameEvents.subscribe(GameEvents.DAY_START, onDayStart);
-			//GameEvents.subscribe(GameEvents.GOODS_COMPLETE, onGoodsComplete);
-			//GameEvents.subscribe(GameEvents.CARD_PAYMENT, onCardPayment);
 		}
-		
-		
-		/*private function onDayStart(e: Event, d: DayData): void 
-		{
-			hasBubble = d.bubbleCardDragMeVisible;
-		}*/
-		
-		/*private function onGoodsComplete(e: Event): void 
-		{
-			bubble.visible = hasBubble;
-		}*/
-		
-		/*private function onCardPayment(e: Event): void 
-		{
-			bubble.visible = false;
-		}*/
 		
 		override protected function onDrag(): void 
 		{
@@ -84,8 +53,6 @@ package
 		{
 			x = defaultX;
 			y = defaultY;
-			/*if (bubble)
-				addChild(bubble);*/
 		}
 		
 		public function pay(): void 
@@ -103,7 +70,6 @@ package
 		
 		private function onGoodsComplete(): void
 		{
-			//bubble.visible = hasBubble;
 			if (!paid)
 				visible = true;
 		}

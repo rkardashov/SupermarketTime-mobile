@@ -35,7 +35,8 @@ package
 			
 			// tutorial "bubble"
 			var bubble: SpeechBubble = new SpeechBubble(this, 
-				"sumDropCardHereBubble", 70, 20, "drop here",
+				"sumDropCardHereBubble", 70, 20);
+			bubble.addPhrase("drop here",
 				GameEvents.GOODS_COMPLETE, GameEvents.CARD_PAYMENT);
 			bubble.alignPivot("center", "top");
 			bubble.x = 17;

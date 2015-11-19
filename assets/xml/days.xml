@@ -22,6 +22,11 @@
 		dividerMoveMeBubble="1"
 		tutorialBagDisabledBeforeCustomerArrive="1"
 		customers="tutorial_2_bag" >
+		<bagBubble>
+			<speech eventShow="customer_arrived" phrase="click me" eventHide="bag_new" />
+			<speech eventShow="bag_remove" phrase="click me" eventHide="bag_new" />
+			<speech eventShow="bag_full" phrase="slide left" eventHide="bag_remove" />
+		</bagBubble>
 		<disabled feature="flipping" />
 		<disabled feature="hi-bye" />
 		<disabled feature="inspect" />

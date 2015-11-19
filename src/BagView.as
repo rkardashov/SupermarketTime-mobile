@@ -70,38 +70,24 @@ package
 			redLayer.x = bagFrames.x;
 			
 			var bubble: SpeechBubble = new SpeechBubble(this, 
-				"bagDropItemHereBubble", 70, 20, "drop here",
+				"bagDropItemHereBubble", 70, 20);
+			bubble.alignPivot("center", "top");
+			bubble.x = 37;
+			bubble.y = 55;
+			bubble.addPhrase("drop here",
 				GameEvents.GOOD_SCANNED, GameEvents.BAG_GOOD_ADDED);
+			
+			bubble = new SpeechBubble(this, "bagClickMeBubble", 70, 20);
 			bubble.alignPivot("center", "top");
 			bubble.x = 37;
 			bubble.y = 55;
-			
-			bubble = new SpeechBubble(this, 
-				"bagClickMeBubble", 70, 20, "click me",
-				GameEvents.CUSTOMER_ARRIVED, GameEvents.BAG_NEW);
-			bubble.alignPivot("center", "top");
-			bubble.x = 37;
-			bubble.y = 55;
-			
-			bubble = new SpeechBubble(this, 
-				"bagClickMeBubble", 70, 20, "click me",
-				GameEvents.BAG_REMOVE, GameEvents.BAG_NEW);
-			bubble.alignPivot("center", "top");
-			bubble.x = 37;
-			bubble.y = 55;
-			
-			bubble = new SpeechBubble(this, 
-				"bagClickMeBubble", 70, 20, "slide left",
-				GameEvents.BAG_FULL, GameEvents.BAG_REMOVE);
-			bubble.alignPivot("center", "top");
-			bubble.x = 37;
-			bubble.y = 55;
-			
-			/*bubble = new SpeechBubble(this, "bagClickMeBubble", 80, 20);
 			bubble.addPhrase("click me",
 				GameEvents.CUSTOMER_ARRIVED, GameEvents.BAG_NEW);
 			bubble.addPhrase("slide left",
-				GameEvents.BAG_FULL, GameEvents.BAG_REMOVE);*/
+				GameEvents.BAG_FULL, "");// GameEvents.BAG_REMOVE);
+			bubble.addPhrase("click me",
+				GameEvents.BAG_REMOVE, GameEvents.BAG_NEW);
+			
 			
 			addChild(dropArea = new ItemsDropArea(null, null, /*null, */width, height));
 			state = STATE_NO_BAG;

@@ -26,12 +26,9 @@ package
 			
 			// tutorial "bubble"
 			var bubble: SpeechBubble = new SpeechBubble(
-				this, // parent object
-				"dividerMoveMeBubble", // day xml attribute name
-				70, 50, // text area size
-				"move me to the right", // speech text
-				GameEvents.CUSTOMER_ARRIVED, // show on this event
-				GameEvents.CONVEYOR_GOODS_REQUEST // hide on this event
+				this, "dividerMoveMeBubble", 70, 50);
+			bubble.addPhrase("move me to the right", 
+				GameEvents.CUSTOMER_ARRIVED, GameEvents.CONVEYOR_GOODS_REQUEST
 				);
 			bubble.alignPivot("left", "center");
 			bubble.x = imgDivider.width;

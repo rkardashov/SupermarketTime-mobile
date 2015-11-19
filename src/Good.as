@@ -51,8 +51,8 @@ package
 			_content = addChild(new Sprite()) as Sprite;
 			_content.addChild(barCodeSticker = new BarCode());
 			
-			_bubble = new SpeechBubble(this, "goodsScanMeBubble",
-				70, 20, "scan me!", "", GameEvents.GOOD_SCANNED, null, checkHideBubble);
+			_bubble = new SpeechBubble(this, "goodsScanMeBubble", 70, 20);
+			_bubble.addPhrase("scan me!", "", GameEvents.GOOD_SCANNED, null, checkHideBubble);
 			_bubble.alignPivot("center", "bottom");
 			
 			visible = false;
@@ -116,7 +116,6 @@ package
 			_content.pivotY = int(_sides.height / 2);
 			
 			_bubble.y = -_content.pivotY;
-			//GameEvents.subscribe(GameEvents.GOOD_SCANNED, onGoodScanned);
 			
 			flipCount = 0;
 			
@@ -136,6 +135,7 @@ package
 		private function checkHideBubble(e: Event, g: Good): Boolean
 		{
 			// event: GOOD_SCANNED
+			// return TRUE to hide the bubble for THIS good.
 			return (g == this);
 		}
 		
