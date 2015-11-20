@@ -51,7 +51,7 @@ package
 			_content = addChild(new Sprite()) as Sprite;
 			_content.addChild(barCodeSticker = new BarCode());
 			
-			_bubble = new SpeechBubble(this, "goodsScanMeBubble", 70, 20);
+			_bubble = new SpeechBubble(this, "goodsScanMeBubble");
 			_bubble.alignPivot("center", "bottom");
 			
 			visible = false;

@@ -69,16 +69,7 @@ package
 			redLayer.touchable = false;
 			redLayer.x = bagFrames.x;
 			
-			var bubble: SpeechBubble = new SpeechBubble(this, 
-				"bagDropItemHereBubble", 70, 20);
-			bubble.alignPivot("center", "top");
-			bubble.x = 37;
-			bubble.y = 55;
-			/*bubble.addPhrase("drop here",
-				GameEvents.GOOD_SCANNED, GameEvents.BAG_GOOD_ADDED);*/
-			
-			bubble = new BagSpeechBubble(this);// , "bagBubble", 70, 20);
-			//bubble.alignPivot("center", "top");
+			var bubble: SpeechBubble = new BagSpeechBubble(this);
 			bubble.x = 37;
 			bubble.y = 55;
 			

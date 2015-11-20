@@ -11,7 +11,7 @@ package
 		
 		public function BagSpeechBubble(bagView: BagView) 
 		{
-			super(bagView, "bagBubble", 70, 20);
+			super(bagView, "bagBubble");
 			alignPivot("center", "top");
 			bag = bagView.bag;
 			addEventInspector(GameEvents.BAG_WRONG_GOOD, inspectBagWrongGood);

@@ -37,9 +37,7 @@ package
 			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrived);
 			GameEvents.subscribe(GameEvents.GOODS_COMPLETE, onGoodsComplete);
 			
-			bubble = new SpeechBubble(this, "cardDragMeBubble", 70, 20);
-			/*bubble.addPhrase("drag me",
-				GameEvents.GOODS_COMPLETE, GameEvents.CARD_PAYMENT);*/
+			bubble = new SpeechBubble(this, "cardDragMeBubble");
 			bubble.alignPivot("right", "center");
 			bubble.y = int(height / 2);
 		}

@@ -114,11 +114,14 @@ package data
 			return (dayXML.attribute(attributeName).length() > 0);
 		}
 		
-		public function getBubbleSpeech(xmlBubbleName: String): Speech
+		public function getBubbleInfo(xmlBubbleName: String): BubbleInfo
 		{
 			var dayXML: XML = Assets.daysXML.day.(@index == dayNumber)[0];
-			var bubbleXML: XML = dayXML.child(xmlBubbleName)[0];
-			return new Speech(bubbleXML);
+			var bubblesXML: XMLList = dayXML.child(xmlBubbleName);
+			if (bubblesXML.length() == 0)
+				return null;
+			return new BubbleInfo(bubblesXML[0]);
+			//return new Speech(bubbleXML);
 		}
 		
 		private function onDayEnd(e: Event, d: DayData): void 

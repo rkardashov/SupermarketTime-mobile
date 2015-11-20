@@ -1,6 +1,7 @@
 package 
 {
 	import data.Assets;
+	import data.BubbleInfo;
 	import data.CustomerInfo;
 	import data.DayData;
 	import data.Speech;
@@ -43,14 +44,13 @@ package
 		private var pointer: Image;
 		
 		public function SpeechBubble(
-			owner: DisplayObjectContainer, xmlBubbleName: String,
-			textWidth: int, textHeight: int) 
+			owner: DisplayObjectContainer, xmlBubbleName: String) 
 		{
 			super();
 			this.xmlBubbleName = xmlBubbleName;
 			this.owner = owner;
 			
-			text = new TextField(textWidth, textHeight, "", "Systematic_9", 9);
+			text = new TextField(1, 1, "", "Systematic_9", 9);
 			text.autoScale = false;
 			text.autoSize = "none";
 			text.hAlign = "center";
@@ -107,9 +107,7 @@ package
 		}
 		
 		public function addPhrase(speechText: String,
-			eventShow: String, eventHide: String/*,
-			checkEventShow: Function = null,
-			checkEventHide: Function = null*/):void 
+			eventShow: String, eventHide: String): void 
 		{
 			var p: SpeechPhrase = new SpeechPhrase();
 			p.text = speechText;
@@ -117,17 +115,18 @@ package
 			p.eventHide = eventHide;
 			phrasesShow[eventShow] = p;
 			phrasesHide[eventHide] = p;
-			//checkersShow[eventShow] = checkEventShow;
-			//checkersHide[eventHide] = checkEventHide;
 		}
 		
 		private function onDayStart(e: Event, d: DayData): void 
 		{
-			var speech: Speech = d.getBubbleSpeech(xmlBubbleName);
-			if (!speech.phrases.length)
+			var info: BubbleInfo = d.getBubbleInfo(xmlBubbleName);
+			if (!info)
 				return;
+				
+			text.width = info.textWidth;
+			text.height = info.textHeight;
 			
-			for each (var p: SpeechPhrase in speech.phrases)
+			for each (var p: SpeechPhrase in info.speech.phrases)
 			{
 				phrasesShow[p.eventShow] = p;
 				phrasesHide[p.eventHide] = p;
@@ -189,6 +188,8 @@ package
 				GameEvents.unsubscribe(p.eventShow, onShowEvent);
 				GameEvents.unsubscribe(p.eventHide, onHideEvent);
 			}
+			phrasesShow = { };
+			phrasesHide = { };
 		}
 		
 		protected function addEventInspector(event: String, inspector: Function):void 

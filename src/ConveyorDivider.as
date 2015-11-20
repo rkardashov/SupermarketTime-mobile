@@ -26,7 +26,7 @@ package
 			
 			// tutorial "bubble"
 			var bubble: SpeechBubble = new SpeechBubble(
-				this, "dividerMoveMeBubble", 70, 50);
+				this, "dividerMoveMeBubble");
 			bubble.alignPivot("left", "center");
 			bubble.x = imgDivider.width;
 			bubble.y = imgDivider.height >> 1;

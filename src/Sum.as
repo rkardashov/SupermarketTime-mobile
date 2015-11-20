@@ -13,31 +13,23 @@ package
 	 * ...
 	 * @author rkardashov@gmail.com
 	 */
-	public class Sum extends TextField/*ItemsDropArea*/ implements IItemReceiver 
+	public class Sum extends TextField implements IItemReceiver 
 	{
-		/*private var bubble: Image;
-		private var hasBubble:Boolean = false;
-		*/
 		public var total: Number = 0;
 		
 		public function Sum() 
 		{
-			//super(this, "", 40, 30);
 			super(40, 30, "0.00", "arcade_10", 10, 0xAA00AA22);
 			x = 140;
 			y = 70;
-			//addChild(_text = new TextField(40, 30, "0.00", "arcade_10", 10, 0xAA00AA22));
 			
 			addChild(new ItemsDropArea(this, "", 40, 30)).alpha = 0;
 			
 			GameEvents.subscribe(GameEvents.GOOD_SCANNED, onGoodScanned);
 			GameEvents.subscribe(GameEvents.CUSTOMER_COMPLETE, reset);
 			
-			// tutorial "bubble"
 			var bubble: SpeechBubble = new SpeechBubble(this, 
-				"sumDropCardHereBubble", 70, 20);
-			/*bubble.addPhrase("drop here",
-				GameEvents.GOODS_COMPLETE, GameEvents.CARD_PAYMENT);*/
+				"sumDropCardHereBubble");
 			bubble.alignPivot("center", "top");
 			bubble.x = 17;
 			bubble.y = 30;

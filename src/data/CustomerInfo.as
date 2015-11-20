@@ -20,8 +20,6 @@ package data
 		public var events: Object = { };
 		public var moodInitial: int = 0;
 		public var speech: Speech;
-		//public var speechBubble: String = "";
-		private const ALL_EVENTS: Array = [GameEvents.CUSTOMER_WELCOME, GameEvents.CUSTOMER_GOODBYE];
 		
 		public function CustomerInfo(dayXML: XML) 
 		{
@@ -61,13 +59,8 @@ package data
 				goods.pop();
 			
 			// TODO: iterate <customer>.<reaction>, store [event: moodChange] pairs
-			//for each (var event: String in ALL_EVENTS) 
-				//events[event] = 0;
 			for each (var reactionXML: XML in customerXML.reaction)
-			//{
-				//trace(reactionXML.toXMLString());
 				events[reactionXML.@event] = int(reactionXML.@mood);
-			//}
 			
 			moodInitial = customerXML.@mood;
 			
@@ -82,9 +75,6 @@ package data
 			disableTimer = false;/* (int(xml.@disableTimer) == 1);*/
 			
 			speech = new Speech(customerXML);
-			/*if (customerXML.attribute("speechBubble").length() > 0)
-				speechBubble = customerXML.@speechBubble;
-			*/
 			
 			/*var bagsStr: String = xml.@bags;
 			while (bagsRequest.length < Goods.categories.length)
@@ -96,15 +86,5 @@ package data
 			if (customerXML.attribute("conveyorCapacity").length() > 0)
 				conveyorCapacity = int(customerXML.@conveyorCapacity);
 		}
-		
-		/*public function nextGood(): GoodInfo 
-		{
-			return goods.shift();
-		}
-		*/
-		/*public function get goodsCount(): int
-		{
-			return _goods.length;
-		}*/
 	}
 }
