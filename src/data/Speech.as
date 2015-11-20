@@ -13,6 +13,8 @@ package data
 		// input: customer XML
 		public function Speech(xml: XML)
 		{
+			if (!xml)
+				return;
 			var speechList: XMLList = xml.speech;
 			var phrase: SpeechPhrase;
 			for each (var phraseXML: XML in speechList) 

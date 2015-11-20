@@ -52,7 +52,6 @@ package
 			_content.addChild(barCodeSticker = new BarCode());
 			
 			_bubble = new SpeechBubble(this, "goodsScanMeBubble", 70, 20);
-			_bubble.addPhrase("scan me!", "", GameEvents.GOOD_SCANNED, null, checkHideBubble);
 			_bubble.alignPivot("center", "bottom");
 			
 			visible = false;
@@ -130,13 +129,6 @@ package
 			}
 			
 			_content.rotation = int(Math.random() * 4) * Math.PI * 0.5;
-		}
-		
-		private function checkHideBubble(e: Event, g: Good): Boolean
-		{
-			// event: GOOD_SCANNED
-			// return TRUE to hide the bubble for THIS good.
-			return (g == this);
 		}
 		
 		private function onBarcodeApplied(e: Event, g: GoodInfo): void 

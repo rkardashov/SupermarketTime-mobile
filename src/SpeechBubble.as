@@ -27,26 +27,27 @@ package
 	public class SpeechBubble extends Sprite 
 	{
 		private var owner: DisplayObjectContainer;
-		private var text: TextField;
-		private var dayAttribute: String;
-		private var hAlign: String = "left";
-		private var vAlign: String = "center";
+		private var xmlBubbleName: String;
 		
 		private var currentPhrase: SpeechPhrase = null;
 		private var phrasesShow: Object = { };
 		private var phrasesHide: Object = { };
-		private var checkersShow: Object = { };
-		private var checkersHide: Object = { };
+		//private var checkersShow: Object = { };
+		//private var checkersHide: Object = { };
+		private var inspectors: Object = { };
 		
+		private var hAlign: String = "left";
+		private var vAlign: String = "center";
 		private var bubble: Scale9Image;
+		private var text: TextField;
 		private var pointer: Image;
 		
 		public function SpeechBubble(
-			owner: DisplayObjectContainer, dayAttribute: String,
+			owner: DisplayObjectContainer, xmlBubbleName: String,
 			textWidth: int, textHeight: int) 
 		{
 			super();
-			this.dayAttribute = dayAttribute;
+			this.xmlBubbleName = xmlBubbleName;
 			this.owner = owner;
 			
 			text = new TextField(textWidth, textHeight, "", "Systematic_9", 9);
@@ -106,9 +107,9 @@ package
 		}
 		
 		public function addPhrase(speechText: String,
-			eventShow: String, eventHide: String,
+			eventShow: String, eventHide: String/*,
 			checkEventShow: Function = null,
-			checkEventHide: Function = null):void 
+			checkEventHide: Function = null*/):void 
 		{
 			var p: SpeechPhrase = new SpeechPhrase();
 			p.text = speechText;
@@ -116,16 +117,23 @@ package
 			p.eventHide = eventHide;
 			phrasesShow[eventShow] = p;
 			phrasesHide[eventHide] = p;
-			checkersShow[eventShow] = checkEventShow;
-			checkersHide[eventHide] = checkEventHide;
+			//checkersShow[eventShow] = checkEventShow;
+			//checkersHide[eventHide] = checkEventHide;
 		}
 		
 		private function onDayStart(e: Event, d: DayData): void 
 		{
-			if (!d.hasAttribute(dayAttribute))
+			var speech: Speech = d.getBubbleSpeech(xmlBubbleName);
+			if (!speech.phrases.length)
 				return;
 			
-			for each (var p: SpeechPhrase in phrasesShow) 
+			for each (var p: SpeechPhrase in speech.phrases)
+			{
+				phrasesShow[p.eventShow] = p;
+				phrasesHide[p.eventHide] = p;
+			}
+			
+			for each (p in phrasesShow) 
 			{
 				if (p.eventShow == "")
 				{
@@ -146,7 +154,8 @@ package
 			if (!currentPhrase)
 				return;
 				
-			if ((checkersShow[e.type] == null) || checkersShow[e.type](e, p))
+			//if ((checkersShow[e.type] == null) || checkersShow[e.type](e, p))
+			if ((inspectors[e.type] == null) || inspectors[e.type](e, p))
 			{
 				text.text = currentPhrase.text;
 				updateBubble();
@@ -157,7 +166,8 @@ package
 		
 		private function onHideEvent(e: Event, p: * = null): void
 		{
-			if ((checkersHide[e.type] == null) || checkersHide[e.type](e, p))
+			//if ((checkersHide[e.type] == null) || checkersHide[e.type](e, p))
+			if ((inspectors[e.type] == null) || inspectors[e.type](e, p))
 			{
 				currentPhrase = phrasesHide[e.type];
 				if (currentPhrase)
@@ -179,6 +189,11 @@ package
 				GameEvents.unsubscribe(p.eventShow, onShowEvent);
 				GameEvents.unsubscribe(p.eventHide, onHideEvent);
 			}
+		}
+		
+		protected function addEventInspector(event: String, inspector: Function):void 
+		{
+			inspectors[event] = inspector;
 		}
 	}
 }

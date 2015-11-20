@@ -27,7 +27,7 @@
 		<reaction event="customer_goodbye" mood="25" />
 	</customer> 
 	
-	<customer id="tutorial_2_bag" texture="woman" mood="100" goodsMin="10" goodsMax="10" conveyorCapacity="2"> 
+	<customer id="tutorial_2_bag" texture="woman" mood="100" goodsMin="10" goodsMax="10" conveyorCapacity="3"> 
 		<speech eventShow="default" phrase="To get the new bag, click the gray bag image." />
 		<speech eventShow="bag_new" phrase="Scan the goods and put them to the bag." eventHide="bag_good_added" />
 		<speech eventShow="bag_good_added213" phrase="Continue scanning the goods and putting them to the bag." />
@@ -37,7 +37,16 @@
 		<good id="1" counts="0012" />
 		<reaction event="customer_welcome" mood="15" />
 		<reaction event="customer_goodbye" mood="25" />
-	</customer> 
+	</customer>
+	
+	<customer id="tutorial_3_new_category" texture="woman" mood="100" goodsMin="5" goodsMax="5" conveyorCapacity="1">
+		<speech eventShow="default" phrase="Some goods need to be put to a separate bag." />
+		<speech eventShow="bag_wrong_good" phrase="Put this item to another bag please." eventHide="bag_good_added" />
+		<good id="1" counts="2" />
+		<good id="3" counts="3" />
+		<reaction event="customer_welcome" mood="15" />
+		<reaction event="customer_goodbye" mood="25" />
+	</customer>
 	
 	<customer id="vegan" texture="man" mood="50" goodsMax="2"> 
 		<good id="6" counts="12" />

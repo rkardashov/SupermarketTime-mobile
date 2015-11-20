@@ -24,8 +24,8 @@ package
 			// tutorial "bubble"
 			var bubble: SpeechBubble = new SpeechBubble(this,
 				"scannerDropItemHereBubble", 70, 20);
-			bubble.addPhrase("drag here",
-				GameEvents.GOOD_ENTER, GameEvents.GOOD_SCANNED);
+			/*bubble.addPhrase("drag here",
+				GameEvents.GOOD_ENTER, GameEvents.GOOD_SCANNED);*/
 			bubble.alignPivot("center", "top");
 			bubble.x = 30;
 			bubble.y = 50;

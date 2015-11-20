@@ -27,9 +27,6 @@ package
 			// tutorial "bubble"
 			var bubble: SpeechBubble = new SpeechBubble(
 				this, "dividerMoveMeBubble", 70, 50);
-			bubble.addPhrase("move me to the right", 
-				GameEvents.CUSTOMER_ARRIVED, GameEvents.CONVEYOR_GOODS_REQUEST
-				);
 			bubble.alignPivot("left", "center");
 			bubble.x = imgDivider.width;
 			bubble.y = imgDivider.height >> 1;

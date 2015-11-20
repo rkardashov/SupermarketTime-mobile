@@ -37,7 +37,7 @@ package
 		private var bagFrames: MovieClip;
 		
 		private var category: int;
-		private var bag: Bag;
+		public var bag: Bag;
 		
 		private var redLayer: Image;
 		
@@ -74,20 +74,13 @@ package
 			bubble.alignPivot("center", "top");
 			bubble.x = 37;
 			bubble.y = 55;
-			bubble.addPhrase("drop here",
-				GameEvents.GOOD_SCANNED, GameEvents.BAG_GOOD_ADDED);
+			/*bubble.addPhrase("drop here",
+				GameEvents.GOOD_SCANNED, GameEvents.BAG_GOOD_ADDED);*/
 			
-			bubble = new SpeechBubble(this, "bagClickMeBubble", 70, 20);
-			bubble.alignPivot("center", "top");
+			bubble = new BagSpeechBubble(this);// , "bagBubble", 70, 20);
+			//bubble.alignPivot("center", "top");
 			bubble.x = 37;
 			bubble.y = 55;
-			bubble.addPhrase("click me",
-				GameEvents.CUSTOMER_ARRIVED, GameEvents.BAG_NEW);
-			bubble.addPhrase("slide left",
-				GameEvents.BAG_FULL, "");// GameEvents.BAG_REMOVE);
-			bubble.addPhrase("click me",
-				GameEvents.BAG_REMOVE, GameEvents.BAG_NEW);
-			
 			
 			addChild(dropArea = new ItemsDropArea(null, null, /*null, */width, height));
 			state = STATE_NO_BAG;
