@@ -1,10 +1,12 @@
 package  
 {
 	import data.Assets;
+	import data.DayData;
 	import flash.media.Sound;
 	import screens.GameScreen;
 	import screens.Screens;
 	import starling.display.Image;
+	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.textures.Texture;
 	
@@ -12,23 +14,27 @@ package
 	 * ...
 	 * @author rkardashov@gmail.com
 	 */
-	public class Scanner extends Image 
+	public class Scanner extends Sprite// Image 
 	{
-		//private var _sum: Sum;
-		
-		public function Scanner(/*sum: Sum*/) 
+		public function Scanner() 
 		{
-			super(Texture.fromColor(
-				60, 60, 0x0000FF00)
-			);
+			addChild(new Image(Texture.fromColor(
+				60, 60, 0x0000FF00)));
+				
+			var bubble: SpeechBubble = new SpeechBubble(this,
+				"scannerDropItemHereBubble");
+			bubble.alignPivot("center", "top");
+			bubble.x = 30;
+			bubble.y = 50;
+			
 			x = 105;// 107
 			y = 126;// 88
 			
 			//_sum = sum;
-			GameEvents.subscribe(GameEvents.SCANNER_TRY_SCAN, onTryScan);
+			GameEvents.subscribe(GameEvents.GOOD_DRAG, onGoodDrag);
 		}
 		
-		private function onTryScan(e: Event, good: Good): void
+		private function onGoodDrag(e: Event, good: Good): void
 		{
 			if (!good.scanned && !good.info.barcode
 				&& getBounds(stage).intersects(good.getBounds(stage)))

@@ -6,24 +6,36 @@ package data
 	 */
 	public class Speech 
 	{
-		public var text: String;
-		//public var closeOnTouch: Boolean = true;
-		//private var fullscreen: Boolean = false;
-		public var instruction: Boolean = false;
-		//public var command: String;
-		//public var timed: Boolean = false;
+		public var phrases: Vector.<SpeechPhrase> = new Vector.<SpeechPhrase>();
+		//public var phrases: Array = new Array();
+		//public var phrases: Object = { };
 		
-		public function Speech(xml: XML) 
+		// input: customer XML
+		public function Speech(xml: XML)
 		{
-			text = xml;
-			while (text.indexOf("\t") >= 0)
-				text = text.replace("\t", "");
-			//fullscreen: blocks screen, closes on screen touch
-			//permanent: shown forever (until next message)
-			//timed: shown for N seconds
-			instruction = (xml.@instruction == "1");
-			//command = xml.@command;
-			//this[xml.@type] = true;
+			if (!xml)
+				return;
+			var speechList: XMLList = xml.speech;
+			var phrase: SpeechPhrase;
+			for each (var phraseXML: XML in speechList) 
+				phrases.push(new SpeechPhrase(phraseXML));
+				/*{
+					phrase = new SpeechPhrase(phraseXML);
+					phrases[phrase.eventShow] = phrase;
+				}*/
+		}
+		
+		public function getPhrase(event: String): SpeechPhrase
+		{
+			if (phrases.length == 0)
+				return null;
+			var filtered: Vector.<SpeechPhrase> = phrases.filter(
+				function(item: SpeechPhrase, index: int, vector: Vector.<SpeechPhrase>): Boolean {
+					return (item.eventShow == event);
+				});
+			if (filtered.length)
+				return filtered[0];
+			return null;
 		}
 	}
 }

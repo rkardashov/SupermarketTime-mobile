@@ -94,13 +94,16 @@ package
 		{
 			receivedCard = false;
 			receivedReceipt = false;
-			for (var i:int = 0; i < layerCustomers.numChildren; i++) 
-				CustomerView(layerCustomers.getChildAt(i)).moveTo(i * 70, i);
+			//for (var i:int = 0; i < layerCustomers.numChildren; i++) 
+			var num: int = layerCustomers.numChildren - 1;
+			for (var i:int = 0; i <= num; i++) 
+				CustomerView(layerCustomers.getChildAt(num - i)).moveTo(i * 70, i);
 		}
 		
 		private function customerLeaves():void 
 		{
-			layerDepart.addChildAt(layerCustomers.removeChildAt(0), 0);
+			//layerDepart.addChildAt(layerCustomers.removeChildAt(0), 0);
+			layerDepart.addChildAt(layerCustomers.removeChildAt(layerCustomers.numChildren - 1), 0);
 			CustomerView(layerDepart.getChildAt(0)).moveTo( -280);
 			_queue.shift();
 			_current = null;
@@ -130,13 +133,17 @@ package
 			else
 				return;
 			
-			layerCustomers.addChild(new CustomerView(_queue[_queue.length - 1]));
+			//layerCustomers.addChild(new CustomerView(_queue[_queue.length - 1]));
+			layerCustomers.addChildAt(new CustomerView(_queue[_queue.length - 1]), 0);
 			var i: int = layerCustomers.numChildren - 1;
-			layerCustomers.getChildAt(i).x = Screens.uWidth * Screens.unit;
+			//layerCustomers.getChildAt(i).x = Screens.uWidth * Screens.unit;
+			layerCustomers.getChildAt(0).x = Screens.uWidth * Screens.unit;
 			if (_queue.length > 1)
-				CustomerView(layerCustomers.getChildAt(i)).moveTo(i * 70, i)
+				//CustomerView(layerCustomers.getChildAt(i)).moveTo(i * 70, i)
+				CustomerView(layerCustomers.getChildAt(0)).moveTo(i * 70, i)
 			else
-				CustomerView(layerCustomers.getChildAt(0)).moveTo(0, 0);
+				//CustomerView(layerCustomers.getChildAt(0)).moveTo(0, 0);
+				CustomerView(layerCustomers.getChildAt(i)).moveTo(0, 0);
 		}
 		
 		public function receive(item: Item): void 

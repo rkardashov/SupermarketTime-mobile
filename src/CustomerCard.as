@@ -1,9 +1,12 @@
 package
 {
 	import data.Assets;
+	import data.DayData;
 	import flash.geom.Point;
 	import screens.Screens;
+	import starling.display.Image;
 	import starling.display.Sprite;
+	import starling.events.Event;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
@@ -19,6 +22,8 @@ package
 		
 		public var paid: Boolean;
 		
+		private var bubble: SpeechBubble;
+		
 		public function CustomerCard() 
 		{
 			super();
@@ -31,6 +36,15 @@ package
 			
 			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrived);
 			GameEvents.subscribe(GameEvents.GOODS_COMPLETE, onGoodsComplete);
+			
+			bubble = new SpeechBubble(this, "cardDragMeBubble");
+			bubble.alignPivot("right", "center");
+			bubble.y = int(height / 2);
+		}
+		
+		override protected function onDrag(): void 
+		{
+			removeChild(bubble);
 		}
 		
 		override protected function onDrop(): void 

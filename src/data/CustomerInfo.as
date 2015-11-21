@@ -19,7 +19,7 @@ package data
 		public var goods: Vector.<GoodInfo> = new Vector.<GoodInfo>;
 		public var events: Object = { };
 		public var moodInitial: int = 0;
-		private const ALL_EVENTS: Array = [GameEvents.CUSTOMER_WELCOME, GameEvents.CUSTOMER_GOODBYE];
+		public var speech: Speech;
 		
 		public function CustomerInfo(dayXML: XML) 
 		{
@@ -39,7 +39,11 @@ package data
 				<good id="0" counts="0112" />
 				<good id="1" counts="0012" />*/
 			
-			var goodsCount: int = Math.max(1, Math.random() * int(customerXML.@goodsMax));
+			var goodsCount: int = 0;
+			if (customerXML.attribute("goodsMin").length() > 0)
+				goodsCount = int(customerXML.@goodsMin);
+			goodsCount += Math.round(Math.random() *
+				(int(customerXML.@goodsMax) - int(customerXML.@goodsMin)));
 			while (goods.length < goodsCount)
 			{
 				for each (var goodXML: XML in customerXML.good)
@@ -51,15 +55,12 @@ package data
 						goods.push(new GoodInfo(dayXML, goodXML.@id));
 				}
 			}
+			while (goods.length > goodsCount)
+				goods.pop();
 			
 			// TODO: iterate <customer>.<reaction>, store [event: moodChange] pairs
-			//for each (var event: String in ALL_EVENTS) 
-				//events[event] = 0;
 			for each (var reactionXML: XML in customerXML.reaction)
-			//{
-				//trace(reactionXML.toXMLString());
 				events[reactionXML.@event] = int(reactionXML.@mood);
-			//}
 			
 			moodInitial = customerXML.@mood;
 			
@@ -73,25 +74,17 @@ package data
 			
 			disableTimer = false;/* (int(xml.@disableTimer) == 1);*/
 			
+			speech = new Speech(customerXML);
+			
 			/*var bagsStr: String = xml.@bags;
 			while (bagsRequest.length < Goods.categories.length)
 				bagsRequest.push(false);
 			for (var j:int = 0; j < bagsStr.length; j++)
 				bagsRequest[int(bagsStr.charAt(j))] = true;*/
 
-			/*conveyorCapacity = int(xml.@conveyorCapacity);
-			if (conveyorCapacity <= 0)*/
-				conveyorCapacity = int.MAX_VALUE;
+			conveyorCapacity = int.MAX_VALUE;
+			if (customerXML.attribute("conveyorCapacity").length() > 0)
+				conveyorCapacity = int(customerXML.@conveyorCapacity);
 		}
-		
-		/*public function nextGood(): GoodInfo 
-		{
-			return goods.shift();
-		}
-		*/
-		/*public function get goodsCount(): int
-		{
-			return _goods.length;
-		}*/
 	}
 }

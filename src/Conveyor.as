@@ -23,6 +23,7 @@ package
 		private var layerOff:Sprite;
 		private var layerConveyor:Sprite;
 		private var paused: Boolean = true;
+		private var queue: Vector.<GoodInfo> = new Vector.<GoodInfo>();
 		
 		public function Conveyor() 
 		{
@@ -37,7 +38,7 @@ package
 			GameEvents.subscribe(GameEvents.PAUSE, onPause);
 			GameEvents.subscribe(GameEvents.RESUME, onResume);
 			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrived);
-			GameEvents.subscribe(GameEvents.GOOD_RECEIVED, onGoodReceived);
+			//GameEvents.subscribe(GameEvents.GOOD_RECEIVED, onGoodReceived);
 			GameEvents.subscribe(GameEvents.BAG_GOOD_ADDED, onGoodAddedToBag);
 			GameEvents.subscribe(GameEvents.ITEM_DROP, onItemDrop);
 			GameEvents.subscribe(GameEvents.ITEM_PICK, onItemPick);
@@ -51,6 +52,7 @@ package
 			leftItem = divider;
 			paused = false;
 			move();
+			queue.splice(0, queue.length);
 		}
 		
 		private function onPause():void 
@@ -70,25 +72,32 @@ package
 		
 		private function onGoodAddedToConveyor(e: Event, g: GoodInfo): void 
 		{
-			layerConveyor.removeChild(divider);
-			add(Goods.get(g));
-			add(divider);
-			leftItem = atConveyor(0);
-			move();
+			// положить или на конвейер, или в очередь
+			if (goodsCount < capacity)
+				addGood(g)
+			else
+				queue.push(g);
 		}
 		
 		private function onGoodAddedToBag(e: Event, b: Bag): void 
 		{
-			if (goodsCount == 0)
+			goodsCount --;
+			if (b.goods[b.goods.length - 1] == leftItem)
+				findLeftMostItem();
+			
+			if (queue.length > 0)
+				addGood(queue.pop())
+			else if (goodsCount == 0)
 				GameEvents.dispatch(GameEvents.GOODS_COMPLETE);
 		}
 		
-		private function onGoodReceived(e: Event, good: Good): void 
+		// moved to onGoodAddedToBag()
+		/*private function onGoodReceived(e: Event, good: Good): void 
 		{
 			goodsCount --;
 			if (good == leftItem)
 				findLeftMostItem();
-		}
+		}*/
 		
 		private function add(item: Item): void 
 		{
@@ -122,6 +131,15 @@ package
 				good.scaleX = good.scaleY = 1;
 				GameEvents.dispatch(GameEvents.GOOD_ENTER, good);
 			}
+		}
+		
+		private function addGood(g: GoodInfo): void 
+		{
+			layerConveyor.removeChild(divider);
+			add(Goods.get(g));
+			add(divider);
+			leftItem = atConveyor(0);
+			move();
 		}
 		
 		private function move(): void 

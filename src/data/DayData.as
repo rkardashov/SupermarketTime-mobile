@@ -22,8 +22,15 @@ package data
 		public var tutorial: Tutorial = null;
 		//public var score: int = 0;
 		public var save: DaySave = new DaySave();
-		public var disabledFeatures: Object = {};
-		//public var goodIDs: Vector.<int> = new Vector.<int>();
+		public var disabledFeatures: Object = { };
+		
+		public var bubbleScannerVisible: Boolean = false;
+		public var bubbleBagVisible: Boolean = false;
+		public var bubbleSumDropCardVisible: Boolean = false;
+		public var tutorialBagAutoShow: Boolean = false;
+		public var bubbleCardDragMeVisible: Boolean = false;
+		public var bubbleDividerMoveOffScreen: Boolean = false;
+	//public var goodIDs: Vector.<int> = new Vector.<int>();
 		
 		public function DayData(dayNumber: uint) 
 		{
@@ -67,7 +74,13 @@ package data
 			while (customers.length < scoreMax * 2)
 				customers.push(new CustomerInfo(custXML));
 			*/
-			while (customers.length < scores[3] / 20)
+			
+			var customersMax: int;
+			if (dayXML.attribute("customersMax").length() == 1)
+				customersMax = dayXML.@customersMax
+			else
+				customersMax = Math.ceil(scores[3] / 20);
+			while (customers.length < customersMax)
 				customers.push(new CustomerInfo(dayXML));
 			
 			// ' goods="0-4" '
@@ -82,8 +95,33 @@ package data
 			if (dayXML.attribute("tutorial").length() > 0)
 				tutorial = new Tutorial(dayXML.@tutorial);
 			
+			bubbleScannerVisible = (dayXML.attribute("scannerDropItemHereBubble").length() == 1);
+			bubbleBagVisible = (dayXML.attribute("bagDropItemHereBubble").length() == 1);
+			bubbleSumDropCardVisible = (dayXML.attribute("sumDropCardHereBubble").length() == 1);
+			bubbleCardDragMeVisible = (dayXML.attribute("cardDragMeBubble").length() == 1);
+			bubbleDividerMoveOffScreen = (dayXML.attribute("dividerMoveMeBubble").length() == 1);
+			
+			
+			tutorialBagAutoShow = (dayXML.attribute("tutorialBagAutoShow").length() == 1);
+
 			GameEvents.subscribe(GameEvents.ADD_SCORE, onScoreAdd);
 			GameEvents.subscribe(GameEvents.DAY_END, onDayEnd);
+		}
+		
+		public function hasAttribute(attributeName: String): Boolean
+		{
+			var dayXML: XML = Assets.daysXML.day.(@index == dayNumber)[0];
+			return (dayXML.attribute(attributeName).length() > 0);
+		}
+		
+		public function getBubbleInfo(xmlBubbleName: String): BubbleInfo
+		{
+			var dayXML: XML = Assets.daysXML.day.(@index == dayNumber)[0];
+			var bubblesXML: XMLList = dayXML.child(xmlBubbleName);
+			if (bubblesXML.length() == 0)
+				return null;
+			return new BubbleInfo(bubblesXML[0]);
+			//return new Speech(bubbleXML);
 		}
 		
 		private function onDayEnd(e: Event, d: DayData): void 

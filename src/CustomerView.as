@@ -12,6 +12,8 @@ package
 	import starling.display.Sprite;
 	import starling.events.EnterFrameEvent;
 	import starling.events.Event;
+	import starling.text.TextField;
+	import starling.text.TextFieldAutoSize;
 	
 	/**
 	 * ...
@@ -30,11 +32,10 @@ package
 		private var xPrecise: Number;
 		private var xTarget: Number;
 		private var onArrived: Function;
-		//private var juggler: Juggler = new Juggler();
-		//private var moveTween: Tween;
+		private var bubbleSpeech: SpeechView;
 		public var info: CustomerInfo;
 		
-		public function CustomerView(/*type: int*/customerInfo: CustomerInfo) 
+		public function CustomerView(customerInfo: CustomerInfo) 
 		{
 			super();
 			info = customerInfo;
@@ -43,26 +44,14 @@ package
 			addChild(image);
 			image.x = 16;
 			image.y = 0;
-			//addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-			//Screens.getScreen(GameScreen).
-				//addEventListener(GameScreen.EVENT_PAUSE, onPause);
-			//Screens.getScreen(GameScreen).
-				//addEventListener(GameScreen.EVENT_RESUME, onResume);
+			
+			bubbleSpeech = addChild(new SpeechView()) as SpeechView;
+			bubbleSpeech.x = image.width;
+			
 			GameEvents.subscribe(GameEvents.PAUSE, onPause);
 			GameEvents.subscribe(GameEvents.RESUME, onResume);
 			timer = GameScreen(Screens.getScreen(GameScreen)).dayTimer;
-			//juggler = new Juggler();
-			//juggler.
-			//moveTween = juggler.tween(this, ;
-			//moveTween = Tween.
 		}
-		
-		/*private function onAddedToStage(e:Event):void 
-		{
-			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-			addEventListener(GameScreen.EVENT_PAUSE, onPause);
-			addEventListener(GameScreen.EVENT_RESUME, onResume);
-		}*/
 		
 		private function onPause(/*e: Event*/): void 
 		{
@@ -87,34 +76,18 @@ package
 			{
 				isMoving = false;
 				removeEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
-				//if (onArrived !== null)
-					//onArrived();
-				//GameEvents.dispatch(GameEvents.CUSTOMER_ARRIVED, info);
 				GameEvents.dispatch(GameEvents.CUSTOMER_STOPPED, info);
 			}
 		}
 		
-		public function moveTo(xTarget: int, delay: Number = 0/*,
-			onArrived: Function = null*/): void 
+		public function moveTo(xTarget: int, delay: Number = 0): void 
 		{
 			isMoving = true;
 			this.xTarget = xTarget;
 			this.startTime = timer.time + delay;
-			//this.onArrived = onArrived;
 			xPrecise = x;
 			if (!isPaused && !hasEventListener(EnterFrameEvent.ENTER_FRAME))
 				addEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
-			/*var tween: Tween = Tween(
-				Starling.juggler.tween(this, Math.pow((x-xPos) / 20, 0.5), 
-				{
-					// EASE_IN_OUT
-					transition: Transitions.EASE_IN_OUT,
-					delay: delay,
-					x: xPos,
-					roundToInt: true,
-					onComplete: onArrived
-				}
-				));*/
 		}
 	}
 }

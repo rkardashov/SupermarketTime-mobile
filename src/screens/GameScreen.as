@@ -46,7 +46,7 @@ package screens
 		private var btnCustomerWelcome:CustomerWelcomeButton;
 		private var btnCustomerGoodbye:CustomerGoodbyeButton;
 		private var pauseWindow:PauseWindow;
-		private var instructionView:InstructionView;
+		//private var instructionView:InstructionView;
 		private var dayIntroView:DayIntroView;
 		public var dayTimer:DayTimer;
 		
@@ -74,7 +74,7 @@ package screens
 			// TODO: uncomment for release
 			//addChild(Assets.getImage("vignette_dark")).touchable = false;
 			
-			instructionView = new InstructionView();
+			//instructionView = new InstructionView();
 			
 			layerUI.addChild(dayTimer = new DayTimer());
 			layerUI.addChild(scoreView = new ScoreView(dayTimer));
@@ -88,13 +88,13 @@ package screens
 			layerUI.addChild(btnCustomerWelcome = new CustomerWelcomeButton());
 			layerUI.addChild(btnCustomerGoodbye = new CustomerGoodbyeButton());
 			layerUI.addChild(pauseWindow = new PauseWindow());
-			layerUI.addChild(instructionView/* = new InstructionView()*/);
+			//layerUI.addChild(instructionView/* = new InstructionView()*/);
 			layerUI.addChild(dayIntroView = new DayIntroView(/*startDay*/));
 			
-			layerItems.addChild(conveyor = new Conveyor());
-			layerItems.addChild(customerCard = new CustomerCard( /*onPayment*/));
+			/*layerItems.addChild(conveyor = new Conveyor());
+			layerItems.addChild(customerCard = new CustomerCard());
 			layerItems.addChild(customerReceipt = new CustomerReceipt());
-			
+			*/
 			layerBottom.addChild(sum = new Sum());
 			layerBottom.addChild(scanner = new Scanner( /*sum*/));
 			var bag:BagView;
@@ -104,13 +104,16 @@ package screens
 				//bag.y = int(category * u * 1.5 + 100);
 				layerBottom.addChild(bag);
 			}
-			customerQueue = new CustomerQueue(dayTimer); // , onCustomerArrived);
+			customerQueue = new CustomerQueue(dayTimer);
 			layerBottom.addChild(customerQueue);
-			//var areaInspectGood:ItemsDropArea = new ItemsDropArea(goodsInspectionView, "droparea_scales");
 			var areaInspectGood:GoodInspectDropArea = new GoodInspectDropArea();
 			areaInspectGood.x = 119;
 			areaInspectGood.y = 206;
 			layerBottom.addChild(areaInspectGood);
+			
+			layerItems.addChild(conveyor = new Conveyor());
+			layerItems.addChild(customerCard = new CustomerCard());
+			layerItems.addChild(customerReceipt = new CustomerReceipt());
 			
 			Goods.init();
 			ScorePopup.init(layerUI);
@@ -138,7 +141,7 @@ package screens
 			customerReceipt.visible = false;
 			
 			// TODO: move to InstructionView.@DAY_START
-			instructionView.init(day);
+			//instructionView.init(day);
 			
 			//dayIntroView.show(day);
 			/*GameEvents.dispatch(GameEvents.INTRO_START, day);*/

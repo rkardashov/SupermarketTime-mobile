@@ -1,26 +1,73 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
-	<day index="0" duration="60" score="30,75,120" bags="0" goodsMaxID="3" tutorial="basic"
-		customers="grandma">
+	<!--<day index="0" duration="60" score="30,75,120" bags="0" goodsMaxID="3" tutorial="basic"-->
+	<day index="0" duration="20" score="4,7,10" bags="0" goodsMaxID="2"
+		tutorialBagAutoShow="1"
+		customersMax="1"
+		customers="tutorial_0_basic"
+		>
+			<!--<speech phrase="" eventShow="" eventHide="" />-->
+		<dividerMoveMeBubble textWidth="70" textHeight="50" >
+			<speech phrase="move me to the right" eventShow="customer_arrived" eventHide="conveyor_goods_request" />
+		</dividerMoveMeBubble>
+		<goodsScanMeBubble textWidth="70" textHeight="20" >
+			<speech phrase="scan me!" eventShow="good_enter" eventHide="good_scanned" />
+		</goodsScanMeBubble>
+		<scannerDropItemHereBubble textWidth="70" textHeight="20" >
+			<speech phrase="drag here" eventShow="good_enter" eventHide="good_scanned" />
+		</scannerDropItemHereBubble>
+		<bagBubble textWidth="70" textHeight="20" >
+			<speech phrase="drop here" eventShow="good_scanned" eventHide="bag_good_added" />
+		</bagBubble>
+		<sumDropCardHereBubble textWidth="70" textHeight="20" >
+			<speech phrase="drop here" eventShow="goods_complete" eventHide="card_payment" />
+		</sumDropCardHereBubble>
+		<cardDragMeBubble textWidth="70" textHeight="20" >
+			<speech phrase="drag me" eventShow="goods_complete" eventHide="card_payment" />
+		</cardDragMeBubble>
 		<disabled feature="flipping" />
 		<disabled feature="hi-bye" />
 		<disabled feature="inspect" />
 		<disabled feature="stickers" />
 		<disabled feature="scales" />
 	</day>
-	<day index="1" duration="60" score="25,55,100" bags="0" goodsMaxID="4" side="3" tutorial="flipping"
-		customers="grandma,schoolboy" >
+	
+	<day index="1" duration="30" score="25,55,100" bags="0" goodsMaxID="2" side="3"
+		_bagClickMeBubble="1"
+		_dividerMoveMeBubble="1"
+		tutorialBagDisabledBeforeCustomerArrive="1"
+		customers="tutorial_1_bag"
+		customersMax="1"
+		>
+		<dividerMoveMeBubble textWidth="70" textHeight="50">
+			<speech phrase="move me to the right" eventShow="customer_arrived" eventHide="conveyor_goods_request" />
+		</dividerMoveMeBubble>
+		<bagBubble textWidth="70" textHeight="20">
+			<speech phrase="click me" eventShow="customer_arrived" eventHide="bag_new" />
+			<speech phrase="click me" eventShow="bag_remove" eventHide="bag_new" />
+			<speech phrase="slide left" eventShow="bag_full" />
+		</bagBubble>
+		<disabled feature="flipping" />
 		<disabled feature="hi-bye" />
 		<disabled feature="inspect" />
 		<disabled feature="stickers" />
 		<disabled feature="scales" />
 	</day>
-	<day index="2" duration="90" score="90,170,260" bags="0" goodsMaxID="5" tutorial="hi-bye"
-		customers="grandma,schoolboy,woman">
+	
+	<day index="2" duration="20" score="90,170,260" bags="0,1" goodsMaxID="3"
+		customers="tutorial_2_new_category"
+		customersMax="1"
+		>
+		<bagBubble textWidth="70" textHeight="40">
+			<speech phrase="chemical goods" eventShow="bag_wrong_good" eventHide="bag_good_added" />
+		</bagBubble>
+		<disabled feature="flipping" />
+		<disabled feature="hi-bye" />
 		<disabled feature="inspect" />
 		<disabled feature="stickers" />
 		<disabled feature="scales" />
 	</day>
+	
 	<day index="3" duration="90" score="60,130,210" bags="0,1" goodsMaxID="5" tutorial="bags"
 		customers="grandma,schoolboy,woman,student,man">
 		<disabled feature="inspect" />

@@ -24,10 +24,11 @@ package
 		static public const BARCODE_APPLY: String = "barcode_apply";
 		
 		static public const ITEM_PICK: String = "item_pick";
+		//static public const ITEM_START_DRAG: String = "itemStartDrag";
 		static public const ITEM_DROP: String = "item_drop";
 		static public const GOOD_ENTER: String = "good_enter";
 		static public const GOOD_SCANNED: String = "good_scanned";
-		static public const SCANNER_TRY_SCAN: String = "scanner_try_scan";
+		static public const GOOD_DRAG: String = "good_drag";
 		static public const SCANNER_GOOD_NO_BARCODE:String = "scanner_good_no_barcode";
 		static public const GOOD_CHECKOUT: String = "good_checkout";
 		static public const GOOD_RECEIVED:String = "good_received";
@@ -35,9 +36,10 @@ package
 		static public const GOOD_ADD_TO_CONVEYOR:String = "good_add_to_conveyor";
 		
 		static public const BAG_NEW: String = "bag_new";
-		static public const BAG_GOOD_ADDED: String = "good_in_bag";
+		static public const BAG_GOOD_ADDED: String = "bag_good_added";
 		static public const BAG_FULL: String = "bag_full";
 		static public const BAG_WRONG_GOOD: String = "bag_wrong_good";
+		static public const BAG_REMOVE: String = "bag_remove";
 		
 		static public const GOODS_COMPLETE: String = "goods_complete";
 		static public const CARD_PAYMENT: String = "card_payment";

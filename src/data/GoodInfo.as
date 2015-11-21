@@ -48,7 +48,7 @@ package data
 			flippable = !(dayXML.disabled.(@feature == "flipping").length() == 1);
 			if (!flippable)
 				side = 2;
-			
+				
 			var msgQueue: Vector.<Speech>;
 			var i: int;
 			for each (var event: String in [
