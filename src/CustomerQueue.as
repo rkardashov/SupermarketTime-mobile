@@ -26,6 +26,7 @@ package
 		private var _customer: Customer;
 		private var pocket: Bag;
 		//private var moodIndicator: CustomerMoodIndicator;// MovieClip;
+		private var bubbleSpeech: SpeechView;
 		
 		public var dropArea: ItemsDropArea;
 		public var receivedCard: Boolean;
@@ -46,6 +47,9 @@ package
 			moodIndicator.smoothing = TextureSmoothing.NONE;
 			moodIndicator.visible = false;*/
 			addChild(new CustomerMoodIndicator());
+			
+			bubbleSpeech = addChild(new SpeechView()) as SpeechView;
+			bubbleSpeech.x = 90;
 			
 			addChild(dropArea = new ItemsDropArea(this, null, /*null, */70, 70));
 			
@@ -74,6 +78,7 @@ package
 			
 			layerCustomers.removeChildren();
 			layerDepart.removeChildren();
+			bubbleSpeech.visible = false;
 			
 			//moodIndicator.visible = false;
 			

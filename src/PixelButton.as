@@ -49,16 +49,16 @@ package
 			addChild(disabledOverlay = new Image(
 				Texture.fromColor(imgUp.width, imgUp.height, 0x66FFFFFF)));
 			disabledOverlay.visible = false;
-				
+			
 			addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 		
 		public function set enabled(value: Boolean): void 
 		{
 			disabledOverlay.visible = !value;
-			if (value && !hasEventListener(TouchEvent.TOUCH))
+			if (value)
 				addEventListener(TouchEvent.TOUCH, onTouch);
-			if (!value && hasEventListener(TouchEvent.TOUCH))
+			if (!value)
 				removeEventListener(TouchEvent.TOUCH, onTouch);
 		}
 		

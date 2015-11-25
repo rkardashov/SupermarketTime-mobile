@@ -50,6 +50,8 @@ package
 			this.xmlBubbleName = xmlBubbleName;
 			this.owner = owner;
 			
+			touchable = false;
+			
 			text = new TextField(1, 1, "", "Systematic_9", 9);
 			text.autoScale = false;
 			text.autoSize = "none";
@@ -192,7 +194,7 @@ package
 			phrasesHide = { };
 		}
 		
-		protected function addEventInspector(event: String, inspector: Function):void 
+		public function addEventInspector(event: String, inspector: Function):void 
 		{
 			inspectors[event] = inspector;
 		}

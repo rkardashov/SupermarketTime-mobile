@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
-	<!--<day index="0" duration="60" score="30,75,120" bags="0" goodsMaxID="3" tutorial="basic"-->
 	<day index="0" duration="20" score="4,7,10" bags="0" goodsMaxID="2"
 		tutorialBagAutoShow="1"
 		customersMax="1"
 		customers="tutorial_0_basic"
 		>
-			<!--<speech phrase="" eventShow="" eventHide="" />-->
 		<dividerMoveMeBubble textWidth="70" textHeight="50" >
 			<speech phrase="move me to the right" eventShow="customer_arrived" eventHide="conveyor_goods_request" />
 		</dividerMoveMeBubble>
@@ -33,8 +31,6 @@
 	</day>
 	
 	<day index="1" duration="30" score="25,55,100" bags="0" goodsMaxID="2" side="3"
-		_bagClickMeBubble="1"
-		_dividerMoveMeBubble="1"
 		tutorialBagDisabledBeforeCustomerArrive="1"
 		customers="tutorial_1_bag"
 		customersMax="1"
@@ -68,15 +64,19 @@
 		<disabled feature="scales" />
 	</day>
 	
-	<day index="3" duration="90" score="60,130,210" bags="0,1" goodsMaxID="5" tutorial="bags"
-		customers="grandma,schoolboy,woman,student,man">
+	<day index="3" duration="30" score="60,130,210" bags="0,1" goodsMaxID="3"
+		customers="tutorial_3_customer_mood">
+		<customerMoodBubble textWidth="70" textHeight="40">
+			<speech phrase="customer mood" eventShow="customer_arrived"/>
+			<speech phrase="customer mood" eventShow="customer_mood_level"/>
+		</customerMoodBubble>
+		<hiByeBubble textWidth="50" textHeight="20">
+			<speech phrase="click me" eventShow="customer_arrived"/>
+			<speech phrase="click me" eventShow="card_payment"/>
+		</hiByeBubble>
+		<disabled feature="flipping" />
 		<disabled feature="inspect" />
 		<disabled feature="stickers" />
 		<disabled feature="scales" />
 	</day>
-	<day index="4" duration="60" score="50,100,200" bags="0,1" goodsMaxID="6" tutorial="scales"
-		customers="vegan"/>
-	<day index="5" duration="90" score="100,210,330" bags="0,1" goodsMaxID="6"
-		customers="grandma,schoolboy,woman,student,man"/>
-
 </data>

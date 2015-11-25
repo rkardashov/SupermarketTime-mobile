@@ -32,7 +32,6 @@ package
 		private var xPrecise: Number;
 		private var xTarget: Number;
 		private var onArrived: Function;
-		private var bubbleSpeech: SpeechView;
 		public var info: CustomerInfo;
 		
 		public function CustomerView(customerInfo: CustomerInfo) 
@@ -44,9 +43,6 @@ package
 			addChild(image);
 			image.x = 16;
 			image.y = 0;
-			
-			bubbleSpeech = addChild(new SpeechView()) as SpeechView;
-			bubbleSpeech.x = image.width;
 			
 			GameEvents.subscribe(GameEvents.PAUSE, onPause);
 			GameEvents.subscribe(GameEvents.RESUME, onResume);

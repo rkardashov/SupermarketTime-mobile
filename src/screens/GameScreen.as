@@ -42,9 +42,9 @@ package screens
 		private var btnPause:PauseButton;
 		private var scoreView:ScoreView;
 		//private var speechView:SpeechView;
-		private var customerSpeech:CustomerSpeech;
-		private var btnCustomerWelcome:CustomerWelcomeButton;
-		private var btnCustomerGoodbye:CustomerGoodbyeButton;
+		//private var customerSpeech:CustomerSpeech;
+		private var btnCustomerHiBye:CustomerHiByeButton;
+		//private var btnCustomerGoodbye:CustomerGoodbyeButton;
 		private var pauseWindow:PauseWindow;
 		//private var instructionView:InstructionView;
 		private var dayIntroView:DayIntroView;
@@ -84,9 +84,9 @@ package screens
 			//layerUI.addChild(scorePopup = new ScorePopup());
 			layerUI.addChild(btnPause = new PauseButton());
 			//layerUI.addChild(speechView = new SpeechView());
-			layerUI.addChild(customerSpeech = new CustomerSpeech());
-			layerUI.addChild(btnCustomerWelcome = new CustomerWelcomeButton());
-			layerUI.addChild(btnCustomerGoodbye = new CustomerGoodbyeButton());
+			//layerUI.addChild(customerSpeech = new CustomerSpeech());
+			layerUI.addChild(btnCustomerHiBye = new CustomerHiByeButton());
+			//layerUI.addChild(btnCustomerGoodbye = new CustomerGoodbyeButton());
 			layerUI.addChild(pauseWindow = new PauseWindow());
 			//layerUI.addChild(instructionView/* = new InstructionView()*/);
 			layerUI.addChild(dayIntroView = new DayIntroView(/*startDay*/));

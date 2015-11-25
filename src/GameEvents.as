@@ -18,7 +18,7 @@ package
 		static public const PAUSE: String = "game_pause";
 		static public const RESUME: String = "game_resume";
 		static public const TIME_OUT: String = "time_out";
-		static public const TIMER_SECOND:String = "timer_second";
+		static public const TIMER_SECOND: String = "timer_second";
 		
 		//static public const INSPECTVIEW_CLOSE:String = "inspectview_close";
 		static public const BARCODE_APPLY: String = "barcode_apply";
@@ -27,13 +27,13 @@ package
 		//static public const ITEM_START_DRAG: String = "itemStartDrag";
 		static public const ITEM_DROP: String = "item_drop";
 		static public const GOOD_ENTER: String = "good_enter";
-		static public const GOOD_SCANNED: String = "good_scanned";
 		static public const GOOD_DRAG: String = "good_drag";
-		static public const SCANNER_GOOD_NO_BARCODE:String = "scanner_good_no_barcode";
+		static public const GOOD_SCANNED: String = "good_scanned";
+		static public const SCANNER_GOOD_NO_BARCODE: String = "scanner_good_no_barcode";
 		static public const GOOD_CHECKOUT: String = "good_checkout";
-		static public const GOOD_RECEIVED:String = "good_received";
+		static public const GOOD_RECEIVED: String = "good_received";
 		static public const GOOD_WRONG_BAG: String = "good_wrong_bag";
-		static public const GOOD_ADD_TO_CONVEYOR:String = "good_add_to_conveyor";
+		static public const GOOD_ADD_TO_CONVEYOR: String = "good_add_to_conveyor";
 		
 		static public const BAG_NEW: String = "bag_new";
 		static public const BAG_GOOD_ADDED: String = "bag_good_added";

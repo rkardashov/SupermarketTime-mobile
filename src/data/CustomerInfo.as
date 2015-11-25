@@ -18,6 +18,7 @@ package data
 		public var interval: Number;
 		public var goods: Vector.<GoodInfo> = new Vector.<GoodInfo>;
 		public var events: Object = { };
+		public var moodLevels: Vector.<int> = new Vector.<int>();
 		public var moodInitial: int = 0;
 		public var speech: Speech;
 		
@@ -62,6 +63,10 @@ package data
 			for each (var reactionXML: XML in customerXML.reaction)
 				events[reactionXML.@event] = int(reactionXML.@mood);
 			
+			//moodLevels.push(10, 25);
+			var moodLevelsStr: String = customerXML.@moodLevels;
+			for each (var lvlStr: String in moodLevelsStr.split(",")) 
+				moodLevels.push(int(lvlStr));
 			moodInitial = customerXML.@mood;
 			
 			time = -1;

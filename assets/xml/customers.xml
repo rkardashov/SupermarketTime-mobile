@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
-	<customer id="test" texture="man" mood="20" goodsMax="10"> 
+	<customer id="test" texture="man" mood="20" moodLevels="10,25" goodsMax="10"> 
 		<good id="0" counts="12" />
 		<good id="1" counts="12" />
 		<good id="2" counts="12" />
@@ -14,7 +14,9 @@
 		<reaction event="customer_goodbye" mood="25" />
 	</customer>
 	
-	<customer id="tutorial_0_basic" texture="woman" mood="100" goodsMin="3" goodsMax="3" conveyorCapacity="1"> 
+	<customer id="tutorial_0_basic" texture="woman"
+			mood="100" moodLevels="10,25" 
+			goodsMin="3" goodsMax="3" conveyorCapacity="1"> 
 		<speech eventShow="default" phrase="Hey! First, move the conveyor divider to the right, off the screen." />
 		<speech eventShow="conveyor_goods_request" phrase="Now scan the goods." />
 		<speech eventShow="good_scanned" phrase="Now put that to the bag." />
@@ -27,19 +29,24 @@
 		<reaction event="customer_goodbye" mood="25" />
 	</customer> 
 	
-	<customer id="tutorial_1_bag" texture="woman" mood="100" goodsMin="10" goodsMax="10" conveyorCapacity="3"> 
+	<customer id="tutorial_1_bag" texture="woman" 
+			mood="100" moodLevels="10,25" 
+			goodsMin="10" goodsMax="10" conveyorCapacity="3"> 
 		<speech eventShow="default" phrase="To get the new bag, click the gray bag image." />
 		<speech eventShow="bag_new" phrase="Scan the goods and put them to the bag." eventHide="bag_good_added" />
 		<speech eventShow="bag_good_added213" phrase="Continue scanning the goods and putting them to the bag." />
 		<speech eventShow="bag_full" phrase="The bag is full. Move it to the left to get a new one." />
 		<speech eventShow="bag_remove" phrase="To get the new bag, click the gray bag image."/>
-		<good id="0" counts="0112" />
-		<good id="1" counts="0012" />
+		<good id="0" counts="234" />
+		<good id="1" counts="234" />
+		<good id="2" counts="123" />
 		<reaction event="customer_welcome" mood="15" />
 		<reaction event="customer_goodbye" mood="25" />
 	</customer>
 	
-	<customer id="tutorial_2_new_category" texture="woman" mood="100" goodsMin="5" goodsMax="5" conveyorCapacity="1">
+	<customer id="tutorial_2_new_category" texture="woman"
+			mood="100" moodLevels="10,25" 
+			goodsMin="5" goodsMax="5" conveyorCapacity="1">
 		<speech eventShow="default" phrase="Some goods need to be put to a separate bag." />
 		<speech eventShow="bag_wrong_good" phrase="Put this item to another bag please." eventHide="bag_good_added" />
 		<good id="1" counts="2" />
@@ -48,19 +55,31 @@
 		<reaction event="customer_goodbye" mood="25" />
 	</customer>
 	
-	<customer id="vegan" texture="man" mood="50" goodsMax="2"> 
+	<customer id="tutorial_3_customer_mood" texture="woman" 
+			mood="26" moodLevels="10,25" 
+			goodsMin="5" goodsMax="5" conveyorCapacity="3">
+		<speech eventShow="default" phrase="You get more points if the customer is happy. Try saying hello to a customer." eventHide="customer_welcome" />
+		<speech eventShow="good_enter" phrase="The mood decreases over time, so work fast!" eventHide="goods_complete" />
+		<speech eventShow="card_payment" phrase="To make the customer a bit happier, say goodbye." eventHide="customer_complete"/>
+		<good id="1" counts="2" />
+		<good id="3" counts="3" />
+		<reaction event="customer_welcome" mood="15" />
+		<reaction event="customer_goodbye" mood="25" />
+	</customer>
+	
+	<customer id="vegan" texture="man" mood="50" moodLevels="10,25" goodsMax="2"> 
 		<good id="6" counts="12" />
 		<reaction event="customer_welcome" mood="25" />
 		<reaction event="customer_goodbye" mood="25" />
 	</customer>
 	
-	<customer id="grandma" mood="10" goodsMin="3" goodsMax="3" conveyorCapacity="2"> <!--Молоко, хлеб, масло, сахар, капуста, мыло-->
+	<customer id="grandma" mood="10" moodLevels="10,25" goodsMin="3" goodsMax="3" conveyorCapacity="2"> <!--Молоко, хлеб, масло, сахар, капуста, мыло-->
 		<good id="0" counts="0112" />
 		<good id="1" counts="0012" />
 		<reaction event="customer_welcome" mood="15" />
 		<reaction event="customer_goodbye" mood="25" />
 	</customer> 
-	<customer id="woman" mood="15" goodsMax="4"> <!--Майонез, специи, вино, шоколад, кух.химия, шампунь -->
+	<customer id="woman" mood="15" moodLevels="10,25" goodsMax="4"> <!--Майонез, специи, вино, шоколад, кух.химия, шампунь -->
 		<good id="0" counts="0012" />
 		<good id="1" counts="0112" />
 		<good id="2" counts="001" />
@@ -69,18 +88,18 @@
 		<reaction event="checkout_stickers" mood="10" />
 		<reaction event="customer_goodbye" mood="15" />
 	</customer>
-	<customer id="man" mood="20" goodsMax="3"> <!--Пиво, чипсы, мясо, горчица, кетчуп, мыло -->
+	<customer id="man" mood="20" moodLevels="10,25" goodsMax="3"> <!--Пиво, чипсы, мясо, горчица, кетчуп, мыло -->
 		<good id="2" counts="001" />
 		<good id="3" counts="122" />
 		<reaction event="customer_welcome" mood="20" />
 	</customer>
-	<customer id="student" mood="20" goodsMax="2"> <!--Газировка, чипсы, шоколад, доширак, шампунь -->
+	<customer id="student" mood="20" moodLevels="10,25" goodsMax="2"> <!--Газировка, чипсы, шоколад, доширак, шампунь -->
 		<good id="0" counts="001" />
 		<good id="4" counts="1" />
 		<reaction event="bag_wrong_good" mood="-5" />
 		<reaction event="checkout_stickers" mood="15" />
 	</customer>
-	<customer id="schoolboy" mood="15" goodsMin="2" goodsMax="2" conveyorCapacity="1"> <!--Газировка, шоколад -->
+	<customer id="schoolboy" mood="15" moodLevels="10,25" goodsMin="2" goodsMax="2" conveyorCapacity="1"> <!--Газировка, шоколад -->
 		<good id="4" counts="1" />
 		<reaction event="checkout_stickers" mood="25" />
 	</customer>
