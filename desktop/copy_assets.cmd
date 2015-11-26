@@ -1,0 +1,1 @@
+xcopy d:\code\SupermarketTime-mobile\desktop\bin\..\..\assets d:\code\SupermarketTime-mobile\desktop\bin\resources /s /e /i /y

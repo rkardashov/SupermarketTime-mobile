@@ -30,13 +30,11 @@ package screens
 			_instance = this;
 			
 			Saves.init();
-			Assets.init();
 			
 			addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
 		
 		/*
-		 
 		stage.addEventListener(Event.RESIZE, stageResized);
 		
 		private function stageResized(e:Event):void
@@ -50,6 +48,11 @@ package screens
 		}*/
 		
 		protected function addedToStageHandler(event: Event): void
+		{
+			Assets.init(onAssetsLoaded);
+		}
+		
+		private function onAssetsLoaded(): void 
 		{
 			unit = 24;// 12;// stage.stageHeight / uHeight;
 			//scrUnit = 12;// stage.stageWidth / scrUWidth;

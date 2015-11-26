@@ -50,17 +50,17 @@ package screens
 		private var dayIntroView:DayIntroView;
 		public var dayTimer:DayTimer;
 		
-		[Embed(source="../../assets/sounds/219533__pulswelle__supermarket.mp3")]
+		/*[Embed(source="../../assets/sounds/219533__pulswelle__supermarket.mp3")]
 		private static const _SOUND_AMBIENT:Class;
 		private var ambient:Sound;
-		
+		*/
 		private var day:DayData;
 		
 		public function GameScreen():void
 		{
 			super();
 			
-			ambient = new _SOUND_AMBIENT();
+			//ambient = new _SOUND_AMBIENT();
 			
 			var u:int = Screens.unit;
 			
