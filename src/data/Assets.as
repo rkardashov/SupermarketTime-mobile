@@ -37,6 +37,8 @@ package data
 		static private var onAssetsLoaded: Function;
 		static private var manager: AssetManager;
 		
+		static public var embed: Boolean = false;// true;
+		
 		public function Assets() 
 		{
 			
@@ -47,6 +49,14 @@ package data
 			Assets.onAssetsLoaded = onAssetsLoaded;
 			
 			manager = new AssetManager();
+			
+			if (embed)
+			{
+				manager.enqueue(EmbeddedAssets);
+				manager.loadQueue(onLoadProgress);
+				return;
+			}
+			
 			var appDir: File = File.applicationDirectory;
 			// xml
 			manager.enqueue(appDir.resolvePath("resources/xml/days.xml"));
@@ -63,7 +73,7 @@ package data
 			manager.enqueue(appDir.resolvePath("resources/sounds/scan.mp3"));
 			manager.enqueue(appDir.resolvePath("resources/sounds/bag/"));
 			// particles
-			manager.enqueue(appDir.resolvePath("resources/particles/particle1.pex"));
+			manager.enqueue(appDir.resolvePath("resources/particles/particle1_xml.pex"));
 			manager.enqueue(appDir.resolvePath("resources/particles/particle1.png"));
 			
 			manager.loadQueue(onLoadProgress);
@@ -85,7 +95,7 @@ package data
 		static public function particleSystem(): PDParticleSystem
 		{
 			var pdps: PDParticleSystem = new PDParticleSystem(
-				manager.getXml("particle1"),
+				manager.getXml("particle1_xml"),
 				manager.getTexture("particle1")
 				);
 			Starling.juggler.add(pdps);
