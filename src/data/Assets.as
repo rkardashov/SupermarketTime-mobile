@@ -37,8 +37,6 @@ package data
 		static private var onAssetsLoaded: Function;
 		static private var manager: AssetManager;
 		
-		static public var embed: Boolean = false;// true;
-		
 		public function Assets() 
 		{
 			
@@ -49,33 +47,7 @@ package data
 			Assets.onAssetsLoaded = onAssetsLoaded;
 			
 			manager = new AssetManager();
-			
-			if (embed)
-			{
-				manager.enqueue(EmbeddedAssets);
-				manager.loadQueue(onLoadProgress);
-				return;
-			}
-			
-			var appDir: File = File.applicationDirectory;
-			// xml
-			manager.enqueue(appDir.resolvePath("resources/xml/days.xml"));
-			manager.enqueue(appDir.resolvePath("resources/xml/customers.xml"));
-			manager.enqueue(appDir.resolvePath("resources/xml/goods.xml"));
-			// atlas
-			manager.enqueue(appDir.resolvePath("resources/atlas/atlas.png"));
-			manager.enqueue(appDir.resolvePath("resources/atlas/atlas.xml"));
-			// font xmls
-			manager.enqueue(appDir.resolvePath("resources/fonts/systematic_9.fnt"));
-			manager.enqueue(appDir.resolvePath("resources/fonts/arcade_10.fnt"));
-			// sounds
-			manager.enqueue(appDir.resolvePath("resources/sounds/ambient.mp3"));
-			manager.enqueue(appDir.resolvePath("resources/sounds/scan.mp3"));
-			manager.enqueue(appDir.resolvePath("resources/sounds/bag/"));
-			// particles
-			manager.enqueue(appDir.resolvePath("resources/particles/particle1_xml.pex"));
-			manager.enqueue(appDir.resolvePath("resources/particles/particle1.png"));
-			
+			manager.enqueue(EmbeddedAssets);
 			manager.loadQueue(onLoadProgress);
 		}
 		

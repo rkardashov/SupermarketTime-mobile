@@ -45,7 +45,7 @@ package data
 		/* Particles */
 		[Embed(source = "../../assets/particles/particle1.png")]
 		public static const particle1: Class;
-		[Embed(source="../../assets/particles/particle1_xml.pex", mimeType="application/octet-stream")]
+		[Embed(source="../../assets/particles/particle1.pex", mimeType="application/octet-stream")]
 		public static const particle1_xml: Class;
 		
 		public function EmbeddedAssets() 
