@@ -42,7 +42,7 @@ package data
 			
 		}
 		
-		static public function init(onAssetsLoaded: Function): void 
+		static public function load(onAssetsLoaded: Function): void 
 		{
 			Assets.onAssetsLoaded = onAssetsLoaded;
 			

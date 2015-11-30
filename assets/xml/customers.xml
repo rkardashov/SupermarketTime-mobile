@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
-	<customer id="test" texture="man" mood="20" moodLevels="10,25" goodsMax="10"> 
-		<good id="0" counts="12" />
-		<good id="1" counts="12" />
-		<good id="2" counts="12" />
-		<good id="3" counts="12" />
-		<good id="4" counts="12" />
-		<good id="5" counts="12" />
-		<good id="6" counts="12" />
-		<good id="7" counts="12" />
-		<good id="8" counts="12" />
+	<customerTest id="test" texture="man" mood="20" moodLevels="10,25"> 
+		<goods min="4" max="7" queue="2,2,11,27,27,0">
+			<good id="0" counts="12" />
+			<good id="1" counts="12" />
+			<good id="2" counts="12" />
+			<good id="3" counts="12" />
+			<good id="4" counts="12" />
+			<good id="5" counts="12" />
+			<good id="6" counts="12" />
+			<good id="7" counts="12" />
+			<good id="8" counts="12" />
+		</goods>
 		<reaction event="customer_welcome" mood="15" />
 		<reaction event="customer_goodbye" mood="25" />
-	</customer>
+	</customerTest>
 	
 	<customer id="tutorial_0_basic" texture="woman"
 			mood="100" moodLevels="10,25" 

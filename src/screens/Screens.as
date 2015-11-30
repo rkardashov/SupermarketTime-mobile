@@ -49,7 +49,7 @@ package screens
 		
 		protected function addedToStageHandler(event: Event): void
 		{
-			Assets.init(onAssetsLoaded);
+			Assets.load(onAssetsLoaded);
 		}
 		
 		private function onAssetsLoaded(): void 

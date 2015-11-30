@@ -21,7 +21,7 @@ package tests
 		{
 			super();
 			
-			Assets.init();
+			Assets.load();
 			
 			addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
