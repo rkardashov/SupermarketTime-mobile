@@ -20,8 +20,8 @@ package
 	public class ItemsDropArea extends Sprite/*Image */
 	{
 		public var target: IItemReceiver;
-		//static public const DEFAULT_COLOR: uint = 0x44FF0000;
-		static public const DEFAULT_COLOR: uint = 0x00000000;
+		static public const DEFAULT_COLOR: uint = 0x44FF0000;
+		//static public const DEFAULT_COLOR: uint = 0x00000000;
 		//private var screen: GameScreen;
 		private var image: Image;
 		//private var area: DisplayObject;

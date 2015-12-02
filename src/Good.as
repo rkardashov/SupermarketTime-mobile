@@ -166,7 +166,8 @@ package
 			if (!_info.flippable)
 				return;
 			flipCount ++;
-			_sides.currentFrame = (_sides.currentFrame + 1) % _sides.numFrames;
+			info.side = (_sides.currentFrame + 1) % _sides.numFrames;
+			_sides.currentFrame = info.side;
 			_sides.readjustSize();
 			_content.pivotX = int(_sides.width / 2);
 			_content.pivotY = int(_sides.height / 2);

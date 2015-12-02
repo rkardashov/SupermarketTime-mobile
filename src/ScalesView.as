@@ -12,12 +12,11 @@ package
 	 * ...
 	 * @author ...
 	 */
-	public class ScalesView extends Sprite //implements IItemReceiver
+	public class ScalesView extends Sprite
 	{
 		private var good: GoodMagnified;
 		private var barCode: BarcodeSticker;
 		private var scales: Image;
-		/*private var printer: PixelButton;*/
 		private var screen:Sprite;
 		
 		public function ScalesView() 
@@ -25,39 +24,32 @@ package
 			super();
 			
 			addChild(scales = Assets.getImage("overlay_scales"));
-			/*addChild(printer = 
-				new PixelButton("btnPrintBarcodeUp", "btnPrintBarcodeDown"));
-			printer.x = 261;
-			printer.y = 138;*/
 			addChild(good = new GoodMagnified());
 			addChild(barCode = new BarcodeSticker());
-			/*printer.addEventListener(Event.TRIGGERED, barCode.print);*/
 			
-			// TODO: show all goods without barcode
+			// show all goods without barcode
 			screen = new Sprite();
 			screen.addChild(Assets.getImage("scales_screen"));
-			var goodsList: XMLList = Assets.goodsXML.good.(@noBarcode == "1");
+			var goodsList: XMLList = Assets.goodsXML.good;
 			var gImage: Image;
-			//var gBtn: ScalesScreenGoodButton;
 			var i: int = 0;
 			for each (var gXML: XML in goodsList) 
-			//for (var i:int = 0; i < goodsList.length(); i++) 
 			{
+				if (!(gXML.@noBarcode == "1"))
+					continue;
 				screen.addChild(gImage = Assets.getImage("goods_" + gXML.@texture + "_1"));
-				//screen.addChild(gBtn = new ScalesScreenGoodButton(gXML.@texture));
 				gImage.x = 100 + 100 * (i % 4);
 				gImage.y = 100 + 90 * int(i / 4);
+				gImage.addEventListener(TouchEvent.TOUCH, onScreenTouch);
 				i ++;
 			}
-			//screen.addEventListener(TouchEvent.TOUCH, onScreenTouch);
-			gImage.addEventListener(TouchEvent.TOUCH, onScreenTouch);
 			
 			visible = false;
 			GameEvents.subscribe(GameEvents.SCALES_VIEW_SHOW, onScalesViewShow);
 			GameEvents.subscribe(GameEvents.BARCODE_APPLY, onBarcodeStickerApplied);
 		}
 		
-		private function onScreenTouch(e:TouchEvent):void 
+		private function onScreenTouch(e: TouchEvent): void 
 		{
 			if (e.getTouch(this, TouchPhase.ENDED))
 			{
@@ -72,7 +64,6 @@ package
 			visible = false;
 		}
 		
-		//public function receive(item: Item): void 
 		private function onScalesViewShow(e: Event, g: Good): void
 		{
 			/*if (!day || day.disabledFeatures["scales"]
@@ -84,8 +75,10 @@ package
 			addChild(screen);
 			
 			good.x = 150;
-			good.y = Screens.centerY;
+			//good.y = Screens.centerY;
+			good.y = Screens.centerY - 50;
 			good.info = g.info;
+			//good.side = g.side;
 			
 			visible = true;
 		}

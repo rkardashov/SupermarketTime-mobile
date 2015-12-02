@@ -30,13 +30,17 @@ package
 		{
 			super.info = value;
 			dropArea.setAreaSizeAs(_sides);
-			rotation = 0;
+			dropArea.pivotX = int(dropArea.width / 2);
+			dropArea.pivotY = int(dropArea.height / 2);
+			//rotation = 0;
 		}
 		
 		override protected function onTouch():void 
 		{
 			super.onTouch();
 			dropArea.setAreaSizeAs(_sides);
+			dropArea.pivotX = int(dropArea.width / 2);
+			dropArea.pivotY = int(dropArea.height / 2);
 		}
 		
 		/* INTERFACE IItemReceiver */
