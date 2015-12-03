@@ -24,7 +24,7 @@ package
 	 */
 	public class Good extends Item
 	{
-		protected var _content: Sprite;
+		protected var _content: PixelSprite;
 		protected var _sides: MovieClip;
 		public var barCodeSticker: BarCode;
 		private var _bubble: SpeechBubble;
@@ -39,11 +39,12 @@ package
 		public function Good()
 		{
 			super();
-			_content = addChild(new Sprite()) as Sprite;
+			_content = addChild(new PixelSprite()) as PixelSprite;
 			_sides = new MovieClip(Assets.getTextures("goods_cola_can_1"));
 			_sides.smoothing = TextureSmoothing.NONE;
 			_content.addChild(_sides);
 			_content.addChild(barCodeSticker = new BarCode());
+			_content.alignPivot();
 			
 			_bubble = new SpeechBubble(this, "goodsScanMeBubble");
 			_bubble.alignPivot("center", "bottom");

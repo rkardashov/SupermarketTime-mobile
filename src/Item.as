@@ -39,7 +39,6 @@ package
 		{
 			super();
 			this.type = type;
-			//screen = Screens.getScreen(GameScreen) as GameScreen;
 			
 			addEventListener(TouchEvent.TOUCH, _onTouch);
 			
