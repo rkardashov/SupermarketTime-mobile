@@ -15,7 +15,7 @@ package
 	 * ...
 	 * @author rkardashov@gmail.com
 	 */
-	public class Item extends Sprite 
+	public class Item extends PixelSprite 
 	{
 		static public const TYPE_GOOD: int = 0;
 		static public const TYPE_CARD: int = 1;

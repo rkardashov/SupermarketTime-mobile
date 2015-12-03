@@ -74,11 +74,9 @@ package
 			
 			addChild(screen);
 			
-			good.x = 150;
-			//good.y = Screens.centerY;
-			good.y = Screens.centerY - 50;
+			good.x = Screens.centerX;
+			good.y = Screens.centerY;
 			good.info = g.info;
-			//good.side = g.side;
 			
 			visible = true;
 		}

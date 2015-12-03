@@ -24,11 +24,11 @@ package
 	 */
 	public class Good extends Item
 	{
-		private var _content: Sprite;
+		protected var _content: Sprite;
 		protected var _sides: MovieClip;
 		public var barCodeSticker: BarCode;
-		private var _barcodeRect: Rectangle;
 		private var _bubble: SpeechBubble;
+		private var _barcodeRect: Rectangle;
 		
 		private var _info: GoodInfo;
 		public var recycled: Boolean = true;
@@ -49,6 +49,8 @@ package
 			_bubble.alignPivot("center", "bottom");
 			
 			visible = false;
+			
+			alignPivot();
 		}
 		
 		public function recycle(): void 
@@ -68,7 +70,7 @@ package
 				return null;
 		}
 		
-		override public function get screenRect():Rectangle 
+		override public function get screenRect(): Rectangle 
 		{
 			return _content.getBounds(Screens.getScreen(GameScreen));
 		}
@@ -94,10 +96,6 @@ package
 			}
 			_sides.currentFrame = info.side;
 			_sides.readjustSize();
-			
-			_content.pivotX = int(_sides.width / 2);
-			_content.pivotY = int(_sides.height / 2);
-			
 			_bubble.y = -_content.pivotY;
 			
 			flipCount = 0;
@@ -153,8 +151,6 @@ package
 			info.side = (_sides.currentFrame + 1) % _sides.numFrames;
 			_sides.currentFrame = info.side;
 			_sides.readjustSize();
-			_content.pivotX = int(_sides.width / 2);
-			_content.pivotY = int(_sides.height / 2);
 			barCodeSticker.visible = info.barcode && !info.barcode.isImprinted && barcodeSideUp;
 		}
 		
