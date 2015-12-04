@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:cfdd39a9da4ad925a0cbdd981b4b81de:5a6bce62f37ed3e4b6aaf32553fe1eb1:cde709370900f12288f3449eded86f07$ -->
+<!-- $TexturePacker:SmartUpdate:652a242e6f614d105b395584400ce349:ef3f53e441f9a519cafb3b12258b22b3:cde709370900f12288f3449eded86f07$ -->
 <TextureAtlas imagePath="atlas.png" width="1610" height="914">
     <SubTexture name="bubblePointer" x="2" y="2" width="8" height="8"/>
     <SubTexture name="bubbleScale9" x="12" y="2" width="8" height="8"/>

@@ -28,10 +28,9 @@ package
 			// TODO: canDrag = false;
 			if (visible)
 				return;
-			x = 340;
-			y = 155;
+			x = 326;
+			y = 199;
 			visible = true;
-			//imgBarcode.x = -imgBarcode.width;
 			imgBarcode.x = -clipRect.width;
 			addEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
 		}
