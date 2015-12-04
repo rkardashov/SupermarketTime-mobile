@@ -16,7 +16,7 @@ package
 			super();
 			type = TYPE_GOOD_MAGNIFIED;
 			
-			addChild(dropArea = new ItemsDropArea(this, null));
+			_content.addChild(dropArea = new ItemsDropArea(this, null));
 			scaleX = scaleY = 3;
 			visible = true;
 		}
@@ -30,7 +30,7 @@ package
 		{
 			super.info = value;
 			dropArea.setAreaSizeAs(_sides);
-			rotation = 0;
+			//rotation = 0;
 		}
 		
 		override protected function onTouch():void 
@@ -53,7 +53,7 @@ package
 				info.barcode.isScannable = true;
 				info.barcode.atSide = _sides.currentFrame;
 				var p: Point = item.parent.localToGlobal(new Point(item.x, item.y));
-				p = globalToLocal(p);
+				p = _content.globalToLocal(p);
 				info.barcode.x = int(p.x);
 				info.barcode.y = int(p.y);
 				

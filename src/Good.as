@@ -3,7 +3,6 @@ package
 	import data.Assets;
 	import data.BarcodeInfo;
 	import data.GoodInfo;
-	import data.Speech;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import screens.GameScreen;
@@ -15,8 +14,6 @@ package
 	import starling.events.Event;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
-	import starling.events.TouchMarker;
-	import starling.events.TouchProcessor;
 	import starling.events.Touch;
 	import starling.textures.Texture;
 	import starling.textures.TextureSmoothing;
@@ -25,22 +22,16 @@ package
 	 * ...
 	 * @author rkardashov@gmail.com
 	 */
-	public class Good extends Item /*implements IItemReceiver *///Sprite 
+	public class Good extends Item
 	{
-		public var recycled: Boolean = true;
-		
-		//private var savedX: int;
-		//private var savedY: int;
-		
-		private var _info: GoodInfo;
-		
-		private var _content: Sprite;
-		
+		protected var _content: Sprite;
 		protected var _sides: MovieClip;
 		public var barCodeSticker: BarCode;
+		private var _bubble: SpeechBubble;
 		private var _barcodeRect: Rectangle;
-		private var _bubble: SpeechBubble;// Image;
 		
+		private var _info: GoodInfo;
+		public var recycled: Boolean = true;
 		public var inBag: Boolean = false;
 		public var scanned: Boolean = false;
 		public var flipCount: int;
@@ -49,12 +40,17 @@ package
 		{
 			super();
 			_content = addChild(new Sprite()) as Sprite;
+			_sides = new MovieClip(Assets.getTextures("goods_cola_can_1"));
+			_sides.smoothing = TextureSmoothing.NONE;
+			_content.addChild(_sides);
 			_content.addChild(barCodeSticker = new BarCode());
 			
 			_bubble = new SpeechBubble(this, "goodsScanMeBubble");
 			_bubble.alignPivot("center", "bottom");
 			
 			visible = false;
+			
+			alignPivot();
 		}
 		
 		public function recycle(): void 
@@ -74,7 +70,7 @@ package
 				return null;
 		}
 		
-		override public function get screenRect():Rectangle 
+		override public function get screenRect(): Rectangle 
 		{
 			return _content.getBounds(Screens.getScreen(GameScreen));
 		}
@@ -89,31 +85,17 @@ package
 			_info = goodInfo;
 			
 			var frames: Vector.<Texture> = Assets.getTextures(info.texturePrefix);
-			if (_sides)
+			//_sides.dispose();
+			var numOldFrames: int = _sides.numFrames;
+			for (var i:int = 0; i < frames.length; i++) 
+				_sides.addFrame(frames[i]);
+			while (numOldFrames)
 			{
-				_sides.dispose();
-				var numOldFrames: int = _sides.numFrames;
-				for (var i:int = 0; i < frames.length; i++) 
-					_sides.addFrame(frames[i]);
-				//while (_sides.numFrames)
-				while (numOldFrames)
-				{
-					numOldFrames --;
-					_sides.removeFrameAt(0);
-				}
+				numOldFrames --;
+				_sides.removeFrameAt(0);
 			}
-			else
-			{
-				_sides = new MovieClip(frames);
-				_sides.smoothing = TextureSmoothing.NONE;
-				_content.addChildAt(_sides, 0);
-			}
-			
 			_sides.currentFrame = info.side;
 			_sides.readjustSize();
-			_content.pivotX = int(_sides.width / 2);
-			_content.pivotY = int(_sides.height / 2);
-			
 			_bubble.y = -_content.pivotY;
 			
 			flipCount = 0;
@@ -166,10 +148,9 @@ package
 			if (!_info.flippable)
 				return;
 			flipCount ++;
-			_sides.currentFrame = (_sides.currentFrame + 1) % _sides.numFrames;
+			info.side = (_sides.currentFrame + 1) % _sides.numFrames;
+			_sides.currentFrame = info.side;
 			_sides.readjustSize();
-			_content.pivotX = int(_sides.width / 2);
-			_content.pivotY = int(_sides.height / 2);
 			barCodeSticker.visible = info.barcode && !info.barcode.isImprinted && barcodeSideUp;
 		}
 		

@@ -74,9 +74,12 @@
 			<speech phrase="click me" eventShow="customer_arrived"/>
 			<speech phrase="click me" eventShow="card_payment"/>
 		</hiByeBubble>
-		<disabled feature="flipping" />
 		<disabled feature="inspect" />
 		<disabled feature="stickers" />
 		<disabled feature="scales" />
+	</day>
+	
+	<day index="4" duration="60" score="60,130,210" bags="0,1" goodsMaxID="6"
+		customers="test_scales">
 	</day>
 </data>

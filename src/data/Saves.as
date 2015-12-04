@@ -21,7 +21,7 @@ package data
 			// TEMP: day saves static list
 			days = new Vector.<DaySave>;
 			var day: DaySave;
-			for (var i:int = 0; i < 4; i++) 
+			for (var i:int = 0; i < 5; i++) 
 			{
 				day = new DaySave();
 				day.index = i;

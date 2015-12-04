@@ -16,14 +16,10 @@ package
 		{
 			super(TYPE_BARCODE_STICKER);
 			addChild(imgBarcode = Assets.getImage("barcode_1")); // 15x10
-			addChild(imgBarcode = Assets.getImage("barcode_1")); // 15x10
 			imgBarcode.scaleX = imgBarcode.scaleY = 3;
 			imgBarcode.rotation = Math.PI * 0.5;
-			//imgBarcode.readjustSize();
-			clipRect = imgBarcode.getBounds(this);
-			//clipRect = new Rectangle(0, 0, imgBarcode.width, imgBarcode.height);
-			//pivotX = int(width / 2);
-			//pivotY = int(height / 2);
+			alignPivot();
+			clipRect = getBounds(this);
 			visible = false;
 		}
 		

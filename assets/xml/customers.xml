@@ -16,6 +16,10 @@
 		<reaction event="customer_goodbye" mood="25" />
 	</customerTest>
 	
+	<customer id="test_scales" texture="man" mood="200" moodLevels="10,25" goodsMin="5" goodsMax="5"> <!--Пиво, чипсы, мясо, горчица, кетчуп, мыло -->
+		<good id="6" counts="5" />
+	</customer>
+	
 	<customer id="tutorial_0_basic" texture="woman"
 			mood="100" moodLevels="10,25" 
 			goodsMin="3" goodsMax="3" conveyorCapacity="1"> 

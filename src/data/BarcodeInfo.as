@@ -29,7 +29,8 @@ package data
 			if (!xml)
 				return;
 			isImprinted = !(xml.@noBarcode == "1");
-			atSide = xml.@barcodeSide;
+			if (xml.attribute("barcodeSide").length() > 0)
+				atSide = xml.@barcodeSide;
 			x = xml.@barcodeX;
 			y = xml.@barcodeY;
 		}
