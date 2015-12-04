@@ -17,31 +17,22 @@ package
 	 * ...
 	 * @author ...
 	 */
-	public class ItemsDropArea extends Sprite/*Image */
+	public class ItemsDropArea extends Sprite
 	{
 		public var target: IItemReceiver;
-		static public const DEFAULT_COLOR: uint = 0x44FF0000;
-		//static public const DEFAULT_COLOR: uint = 0x00000000;
-		//private var screen: GameScreen;
+		//static public const DEFAULT_COLOR: uint = 0x44FF0000;
+		static public const DEFAULT_COLOR: uint = 0x00000000;
 		private var image: Image;
-		//private var area: DisplayObject;
 		
-		public function ItemsDropArea(
-			target: IItemReceiver, /*area: DisplayObject,*/
-			textureName: String,
-			w: int = 20, h: int = 20, c: uint = DEFAULT_COLOR) 
+		public function ItemsDropArea(target: IItemReceiver, 
+			textureName: String, w: int = 20, h: int = 20, c: uint = DEFAULT_COLOR) 
 		{
 			super();
 			
-			//this.area = area;
-			//if (!area)
-			//{
-				//var image: Image = Assets.getImage(textureName);
-				image = Assets.getImage(textureName);
-				if (!image)
-					image = new Image(Texture.fromColor(w, h, c));
-				addChild(image);
-			//}
+			image = Assets.getImage(textureName);
+			if (!image)
+				image = new Image(Texture.fromColor(w, h, c));
+			addChild(image);
 			
 			this.target = target;
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
