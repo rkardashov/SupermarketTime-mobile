@@ -37,9 +37,9 @@ package
 			{
 				if (!(gXML.@noBarcode == "1"))
 					continue;
-				screen.addChild(gImage = Assets.getImage("goods_" + gXML.@texture + "_1"));
-				gImage.x = 100 + 100 * (i % 4);
-				gImage.y = 100 + 90 * int(i / 4);
+				screen.addChild(gImage = Assets.getImage("lcd_" + gXML.@texture));
+				gImage.x = 80 + 80 * (i % 3);
+				gImage.y = 20 + 70 * int(i / 3);
 				gImage.addEventListener(TouchEvent.TOUCH, onScreenTouch);
 				i ++;
 			}

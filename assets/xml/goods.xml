@@ -13,4 +13,7 @@
 	<good id="4" texture="cola_can" category="1" barcodeX="13" barcodeY="35"/>
 	<good id="5" texture="wine_bottle" category="0" barcodeX="10" barcodeY="55"/>
 	<good id="6" texture="cucumbers" category="0" noBarcode="1"/>
+	<good id="7" texture="bananas" category="0" noBarcode="1"/>
+	<good id="8" texture="beetroot" category="0" noBarcode="1"/>
+	<good id="9" texture="cabbage_green" category="0" noBarcode="1"/>
 </data>
