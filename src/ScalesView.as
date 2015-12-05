@@ -17,7 +17,8 @@ package
 		private var good: GoodMagnified;
 		private var barCode: BarcodeSticker;
 		private var scales: Image;
-		private var screen:Sprite;
+		private var lcd: Sprite;
+		private var lcdImages: Object = {};
 		
 		public function ScalesView() 
 		{
@@ -28,8 +29,8 @@ package
 			addChild(barCode = new BarcodeSticker());
 			
 			// show all goods without barcode
-			screen = new Sprite();
-			screen.addChild(Assets.getImage("scales_screen"));
+			lcd = new Sprite();
+			lcd.addChild(Assets.getImage("scales_screen"));
 			var goodsList: XMLList = Assets.goodsXML.good;
 			var gImage: Image;
 			var i: int = 0;
@@ -37,10 +38,10 @@ package
 			{
 				if (!(gXML.@noBarcode == "1"))
 					continue;
-				screen.addChild(gImage = Assets.getImage("lcd_" + gXML.@texture));
+				lcd.addChild(gImage = Assets.getImage("lcd_" + gXML.@texture));
 				gImage.x = 80 + 80 * (i % 3);
 				gImage.y = 20 + 70 * int(i / 3);
-				gImage.addEventListener(TouchEvent.TOUCH, onScreenTouch);
+				lcdImages[int(gXML.@id)] = gImage;
 				i ++;
 			}
 			
@@ -49,11 +50,13 @@ package
 			GameEvents.subscribe(GameEvents.BARCODE_APPLY, onBarcodeStickerApplied);
 		}
 		
-		private function onScreenTouch(e: TouchEvent): void 
+		private function onLCDGoodTouch(e: TouchEvent): void 
 		{
-			if (e.getTouch(this, TouchPhase.ENDED))
+			var goodImg: Image = lcdImages[good.info.id];
+			if (e.getTouch(goodImg, TouchPhase.ENDED))
 			{
-				removeChild(screen);
+				goodImg.removeEventListener(TouchEvent.TOUCH, onLCDGoodTouch);
+				removeChild(lcd);
 				barCode.print();
 				GameEvents.dispatch(GameEvents.SCALES_BARCODE_PRINT);
 			}
@@ -66,17 +69,18 @@ package
 		
 		private function onScalesViewShow(e: Event, g: Good): void
 		{
-			/*if (!day || day.disabledFeatures["scales"]
-				|| item.type !== Item.TYPE_GOOD
-				|| (Item as Good).info.barcode)*/
 			if (g.info.barcode)
 				return;
 			
-			addChild(screen);
+			addChild(lcd);
 			
 			good.x = Screens.centerX;
 			good.y = Screens.centerY;
 			good.info = g.info;
+			
+			var goodImg: Image = lcdImages[good.info.id];
+			if (goodImg)
+				goodImg.addEventListener(TouchEvent.TOUCH, onLCDGoodTouch);
 			
 			visible = true;
 		}
