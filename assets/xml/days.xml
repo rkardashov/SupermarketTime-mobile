@@ -79,7 +79,7 @@
 		<disabled feature="scales" />
 	</day>
 	
-	<day index="4" duration="60" score="60,130,210" bags="0,1" goodsMaxID="6"
+	<day index="-1" duration="60" score="60,130,210" bags="0,1" goodsMaxID="6"
 		customers="test_scales">
 	</day>
 </data>

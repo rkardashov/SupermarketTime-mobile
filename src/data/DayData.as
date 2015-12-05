@@ -9,7 +9,7 @@ package data
 	{
 		public var customers: Vector.<CustomerInfo> = new Vector.<CustomerInfo>();
 		
-		public var dayNumber: uint;
+		public var dayNumber: int;
 		//public var scoreMin: uint;
 		//public var scoreMid: uint;
 		//public var scoreMax: uint;
@@ -32,7 +32,7 @@ package data
 		public var bubbleDividerMoveOffScreen: Boolean = false;
 	//public var goodIDs: Vector.<int> = new Vector.<int>();
 		
-		public function DayData(dayNumber: uint) 
+		public function DayData(dayNumber: int) 
 		{
 			this.dayNumber = dayNumber;
 			save.index = dayNumber;
