@@ -23,6 +23,7 @@ package screens
 		static public var scale: int = 1;
 		static public var centerX: int;
 		static public var centerY: int;
+		static public var onScreensLoaded: Function = null;
 		
 		public function Screens() 
 		{
@@ -60,10 +61,6 @@ package screens
 			centerX = 200;// 60;
 			centerY = 120;// 60;
 			
-			//stage.scaleX = stage.scaleY = 4;
-			
-			//Assets.manager = new AssetManager();
-			
 			GameEvents.subscribe(GameEvents.SCREEN_ENTER, onScreenEnter);
 			//GameEvents.subscribe(GameEvents.SCREEN_EXIT, onScreenExit);
 			
@@ -72,13 +69,10 @@ package screens
 			_screens[GameScreen] = new GameScreen();
 			_screens[DayEndScreen] = new DayEndScreen();
 			
-			//addChild(_screens[MainMenu]);
-			//addChild(_screens[LoadGameScreen]);
-			//addChild(_screens[GameScreen]);
-			//addChild(_screens[DayEndScreen]);
-			//gotoScreen(MainMenu);
-			//gotoScreen(DayEndScreen);
-			GameEvents.dispatch(GameEvents.SCREEN_ENTER, MainMenu);
+			if (onScreensLoaded)
+				onScreensLoaded()
+			else
+				GameEvents.dispatch(GameEvents.SCREEN_ENTER, MainMenu);
 		}
 		
 		private function onScreenEnter(e: Event, screenClass: Class): void 
