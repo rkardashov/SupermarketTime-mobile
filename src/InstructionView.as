@@ -39,7 +39,7 @@ package
 			GameEvents.subscribe(GameEvents.GOOD_ENTER, onGameEvent);
 			GameEvents.subscribe(GameEvents.GOOD_SCANNED, onGameEvent);
 			GameEvents.subscribe(GameEvents.GOODS_COMPLETE, onGameEvent);
-			GameEvents.subscribe(GameEvents.CARD_PAYMENT, onGameEvent);
+			GameEvents.subscribe(GameEvents.PAYMENT_COMPLETE, onGameEvent);
 			GameEvents.subscribe(GameEvents.GOOD_DRAG, onGameEvent);
 			GameEvents.subscribe(GameEvents.GOOD_WRONG_BAG, onGameEvent);
 			GameEvents.subscribe(GameEvents.SCANNER_GOOD_NO_BARCODE, onGameEvent);

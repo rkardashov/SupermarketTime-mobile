@@ -12,14 +12,14 @@ package
 	 * ...
 	 * @author rkardashov@gmail.com
 	 */
-	public class CustomerReceipt extends Item //Sprite 
+	public class Receipt extends Item //Sprite 
 	{
 		private static const defaultX: int = int(Screens.unit * 5.9);
 		private static const defaultY: int = int(Screens.unit * 4);
 		private var imgReceipt: Image;
 		
 		
-		public function CustomerReceipt()
+		public function Receipt()
 		{
 			super();
 			type = Item.TYPE_RECEIPT;
@@ -30,7 +30,7 @@ package
 			imgReceipt = addChild(Assets.getImage("receipt_1")) as Image;
 			clipRect = new Rectangle(0, 0, imgReceipt.width, imgReceipt.height);
 			
-			GameEvents.subscribe(GameEvents.CARD_PAYMENT, print);
+			GameEvents.subscribe(GameEvents.PAYMENT_COMPLETE, print);
 		}
 		
 		public function print(): void 

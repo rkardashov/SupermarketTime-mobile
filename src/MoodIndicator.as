@@ -10,9 +10,9 @@ package
 	 * ...
 	 * @author rkardashov@gmail.com
 	 */
-	public class CustomerMoodIndicator extends MovieClip 
+	public class MoodIndicator extends MovieClip 
 	{
-		public function CustomerMoodIndicator() 
+		public function MoodIndicator() 
 		{
 			super(Assets.getTextures("mood"));
 			smoothing = TextureSmoothing.NONE;

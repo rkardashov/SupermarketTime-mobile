@@ -23,40 +23,35 @@ package screens
 	 */
 	public class GameScreen extends BasicScreen
 	{
-		private var layerBottom:Sprite; // dropAreas, conveyor button, etc.
-		private var layerItems:Sprite; // middle layer - most used
-		private var layerUI:Sprite; // top layer - UI
+		private var layerBottom: Sprite; // dropAreas, conveyor button, etc.
+		private var layerItems: Sprite; // middle layer - most used
+		private var layerUI: Sprite; // top layer - UI
 		
-		public var conveyor:Conveyor;
+		public var conveyor: Conveyor;
 		//private var btnMoveConveyor: MoveConveyorButton;
-		public var scanner:Scanner;
-		public var bags:Vector.<BagView> = new Vector.<BagView>();
-		private var customerQueue:CustomerQueue;
-		public var sum:Sum;
-		private var customerCard:CustomerCard;
-		private var customerReceipt:CustomerReceipt;
-		public var scalesView:ScalesView;
-		public var inspectView:GoodInspectView;
-		private var bagsRequestView:BagsRequestView;
+		public var scanner: Scanner;
+		public var bags: Vector.<BagView> = new Vector.<BagView>();
+		private var customerQueue: CustomerQueue;
+		public var sum: Sum;
+		private var customerReceipt: Receipt;
+		public var scalesView: ScalesView;
+		public var inspectView: GoodInspectView;
+		private var bagsRequestView: BagsRequestView;
 		//private var scorePopup:ScorePopup;
-		private var btnPause:PauseButton;
-		private var scoreView:ScoreView;
-		//private var speechView:SpeechView;
-		//private var customerSpeech:CustomerSpeech;
-		private var btnCustomerHiBye:CustomerHiByeButton;
-		//private var btnCustomerGoodbye:CustomerGoodbyeButton;
-		private var pauseWindow:PauseWindow;
-		//private var instructionView:InstructionView;
-		private var dayIntroView:DayIntroView;
-		public var dayTimer:DayTimer;
+		private var btnPause: PauseButton;
+		private var scoreView: ScoreView;
+		private var btnCustomerHiBye: HiByeButton;
+		private var pauseWindow: PauseWindow;
+		private var dayIntroView: DayIntroView;
+		public var dayTimer: DayTimer;
 		
 		/*[Embed(source="../../assets/sounds/219533__pulswelle__supermarket.mp3")]
 		private static const _SOUND_AMBIENT:Class;
 		private var ambient:Sound;
 		*/
-		private var day:DayData;
+		private var day: DayData;
 		
-		public function GameScreen():void
+		public function GameScreen(): void
 		{
 			super();
 			
@@ -74,8 +69,6 @@ package screens
 			// TODO: uncomment for release
 			//addChild(Assets.getImage("vignette_dark")).touchable = false;
 			
-			//instructionView = new InstructionView();
-			
 			layerUI.addChild(dayTimer = new DayTimer());
 			layerUI.addChild(scoreView = new ScoreView(dayTimer));
 			layerUI.addChild(bagsRequestView = new BagsRequestView());
@@ -83,18 +76,11 @@ package screens
 			layerUI.addChild(inspectView = new GoodInspectView());
 			//layerUI.addChild(scorePopup = new ScorePopup());
 			layerUI.addChild(btnPause = new PauseButton());
-			//layerUI.addChild(speechView = new SpeechView());
-			//layerUI.addChild(customerSpeech = new CustomerSpeech());
-			layerUI.addChild(btnCustomerHiBye = new CustomerHiByeButton());
-			//layerUI.addChild(btnCustomerGoodbye = new CustomerGoodbyeButton());
+			layerUI.addChild(btnCustomerHiBye = new HiByeButton());
 			layerUI.addChild(pauseWindow = new PauseWindow());
-			//layerUI.addChild(instructionView/* = new InstructionView()*/);
-			layerUI.addChild(dayIntroView = new DayIntroView(/*startDay*/));
+			layerUI.addChild(dayIntroView = new DayIntroView());
+			layerUI.addChild(new CashRegister());
 			
-			/*layerItems.addChild(conveyor = new Conveyor());
-			layerItems.addChild(customerCard = new CustomerCard());
-			layerItems.addChild(customerReceipt = new CustomerReceipt());
-			*/
 			layerBottom.addChild(sum = new Sum());
 			layerBottom.addChild(scanner = new Scanner( /*sum*/));
 			var bag:BagView;
@@ -112,8 +98,9 @@ package screens
 			layerBottom.addChild(areaInspectGood);
 			
 			layerItems.addChild(conveyor = new Conveyor());
-			layerItems.addChild(customerCard = new CustomerCard());
-			layerItems.addChild(customerReceipt = new CustomerReceipt());
+			layerItems.addChild(new Cash());
+			//layerItems.addChild(new Card());
+			layerItems.addChild(customerReceipt = new Receipt());
 			
 			Goods.init();
 			ScorePopup.init(layerUI);
@@ -123,8 +110,7 @@ package screens
 			GameEvents.subscribe(GameEvents.TIME_OUT, checkStatus);
 		}
 		
-		//public function enter(): void
-		override protected function onEnter():void 
+		override protected function onEnter(): void 
 		{
 			day = new DayData(Saves.currentDayIndex);
 			for (var i:int = 0; i < Goods.categories.length; i++)
@@ -135,19 +121,14 @@ package screens
 			
 			// TODO: move to BagsRequest.@DAY_START
 			bagsRequestView.visible = false;
-			// TODO: move to CustomerCard.@DAY_START
-			customerCard.visible = false;
 			// TODO: move to CustomerReceipt.@DAY_START
 			customerReceipt.visible = false;
-			
-			// TODO: move to InstructionView.@DAY_START
-			//instructionView.init(day);
 			
 			//dayIntroView.show(day);
 			/*GameEvents.dispatch(GameEvents.INTRO_START, day);*/
 		}
 		
-		override protected function onReady():void 
+		override protected function onReady(): void 
 		{
 			GameEvents.dispatch(GameEvents.INTRO_START, day);
 		}

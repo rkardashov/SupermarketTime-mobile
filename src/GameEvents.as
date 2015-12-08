@@ -42,16 +42,17 @@ package
 		static public const BAG_REMOVE: String = "bag_remove";
 		
 		static public const GOODS_COMPLETE: String = "goods_complete";
-		static public const CARD_PAYMENT: String = "card_payment";
+		static public const PAYMENT_START:String = "payment_start";
+		static public const PAYMENT_COMPLETE: String = "payment_complete";
 		static public const ADD_SCORE: String = "add_score";
 		
-		static public const CUSTOMER_STOPPED:String = "customer_stopped";
+		static public const CUSTOMER_STOPPED: String = "customer_stopped";
 		static public const CUSTOMER_ARRIVED: String = "customer_arrived";
 		static public const CUSTOMER_COMPLETE: String = "customer_complete";
 		static public const NEXT_CUSTOMER: String = "next_customer";
 		static public const CUSTOMER_MOOD_LEVEL: String = "customer_mood_level";
 		static public const CUSTOMER_WELCOME: String = "customer_welcome";
-		static public const CUSTOMER_GOODBYE:String = "customer_goodbye";
+		static public const CUSTOMER_GOODBYE: String = "customer_goodbye";
 		
 		static public const CONVEYOR_START: String = "conveyor_start";
 		static public const CONVEYOR_STOP: String = "conveyor_stop";
@@ -60,9 +61,9 @@ package
 		static public const INTRO_START: String = "intro_start";
 		static public const INTRO_END: String = "intro_end";
 		static public const SCALES_VIEW_SHOW: String = "scales_view_show";
-		static public const SCALES_BARCODE_PRINT:String = "scales_barcode_print";
+		static public const SCALES_BARCODE_PRINT: String = "scales_barcode_print";
 		static public const INSPECT_VIEW_SHOW: String = "inspect_view_show";
-		static public const NUMPAD_ENTER_DIGIT:String = "numpad_enter_digit";
+		static public const NUMPAD_ENTER_DIGIT: String = "numpad_enter_digit";
 		
 		static public function subscribe(eventType: String, handler: Function): void 
 		{

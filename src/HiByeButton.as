@@ -13,13 +13,13 @@ package
 	 * ...
 	 * @author rkardashov@gmail.com
 	 */
-	public class CustomerHiByeButton extends Sprite//PixelButton
+	public class HiByeButton extends Sprite//PixelButton
 	{
 		private var frames: MovieClip;
 		private var pressed: Boolean = false;
 		private var bubble: SpeechBubble;
 		
-		public function CustomerHiByeButton() 
+		public function HiByeButton() 
 		{
 			super();//"bubble_welcome");
 			x = 90;
@@ -56,7 +56,7 @@ package
 				return;
 			GameEvents.subscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrived);
 			GameEvents.subscribe(GameEvents.GOOD_ENTER, onHideEvent);
-			GameEvents.subscribe(GameEvents.CARD_PAYMENT, onCardPayment);
+			GameEvents.subscribe(GameEvents.PAYMENT_COMPLETE, onCardPayment);
 			GameEvents.subscribe(GameEvents.CUSTOMER_COMPLETE, onHideEvent);
 		}
 		
@@ -64,7 +64,7 @@ package
 		{
 			GameEvents.unsubscribe(GameEvents.CUSTOMER_ARRIVED, onCustomerArrived);
 			GameEvents.unsubscribe(GameEvents.GOOD_ENTER, onHideEvent);
-			GameEvents.unsubscribe(GameEvents.CARD_PAYMENT, onCardPayment);
+			GameEvents.unsubscribe(GameEvents.PAYMENT_COMPLETE, onCardPayment);
 			GameEvents.unsubscribe(GameEvents.CUSTOMER_COMPLETE, onHideEvent);
 		}
 		
