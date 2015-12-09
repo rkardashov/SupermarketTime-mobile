@@ -46,6 +46,8 @@ package
 		static public const PAYMENT_COMPLETE: String = "payment_complete";
 		static public const ADD_SCORE: String = "add_score";
 		
+		static public const BANKNOTE_IN_TRAY:String = "banknoteInTray";
+		
 		static public const CUSTOMER_STOPPED: String = "customer_stopped";
 		static public const CUSTOMER_ARRIVED: String = "customer_arrived";
 		static public const CUSTOMER_COMPLETE: String = "customer_complete";

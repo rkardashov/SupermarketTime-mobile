@@ -26,7 +26,7 @@
 	<customer id="test_cash" texture="man"
 		mood="200" moodLevels="10,25"
 		goodsMin="1" goodsMax="1"
-		cashProbability="50"
+		cashProbability="100"
 		>
 		<good id="1" counts="01" />
 		<good id="2" counts="01" />

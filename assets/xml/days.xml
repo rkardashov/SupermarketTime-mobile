@@ -81,6 +81,7 @@
 	
 	<day index="-1" duration="60" score="60,130,210" bags="0,1" goodsMaxID="5"
 		customers="test_cash">
+		<disabled feature="flipping" />
 		<!--<disabled feature="cash" />-->
 	</day>
 </data>
