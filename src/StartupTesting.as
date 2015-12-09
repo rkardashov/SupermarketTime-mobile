@@ -27,7 +27,7 @@ package
 		
 		private function onScreensLoaded(): void 
 		{
-			if (Saves.selectDay(3))
+			if (Saves.selectDay(-1))
 				Screens.gotoScreen(GameScreen);
 		}
 	}

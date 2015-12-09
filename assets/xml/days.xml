@@ -79,7 +79,8 @@
 		<disabled feature="scales" />
 	</day>
 	
-	<day index="-1" duration="60" score="60,130,210" bags="0,1" goodsMaxID="9"
-		customers="test_scales">
+	<day index="-1" duration="60" score="60,130,210" bags="0,1" goodsMaxID="5"
+		customers="test_cash">
+		<!--<disabled feature="cash" />-->
 	</day>
 </data>

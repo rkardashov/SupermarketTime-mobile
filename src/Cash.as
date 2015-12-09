@@ -1,6 +1,7 @@
 package 
 {
-	import data.Assets;
+	import data.DayData;
+	import starling.events.Event;
 	/**
 	 * ...
 	 * @author rkardashov@gmail.com
@@ -9,9 +10,7 @@ package
 	{
 		public function Cash() 
 		{
-			super();
-			
-			addChild(Assets.getImage("card_" + String(int(Math.random() * 5))));
+			super("cash_");
 		}
 	}
 }

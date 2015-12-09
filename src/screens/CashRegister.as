@@ -16,10 +16,11 @@ package screens
 		public function CashRegister() 
 		{
 			super();
-			var img: Image = Assets.getImage("cash_register");
+			
+			var img: Image = Assets.getImage("cashregister");
 			addChild(img);
-			img.x = 130;
 			visible = false;
+			
 			GameEvents.subscribe(GameEvents.PAYMENT_START, onPaymentStart);
 			GameEvents.subscribe(TouchEvent.TOUCH, onTouch);
 		}

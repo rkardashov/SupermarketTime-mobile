@@ -39,6 +39,9 @@ package data
 			
 			var dayXML: XML = Assets.daysXML.day.(@index == dayNumber)[0];
 			
+			for each (var disabled: XML in dayXML.disabled)
+				disabledFeatures[disabled.@feature] = true;
+			
 			/*var scoreStr: String = dayXML.@score;
 			scoreMin = scoreStr.split(",")[0];
 			scoreMid = scoreStr.split(",")[1];
@@ -87,10 +90,6 @@ package data
 			/*var maxGoodID: int = String(dayXML.@goods).split("-")[1];
 			for (var i:int = 0; i < maxGoodID; i++) 
 				goodIDs.push(i);*/
-			
-			for each (var disabled: XML in dayXML.disabled)//.Feature) 
-				//this[feature.@name] = false;
-				disabledFeatures[disabled.@feature] = true;
 			
 			if (dayXML.attribute("tutorial").length() > 0)
 				tutorial = new Tutorial(dayXML.@tutorial);

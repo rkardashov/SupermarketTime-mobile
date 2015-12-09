@@ -99,7 +99,7 @@ package screens
 			
 			layerItems.addChild(conveyor = new Conveyor());
 			layerItems.addChild(new Cash());
-			//layerItems.addChild(new Card());
+			layerItems.addChild(new Card());
 			layerItems.addChild(customerReceipt = new Receipt());
 			
 			Goods.init();

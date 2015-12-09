@@ -16,11 +16,22 @@
 		<reaction event="customer_goodbye" mood="25" />
 	</customerTest>
 	
-	<customer id="test_scales" texture="man" mood="200" moodLevels="10,25" goodsMin="8" goodsMax="10"> <!--Пиво, чипсы, мясо, горчица, кетчуп, мыло -->
+	<customer id="test_scales" texture="man" mood="200" moodLevels="10,25" goodsMin="8" goodsMax="10">
 		<good id="6" counts="234" />
 		<good id="7" counts="234" />
 		<good id="8" counts="234" />
 		<good id="9" counts="234" />
+	</customer>
+	
+	<customer id="test_cash" texture="man"
+		mood="200" moodLevels="10,25"
+		goodsMin="1" goodsMax="1"
+		cashProbability="50"
+		>
+		<good id="1" counts="01" />
+		<good id="2" counts="01" />
+		<good id="3" counts="01" />
+		<good id="4" counts="01" />
 	</customer>
 	
 	<customer id="tutorial_0_basic" texture="woman"

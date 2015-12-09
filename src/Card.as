@@ -1,8 +1,5 @@
 package
 {
-	import data.Assets;
-	import starling.display.Image;
-	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
@@ -18,9 +15,7 @@ package
 		
 		public function Card() 
 		{
-			super();
-			
-			addChild(Assets.getImage("card_" + String(int(Math.random() * 5))));
+			super("card_");
 			
 			GameEvents.subscribe(GameEvents.PAYMENT_START, onPaymentStart);
 			
@@ -34,9 +29,9 @@ package
 			removeChild(bubble);
 		}
 		
-		private function onPaymentStart(e: Event, i: Item): void 
+		private function onPaymentStart(e: Event, item: Item): void 
 		{
-			if (i == this)
+			if (item == this)
 			{
 				paid = true;
 				GameEvents.dispatch(GameEvents.PAYMENT_COMPLETE);
