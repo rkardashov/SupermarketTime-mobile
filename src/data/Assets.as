@@ -47,25 +47,7 @@ package data
 			Assets.onAssetsLoaded = onAssetsLoaded;
 			
 			manager = new AssetManager();
-			var appDir: File = File.applicationDirectory;
-			// xml
-			manager.enqueue(appDir.resolvePath("resources/xml/days.xml"));
-			manager.enqueue(appDir.resolvePath("resources/xml/customers.xml"));
-			manager.enqueue(appDir.resolvePath("resources/xml/goods.xml"));
-			// atlas
-			manager.enqueue(appDir.resolvePath("resources/atlas/atlas.png"));
-			manager.enqueue(appDir.resolvePath("resources/atlas/atlas.xml"));
-			// font xmls
-			manager.enqueue(appDir.resolvePath("resources/fonts/systematic_9.fnt"));
-			manager.enqueue(appDir.resolvePath("resources/fonts/arcade_10.fnt"));
-			// sounds
-			manager.enqueue(appDir.resolvePath("resources/sounds/ambient.mp3"));
-			manager.enqueue(appDir.resolvePath("resources/sounds/scan.mp3"));
-			manager.enqueue(appDir.resolvePath("resources/sounds/bag/"));
-			// particles
-			manager.enqueue(appDir.resolvePath("resources/particles/particle1.pex"));
-			manager.enqueue(appDir.resolvePath("resources/particles/particle1.png"));
-			
+			manager.enqueue(EmbeddedAssets);
 			manager.loadQueue(onLoadProgress);
 		}
 		
@@ -85,7 +67,7 @@ package data
 		static public function particleSystem(): PDParticleSystem
 		{
 			var pdps: PDParticleSystem = new PDParticleSystem(
-				manager.getXml("particle1"),
+				manager.getXml("particle1_xml"),
 				manager.getTexture("particle1")
 				);
 			Starling.juggler.add(pdps);
