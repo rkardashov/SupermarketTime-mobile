@@ -5,14 +5,11 @@ package
 	 * ...
 	 * @author rkardashov@gmail.com
 	 */
-	public class BanknoteTray extends ItemsDropArea implements IItemReceiver
+	public class ChangeTray extends ItemsDropArea implements IItemReceiver
 	{
-		private var banknoteRank: int;
-		
-		public function BanknoteTray(banknoteRank: int) 
+		public function ChangeTray() 
 		{
-			super(this, "", 40, 90);
-			this.banknoteRank = banknoteRank;
+			super(this, "change_tray");
 		}
 		
 		/* INTERFACE IItemReceiver */
@@ -22,8 +19,7 @@ package
 			var banknote: Banknote = item as Banknote;
 			if (!banknote)
 				return;
-			if (!banknote.isChange &&
-				banknote.rank == banknoteRank)
+			if (banknote.isChange)
 				GameEvents.dispatch(GameEvents.BANKNOTE_IN_TRAY, banknote);
 		}
 	}
