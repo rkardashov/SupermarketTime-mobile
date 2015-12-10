@@ -16,11 +16,22 @@
 		<reaction event="customer_goodbye" mood="25" />
 	</customerTest>
 	
-	<customer id="test_scales" texture="man" mood="200" moodLevels="10,25" goodsMin="8" goodsMax="10"> <!--Пиво, чипсы, мясо, горчица, кетчуп, мыло -->
+	<customer id="test_scales" texture="man" mood="200" moodLevels="10,25" goodsMin="8" goodsMax="10">
 		<good id="6" counts="234" />
 		<good id="7" counts="234" />
 		<good id="8" counts="234" />
 		<good id="9" counts="234" />
+	</customer>
+	
+	<customer id="test_cash" texture="man"
+		mood="200" moodLevels="10,25"
+		goodsMin="1" goodsMax="1"
+		cashProbability="100"
+		>
+		<good id="1" counts="01" />
+		<good id="2" counts="01" />
+		<good id="3" counts="01" />
+		<good id="4" counts="01" />
 	</customer>
 	
 	<customer id="tutorial_0_basic" texture="woman"
@@ -31,7 +42,7 @@
 		<speech eventShow="good_scanned" phrase="Now put that to the bag." />
 		<speech eventShow="good_received" phrase="Scan another one." />
 		<speech eventShow="goods_complete" phrase="Drag the bank card over the card slot to make the payment." />
-		<speech eventShow="card_payment" phrase="Finally, give me the card and receipt." eventHide="customer_complete" />
+		<speech eventShow="payment_complete" phrase="Finally, give me the card and receipt." eventHide="customer_complete" />
 		<good id="0" counts="0112" />
 		<good id="1" counts="0012" />
 		<reaction event="customer_welcome" mood="15" />
@@ -69,7 +80,7 @@
 			goodsMin="5" goodsMax="5" conveyorCapacity="3">
 		<speech eventShow="default" phrase="You get more points if the customer is happy. Try saying hello to a customer." eventHide="customer_welcome" />
 		<speech eventShow="good_enter" phrase="The mood decreases over time, so work fast!" eventHide="goods_complete" />
-		<speech eventShow="card_payment" phrase="To make the customer a bit happier, say goodbye." eventHide="customer_complete"/>
+		<speech eventShow="payment_complete" phrase="To make the customer a bit happier, say goodbye." eventHide="customer_complete"/>
 		<good id="1" counts="2" />
 		<good id="3" counts="3" />
 		<reaction event="customer_welcome" mood="15" />

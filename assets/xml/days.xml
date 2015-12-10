@@ -18,10 +18,10 @@
 			<speech phrase="drop here" eventShow="good_scanned" eventHide="bag_good_added" />
 		</bagBubble>
 		<sumDropCardHereBubble textWidth="70" textHeight="20" >
-			<speech phrase="drop here" eventShow="goods_complete" eventHide="card_payment" />
+			<speech phrase="drop here" eventShow="goods_complete" eventHide="payment_complete" />
 		</sumDropCardHereBubble>
 		<cardDragMeBubble textWidth="70" textHeight="20" >
-			<speech phrase="drag me" eventShow="goods_complete" eventHide="card_payment" />
+			<speech phrase="drag me" eventShow="goods_complete" eventHide="payment_complete" />
 		</cardDragMeBubble>
 		<disabled feature="flipping" />
 		<disabled feature="hi-bye" />
@@ -72,14 +72,16 @@
 		</customerMoodBubble>
 		<hiByeBubble textWidth="50" textHeight="20">
 			<speech phrase="click me" eventShow="customer_arrived"/>
-			<speech phrase="click me" eventShow="card_payment"/>
+			<speech phrase="click me" eventShow="payment_complete"/>
 		</hiByeBubble>
 		<disabled feature="inspect" />
 		<disabled feature="stickers" />
 		<disabled feature="scales" />
 	</day>
 	
-	<day index="-1" duration="60" score="60,130,210" bags="0,1" goodsMaxID="9"
-		customers="test_scales">
+	<day index="-1" duration="60" score="60,130,210" bags="0,1" goodsMaxID="5"
+		customers="test_cash">
+		<disabled feature="flipping" />
+		<!--<disabled feature="cash" />-->
 	</day>
 </data>

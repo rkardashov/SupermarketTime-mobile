@@ -29,7 +29,7 @@ package
 		private var bubbleSpeech: SpeechView;
 		
 		public var dropArea: ItemsDropArea;
-		public var receivedCard: Boolean;
+		public var receivedMoney: Boolean;
 		public var receivedReceipt: Boolean;
 		
 		public function CustomerQueue(dayTimer: DayTimer) 
@@ -46,7 +46,7 @@ package
 			/*addChild(moodIndicator = new MovieClip(Assets.getTextures("mood")));
 			moodIndicator.smoothing = TextureSmoothing.NONE;
 			moodIndicator.visible = false;*/
-			addChild(new CustomerMoodIndicator());
+			addChild(new MoodIndicator());
 			
 			bubbleSpeech = addChild(new SpeechView()) as SpeechView;
 			bubbleSpeech.x = 90;
@@ -73,7 +73,7 @@ package
 		
 		private function reset(): void 
 		{
-			receivedCard = false;
+			receivedMoney = false;
 			receivedReceipt = false;
 			
 			layerCustomers.removeChildren();
@@ -97,7 +97,7 @@ package
 		
 		private function next(): void 
 		{
-			receivedCard = false;
+			receivedMoney = false;
 			receivedReceipt = false;
 			//for (var i:int = 0; i < layerCustomers.numChildren; i++) 
 			var num: int = layerCustomers.numChildren - 1;
@@ -159,12 +159,12 @@ package
 				return;
 			}
 			
-			if (item.type == Item.TYPE_CARD)
+			if (item.type == Item.TYPE_MONEY)
 			{
-				if ((item as CustomerCard).paid)
+				if ((item as Money).paid)
 				{
 					item.visible = false;
-					receivedCard = true;
+					receivedMoney = true;
 				}
 			}
 			if (item.type == Item.TYPE_RECEIPT)
@@ -174,7 +174,7 @@ package
 				//return;
 			}
 			
-			if (receivedCard && receivedReceipt)
+			if (receivedMoney && receivedReceipt)
 			{
 				var c: CustomerInfo = _current;
 				customerLeaves();

@@ -16,6 +16,7 @@ package
 	public class Sum extends TextField implements IItemReceiver 
 	{
 		public var total: Number = 0;
+		private var paid: Boolean;
 		
 		public function Sum() 
 		{
@@ -58,8 +59,8 @@ package
 		
 		public function receive(item: Item): void 
 		{
-			if (item.type == Item.TYPE_CARD)
-				(item as CustomerCard).pay();
+			if (item.type == Item.TYPE_MONEY && !(item as Money).paid)
+				GameEvents.dispatch(GameEvents.PAYMENT_START, item);
 		}
 	}
 }

@@ -21,6 +21,7 @@ package data
 		public var moodLevels: Vector.<int> = new Vector.<int>();
 		public var moodInitial: int = 0;
 		public var speech: Speech;
+		public var cashPayment: Boolean;
 		
 		public function CustomerInfo(dayXML: XML) 
 		{
@@ -90,6 +91,13 @@ package data
 			conveyorCapacity = int.MAX_VALUE;
 			if (customerXML.attribute("conveyorCapacity").length() > 0)
 				conveyorCapacity = int(customerXML.@conveyorCapacity);
+				
+			// check for random() >= @cashProbability / 100.0
+			cashPayment = false;
+			if ((dayXML.disabled.(@feature == "cash").length() == 0) &&
+				(customerXML.attribute("cashProbability").length() > 0))
+				cashPayment =
+					Number(customerXML.@cashProbability) > (Math.random() * 100.0);
 		}
 	}
 }

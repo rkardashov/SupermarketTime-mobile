@@ -18,11 +18,13 @@ package
 	public class Item extends PixelSprite 
 	{
 		static public const TYPE_GOOD: int = 0;
-		static public const TYPE_CARD: int = 1;
-		static public const TYPE_RECEIPT: int = 2;
-		static public const TYPE_GOOD_MAGNIFIED: int = 3;
-		static public const TYPE_BARCODE_STICKER: int = 4;
-		static public const TYPE_CONVEYOR_DIVIDER: int = 5;
+		static public const TYPE_MONEY: int = 1;
+		static public const TYPE_DISCOUNT_CARD: int = 2;
+		static public const TYPE_RECEIPT: int = 3;
+		static public const TYPE_GOOD_MAGNIFIED: int = 4;
+		static public const TYPE_BARCODE_STICKER: int = 5;
+		static public const TYPE_CONVEYOR_DIVIDER: int = 6;
+		static public const TYPE_BANKNOTE: int = 7;
 		
 		public var type: int = TYPE_GOOD;
 		
