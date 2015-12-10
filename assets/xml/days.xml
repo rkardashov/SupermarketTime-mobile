@@ -79,9 +79,12 @@
 		<disabled feature="scales" />
 	</day>
 	
-	<day index="-1" duration="60" score="60,130,210" bags="0,1" goodsMaxID="5"
+	<day index="4" duration="60" score="60,130,210" bags="0,1" goodsMaxID="8"
+		customers="test_scales">
+		<disabled feature="inspect" />
+	</day>
+	
+	<day index="5" duration="60" score="60,130,210" bags="0,1" goodsMaxID="5"
 		customers="test_cash">
-		<disabled feature="flipping" />
-		<!--<disabled feature="cash" />-->
 	</day>
 </data>
