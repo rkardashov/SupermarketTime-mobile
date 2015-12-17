@@ -32,8 +32,8 @@ package
 		private var conveyorMoves:Boolean = false;
 		private var pause: Boolean = false;
 		
-		private var _isDragging: Boolean = false;
-		private var _isPicked: Boolean = false;
+		public var isDragging: Boolean = false;
+		public var isPicked: Boolean = false;
 		private var touchLocation: Point;
 		private var touchOffset: Point;
 		
@@ -43,6 +43,8 @@ package
 			this.type = type;
 			
 			addEventListener(TouchEvent.TOUCH, _onTouch);
+			
+			GameEvents.dispatch("item_new", this);
 			
 			/*GameEvents.subscribe(GameEvents.DAY_START, onConveyorStart);
 			GameEvents.subscribe(GameEvents.CONVEYOR_START, onConveyorStart);
@@ -117,7 +119,7 @@ package
 			{
 				touchOffset = touch.getLocation(parent);
 				touchOffset.offset( -x, -y);
-				_isPicked = true;
+				isPicked = true;
 				GameEvents.dispatch(GameEvents.ITEM_PICK, this);
 				// ?
 				GameEvents.dispatch(GameEvents.CONVEYOR_START);
@@ -128,7 +130,7 @@ package
 				onTouch();
 			if (touch)
 			{
-				_isPicked = false;
+				isPicked = false;
 				GameEvents.dispatch(GameEvents.ITEM_DROP, this);
 				
 				checkConveyorMovement();
@@ -137,7 +139,7 @@ package
 			}
 			
 			touch = e.getTouch(this, TouchPhase.MOVED);
-			_isDragging = (touch != null);
+			isDragging = (touch != null);
 			if (touch)
 			{
 				touchLocation = touch.getLocation(parent);
@@ -162,14 +164,14 @@ package
 			//trace("drop @ x " + x);
 		}
 		
-		public function get isDragging(): Boolean 
+		/*public function get isDragging(): Boolean 
 		{
 			return _isDragging;
-		}
+		}*/
 		
-		public function get isPicked():Boolean 
+		/*public function get isPicked():Boolean 
 		{
 			return _isPicked;
-		}
+		}*/
 	}
 }

@@ -25,7 +25,8 @@ package screens
 	{
 		private var layerBottom: Sprite; // dropAreas, conveyor button, etc.
 		private var layerItems: Sprite; // middle layer - most used
-		private var layerUI: Sprite; // top layer - UI
+		private var dragController: DragController; // item dragging controller
+		private var layerUI: Sprite;  // top layer - UI
 		
 		public var conveyor: Conveyor;
 		//private var btnMoveConveyor: MoveConveyorButton;
@@ -64,6 +65,7 @@ package screens
 			/***  layers  ***/
 			addChild(layerBottom = new Sprite());
 			addChild(layerItems = new Sprite());
+			addChild(dragController = new DragController());
 			addChild(layerUI = new Sprite());
 			
 			// TODO: uncomment for release
