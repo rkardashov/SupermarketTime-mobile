@@ -13,8 +13,7 @@ package
 		
 		public function GoodMagnified() 
 		{
-			super();
-			type = TYPE_GOOD_MAGNIFIED;
+			super(TYPE_GOOD_MAGNIFIED);
 			
 			_content.addChild(dropArea = new ItemsDropArea(this, null));
 			scaleX = scaleY = 3;

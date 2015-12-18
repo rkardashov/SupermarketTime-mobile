@@ -36,9 +36,9 @@ package
 		public var scanned: Boolean = false;
 		public var flipCount: int;
 		
-		public function Good()
+		public function Good(type: int = TYPE_GOOD)
 		{
-			super();
+			super(type);
 			_content = addChild(new PixelSprite()) as PixelSprite;
 			_sides = new MovieClip(Assets.getTextures("goods_cola_can_1"));
 			_sides.smoothing = TextureSmoothing.NONE;

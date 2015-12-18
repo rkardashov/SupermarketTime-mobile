@@ -65,7 +65,9 @@ package screens
 			/***  layers  ***/
 			addChild(layerBottom = new Sprite());
 			addChild(layerItems = new Sprite());
-			addChild(dragController = new DragController());
+			addChild(dragController = new DragController(
+				[Item.TYPE_GOOD, Item.TYPE_CONVEYOR_DIVIDER,
+				Item.TYPE_MONEY, Item.TYPE_RECEIPT]));
 			addChild(layerUI = new Sprite());
 			
 			// TODO: uncomment for release

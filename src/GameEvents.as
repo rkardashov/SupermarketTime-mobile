@@ -23,6 +23,7 @@ package
 		//static public const INSPECTVIEW_CLOSE:String = "inspectview_close";
 		static public const BARCODE_APPLY: String = "barcode_apply";
 		
+		static public const ITEM_NEW: String = "item_new";
 		static public const ITEM_PICK: String = "item_pick";
 		//static public const ITEM_START_DRAG: String = "itemStartDrag";
 		static public const ITEM_DROP: String = "item_drop";

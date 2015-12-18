@@ -24,6 +24,9 @@ package
 			var imgDivider: Image = Assets.getImage("conveyor_divider");
 			addChild(imgDivider);
 			
+			alignPivot();
+			y = 70;
+			
 			// tutorial "bubble"
 			var bubble: SpeechBubble = new SpeechBubble(
 				this, "dividerMoveMeBubble");
@@ -34,19 +37,14 @@ package
 		
 		override protected function onDrag(): void 
 		{
-			y = 0;
+			y = 70;
 			if (x < 0)
 				x = 0;
-			/*if (x > 150)
-				//onDividerMoveOut();
-				GameEvents.dispatch(GameEvents.CONVEYOR_GOODS_REQUEST);*/
 		}
 		
 		override protected function onDrop(): void 
 		{
-			//trace("divider x = " + int(x));
 			if (x > 150)
-				//onDividerMoveOut();
 				GameEvents.dispatch(GameEvents.CONVEYOR_GOODS_REQUEST);
 		}
 	}

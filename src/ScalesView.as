@@ -2,6 +2,7 @@ package
 {
 	import data.Assets;
 	import data.DayData;
+	import screens.DragController;
 	import screens.Screens;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -24,9 +25,13 @@ package
 		{
 			super();
 			
+			var dragController: DragController = new DragController(
+				[Item.TYPE_GOOD_MAGNIFIED, Item.TYPE_BARCODE_STICKER]);
+			
 			addChild(scales = Assets.getImage("overlay_scales"));
 			addChild(good = new GoodMagnified());
 			addChild(barCode = new BarcodeSticker());
+			addChild(dragController);
 			
 			// show all goods without barcode
 			lcd = new Sprite();

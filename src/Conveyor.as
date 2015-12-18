@@ -109,7 +109,6 @@ package
 			
 			if (item.type == Item.TYPE_CONVEYOR_DIVIDER)
 			{
-				item.y = 0;
 				if (item.x < rightBorder)
 					item.x = rightBorder;
 			}
@@ -128,7 +127,6 @@ package
 				good.atConveyor = true;
 				good.inBag = false;
 				good.scanned = false;
-				good.scaleX = good.scaleY = 1;
 				GameEvents.dispatch(GameEvents.GOOD_ENTER, good);
 			}
 		}

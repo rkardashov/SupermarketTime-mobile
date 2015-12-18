@@ -29,28 +29,18 @@ package
 		public var type: int = TYPE_GOOD;
 		
 		public var atConveyor: Boolean = false;
-		private var conveyorMoves:Boolean = false;
+		private var conveyorMoves: Boolean = false;
 		private var pause: Boolean = false;
 		
 		public var isDragging: Boolean = false;
 		public var isPicked: Boolean = false;
-		private var touchLocation: Point;
-		private var touchOffset: Point;
 		
 		public function Item(type: int = TYPE_GOOD)
 		{
 			super();
 			this.type = type;
 			
-			addEventListener(TouchEvent.TOUCH, _onTouch);
-			
-			GameEvents.dispatch("item_new", this);
-			
-			/*GameEvents.subscribe(GameEvents.DAY_START, onConveyorStart);
-			GameEvents.subscribe(GameEvents.CONVEYOR_START, onConveyorStart);
-			GameEvents.subscribe(GameEvents.CONVEYOR_STOP, onConveyorStop);
-			GameEvents.subscribe(GameEvents.PAUSE, onPause);
-			GameEvents.subscribe(GameEvents.RESUME, onResume);*/
+			GameEvents.dispatch(GameEvents.ITEM_NEW, this);
 		}
 		
 		public function get screenRect(): Rectangle
@@ -58,35 +48,7 @@ package
 			return getBounds(Screens.getScreen(GameScreen));
 		}
 		
-		private function onConveyorStart(e: Event): void 
-		{
-			trace("item @ " + e.type);
-			conveyorMoves = true;
-			checkConveyorMovement();
-		}
-		
-		private function onConveyorStop(e: Event): void 
-		{
-			trace("item @ " + e.type + ": remove ENTER_FRAME listener");
-			conveyorMoves = false;
-			removeEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
-		}
-		
-		private function onPause(e: Event):void 
-		{
-			trace("item @ " + e.type + ": remove ENTER_FRAME listener");
-			pause = true;
-			removeEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
-		}
-		
-		private function onResume(e: Event):void 
-		{
-			trace("item @ " + e.type + ": remove ENTER_FRAME listener");
-			pause = false;
-			checkConveyorMovement();
-		}
-		
-		private function checkConveyorMovement(): void 
+		public function checkConveyorMovement(): void 
 		{
 			if (!pause && conveyorMoves && !isDragging && !isPicked
 				&& parent && (parent.isPrototypeOf(Conveyor))
@@ -112,66 +74,28 @@ package
 				x --;
 		}
 		
-		private function _onTouch(e: TouchEvent): void 
+		public function touch(): void 
 		{
-			var touch: Touch = e.getTouch(this, TouchPhase.BEGAN);
-			if (touch)
-			{
-				touchOffset = touch.getLocation(parent);
-				touchOffset.offset( -x, -y);
-				isPicked = true;
-				GameEvents.dispatch(GameEvents.ITEM_PICK, this);
-				// ?
-				GameEvents.dispatch(GameEvents.CONVEYOR_START);
-			}
-			
-			touch = e.getTouch(this, TouchPhase.ENDED);
-			if (touch && !isDragging)
-				onTouch();
-			if (touch)
-			{
-				isPicked = false;
-				GameEvents.dispatch(GameEvents.ITEM_DROP, this);
-				
-				checkConveyorMovement();
-				//trace(GameEvents.ITEM_DROP);
-				onDrop();
-			}
-			
-			touch = e.getTouch(this, TouchPhase.MOVED);
-			isDragging = (touch != null);
-			if (touch)
-			{
-				touchLocation = touch.getLocation(parent);
-				x = int(touchLocation.x - touchOffset.x);
-				y = int(touchLocation.y - touchOffset.y);
-				onDrag();
-			}
+			onTouch();
 		}
-		
 		protected function onTouch(): void 
 		{
-			
 		}
 		
+		public function drag(): void 
+		{
+			onDrag();
+		}
 		protected function onDrag(): void
 		{
-			
 		}
 		
+		public function drop(): void 
+		{
+			onDrop();
+		}
 		protected function onDrop(): void 
 		{
-			//trace("drop @ x " + x);
 		}
-		
-		/*public function get isDragging(): Boolean 
-		{
-			return _isDragging;
-		}*/
-		
-		/*public function get isPicked():Boolean 
-		{
-			return _isPicked;
-		}*/
 	}
 }
